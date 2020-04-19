@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Header  = ({name} :Props) => (
-  <div className='header-main'>Hello, my name is {name}!</div>
+  <div className='header-main'>Hello, {name}!</div>
 );
 
 export default Header;
