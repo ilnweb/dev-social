@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/header/header.cmp';
+import PostFeed from './components/post-feed/post-feed.cmp';
 
-function App() {
+const App = () => {
+  const post = {
+    postTitle: 'New post',
+    postImg: 'https://res.cloudinary.com/ilnphotography/image/upload/v1584300108/HomePage/35450482_zftxnr.jpg',
+    userName: '1',
+    createdAt: '28/9/1966'
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header name="Tosheto" />
+      <PostFeed post={post}/>
     </div>
   );
 }
