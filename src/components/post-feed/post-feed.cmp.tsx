@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './post-feed.scss';
-import { Card, Avatar, Space } from 'antd';
+import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
