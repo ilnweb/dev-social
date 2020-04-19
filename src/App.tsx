@@ -1,7 +1,10 @@
 import React from 'react';
-import './App.css';
+import 'antd/dist/antd.css';
+import './App.scss';
 import Header from './components/header/header.cmp';
-import PostFeed from './components/post-feed/post-feed.cmp';
+import HomePage from './pages/home-page/home-page.cmp';
+import { Route, Switch } from 'react-router-dom';
+
 
 const App = () => {
   const post = {
@@ -13,7 +16,10 @@ const App = () => {
   return (
     <div className="App">
       <Header name="Tosheto" />
-      <PostFeed post={post}/>
+      <Switch>
+        <Route path="/" component={HomePage} />
+        <Route path="/" component={HomePage} />
+      </Switch>
     </div>
   );
 }
