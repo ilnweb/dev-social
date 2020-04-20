@@ -10,7 +10,7 @@ import SignIn from './sign-in/sign-in.cmp';
 
 
 const App: React.FC = () => {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState<{}|null>(null);
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
