@@ -1,26 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
 import { Route, Switch } from 'react-router-dom';
 import { auth, createUserProfileDocument } from './firebase/firebase.config';
+import SignIn from './sign-in/sign-in.cmp';
 
-let user:{};
 
 const App = () => {
-  // Similar to componentDidMount and componentDidUpdate:
+  const [currentUser, setCurrentUser] = useState({});
+  const [post, setpost] = useState({});
+
   useEffect(() => {
-    // Update the document title using the browser API
     auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
-        const userRef =  await createUserProfileDocument(userAuth);
+        const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapShot) => {
-          user = {
+          setCurrentUser({
             id: snapShot.id,
             photoURL: userAuth.photoURL,
             ...snapShot.data()
-          };
+          });
         });
       } else {
 
@@ -30,9 +31,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header name="Tosheto" />
+      <Header name={currentUser} />
       <Switch>
         <Route path="/" component={HomePage} />
+        <Route path="/login" component={SignIn} />
       </Switch>
     </div>
   );
