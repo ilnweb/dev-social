@@ -14,17 +14,17 @@ interface Post {
   }
 }
 
-
-const PostFeed = ({ post }: Post) => {
+const PostFeed: React.FC<Post> = ({ post }) => {
 
   return (
     <div>
       <Card
-        style={{ width: '100%', marginBottom:'1rem' }}
+        bordered={false}
+        style={{ width: '100%', marginBottom: '1rem' }}
         cover={
           <img
             alt="example"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            src={post.postImg}
           />
         }
         actions={[
@@ -35,8 +35,8 @@ const PostFeed = ({ post }: Post) => {
       >
         <Meta
           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title="Card title"
-          description="This is the description"
+          title={post.postTitle}
+          description={post.userName}
         />
       </Card>
       <Card

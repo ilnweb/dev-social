@@ -8,6 +8,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.config';
 import SignIn from './sign-in/sign-in.cmp';
 
 
+
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState({});
 
@@ -32,15 +33,12 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-
-      <Header name={currentUser} />
-
+      <Header user={currentUser}/>
       <Link to='/sign-in'>Signin</Link>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
       </Switch>
-
     </div>
   );
 }
