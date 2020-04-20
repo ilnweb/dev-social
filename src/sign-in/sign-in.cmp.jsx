@@ -75,7 +75,7 @@ const SignIn = () => {
 							type="primary"
 							icon={<FacebookOutlined/>}
 						
-						>Login with Facebook</Button>
+						>Login with Github</Button>
 				</Form>
 			</div>
 			</div>
