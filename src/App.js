@@ -3,17 +3,16 @@ import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch,Link } from 'react-router-dom';
 import { auth, createUserProfileDocument } from './firebase/firebase.config';
 import SignIn from './sign-in/sign-in.cmp';
 
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
-  const [post, setpost] = useState({});
 
   useEffect(() => {
-    auth.onAuthStateChanged(async (userAuth) => {
+     auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapShot) => {
@@ -22,20 +21,23 @@ const App = () => {
             photoURL: userAuth.photoURL,
             ...snapShot.data()
           });
+          console.log(currentUser);
         });
       } else {
 
       }
     });
-  });
+  },[]);
 
   return (
     <div className="App">
       <Header name={currentUser} />
+      <Link to='/sign-in'>Signin</Link>
       <Switch>
-        <Route path="/" component={HomePage} />
-        <Route path="/login" component={SignIn} />
+        <Route exact path="/" component={HomePage} />
+        <Route path="/sign-in" component={SignIn} />
       </Switch>
+     
     </div>
   );
 }

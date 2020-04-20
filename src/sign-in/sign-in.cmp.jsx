@@ -1,21 +1,15 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { auth, signInWithGoogle } from '../firebase/firebase.config';
 import { Button, Input, Form } from 'antd';
 import { MailOutlined, FacebookOutlined, GoogleOutlined } from '@ant-design/icons';
 
 
-class SignIn extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			email: '',
-			password: ''
-		};
-	}
+const SignIn = () => {
+  const [userCredentials, serCredentials]=useState({email:'', password:''})
 
-	handleSubmit = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const { email, password } = this.state;
+		const { email, password } = userCredentials;
 
 		try {
 			await auth.signInWithEmailAndPassword(email, password);
@@ -25,13 +19,13 @@ class SignIn extends React.Component {
 		}
 	};
 
-	handleChange = (e) => {
+	const handleChange = (e) => {
 		const { value, name } = e.target;
 
-		this.setState({ [name]: value });
+    serCredentials({...userCredentials, [name]: value });
 	};
 
-	render() {
+
 		return (
 			<div className="sign-in-up flex-c-c login-regester">
 				<div style={{ maxWidth: '1256px', margin: '0px auto' }}>
@@ -40,7 +34,7 @@ class SignIn extends React.Component {
 						<Input
 							id="email1"
 							name="email"
-							value={this.state.email}
+							value={userCredentials.email}
 							className="input-style"
 							type="email"
 							label="Email"
@@ -48,21 +42,21 @@ class SignIn extends React.Component {
 							placeholder="Email"
 							suffix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
 							autoComplete="true"
-							onChange={this.handleChange}
+							onChange={handleChange}
 						/>
 						<Input.Password
 							id="password1"
 							name="password"
-							value={this.state.password}
+							value={userCredentials.password}
 							className="input-style"
 							type="password"
 							label="Password"
 							size="large"
 							placeholder="Password"
 							autoComplete="true"
-							onChange={this.handleChange}
+							onChange={handleChange}
 						/>
-						<Button className="button primary block" size="large" type="primary" onClick={this.handleSubmit}>
+						<Button className="button primary block" size="large" type="primary" onClick={handleSubmit}>
 							Log In
 						</Button>
 						<div>
@@ -86,7 +80,7 @@ class SignIn extends React.Component {
 			</div>
 			</div>
 		);
-	}
+
 }
 
 export default SignIn;
