@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
@@ -6,23 +6,25 @@ import HomePage from './pages/home-page/home-page.cmp';
 import { Route, Switch, Link } from 'react-router-dom';
 import { auth, createUserProfileDocument } from './firebase/firebase.config';
 import SignIn from './sign-in/sign-in.cmp';
+import { observer } from 'mobx-react-lite';
+import { UserContext } from './mobX/user/user.context';
 
 
 
-const App: React.FC = () => {
-  const [currentUser, setCurrentUser] = useState<{}|null>(null);
+const App: React.FC = observer(() => {
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
+          userContext.user={
             id: snapShot.id,
             photoURL: userAuth.photoURL,
             ...snapShot.data()
-          });
-          console.log(currentUser);
+          };
+        
         });
       }
     });
@@ -33,7 +35,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Header user={currentUser}/>
+      <Header user={userContext.user} />
       <Link to='/sign-in'>Signin</Link>
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -41,6 +43,6 @@ const App: React.FC = () => {
       </Switch>
     </div>
   );
-}
+});
 
 export default App;

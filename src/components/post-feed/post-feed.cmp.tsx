@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './post-feed.scss';
 import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+
 
 const { Meta } = Card;
 
@@ -12,10 +13,13 @@ interface Post {
     userName: string
     createdAt: string
   }
+  user: {
+    displayName?: string | null
+  }
 }
 
-const PostFeed: React.FC<Post> = ({ post }) => {
 
+const PostFeed: React.FC<Post> = ({ post,user }) => {
   return (
     <div>
       <Card
@@ -55,8 +59,8 @@ const PostFeed: React.FC<Post> = ({ post }) => {
       >
         <Meta
           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title="Card title"
-          description="This is the description"
+          title="Name from MobX after firebase auth"
+          description={user.displayName}
         />
       </Card>
     </div>
