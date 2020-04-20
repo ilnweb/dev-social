@@ -3,7 +3,7 @@ import './header.scss';
 
 
 
-const Header = ({ name }) => (
+const Header: React.FC = ({ name }) => (
   
     <div className='header-main'>Hello, {name.displayName}!</div>
 

@@ -4,7 +4,7 @@ import { Button, Input, Form } from 'antd';
 import { MailOutlined, FacebookOutlined, GoogleOutlined } from '@ant-design/icons';
 
 
-const SignIn = () => {
+const SignIn: React.FC = () => {
   const [userCredentials, serCredentials]=useState({email:'', password:''})
 
 	const handleSubmit = async (e) => {
