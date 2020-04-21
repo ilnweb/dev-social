@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import './post-feed.scss';
 import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
