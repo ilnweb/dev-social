@@ -37,7 +37,7 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             ]}
           >
             <Meta
-              avatar={<Avatar style={{backgroundColor:"red"}}>I</Avatar>}
+              avatar={<Avatar style={{ backgroundColor: "red" }}>{post.userName.split('')[0]}</Avatar>}
               title={post.postTitle}
               description={post.userName}
             />
