@@ -38,8 +38,8 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             ]}
           >
             <Meta
-              avatar={<Avatar style={{ backgroundColor: "#e16162" }}>{post.userName.split('')[0]}</Avatar>}
               title={<Typography.Title level={2}>{post.postTitle}</Typography.Title>}
+              avatar={<Avatar style={{ backgroundColor: "#e16162" }}>{post.userName.split('')[0]}</Avatar>}
               description={`Posted: ${post.createdAt}`}
             />
           </Card>

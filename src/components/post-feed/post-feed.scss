@@ -1,0 +1,29 @@
+.ant-card-body {
+  padding: 13px;
+}
+
+.ant-card-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+}
+
+.ant-card-meta-detail {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.ant-card-meta-avatar {
+  /* float: left; */
+  padding-right: 16px;
+  padding-top: 7px;
+}
+
+.ant-card-meta-title{
+  h2{
+    margin-bottom: 0;
+  }
+}
