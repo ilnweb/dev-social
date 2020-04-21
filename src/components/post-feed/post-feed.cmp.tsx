@@ -32,8 +32,8 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
               />
             }
             actions={[
-              <LikeOutlined key="like" />,
-              <CommentOutlined key="comment" />,
+              <LikeOutlined style={{fontSize:'1.5rem'}} key="like" />,
+              <CommentOutlined style={{fontSize:'1.5rem'}} key="comment" />,
               <Button style={{backgroundColor:'#e16162', color:'#fffffe'}}>Save</Button>
             ]}
           >
