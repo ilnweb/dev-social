@@ -1,9 +1,11 @@
+@import "src/styles/variables.scss";
+
 .header-main{
   padding: 1rem;
-  background-color:rgba(27, 27, 27, 0.849);
+  background-color:$primary_black;
   margin-bottom: 1rem;
 
   h3{
-    color:white;
+    color:$primary_white;
   }
 }
