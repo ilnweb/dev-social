@@ -3,7 +3,6 @@ import './post-feed.scss';
 import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
-
 const { Meta } = Card;
 
 interface Post {

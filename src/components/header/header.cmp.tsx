@@ -18,7 +18,9 @@ const Header: React.FC<Props> = ({ user }) => (
   <div className='header-main'>
     <Row>
       <Col span={6}>
-        <Avatar size="large" src={user.photoURL} />
+        <Link to='/user-profile'>
+          <Avatar size="large" src={user.photoURL} />
+        </Link>
       </Col>
       <Col span={12}>
         <Title level={3}>Hello, {user && user.displayName}</Title>

@@ -9,6 +9,7 @@ import SignIn from './sign-in/sign-in.cmp';
 import { observer } from 'mobx-react-lite';
 import { UserContext } from './mobX/user/user.context';
 import 'mobx-react-lite/batchingForReactDom'
+import UserProfile from './pages/user-profile/user-profile.cmp';
 
 
 const App: React.FC = observer(() => {
@@ -43,6 +44,7 @@ const App: React.FC = observer(() => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
+        <Route path="/user-profile" component={()=><UserProfile user={userContext.user}/>} />
       </Switch>
     </div>
   );
