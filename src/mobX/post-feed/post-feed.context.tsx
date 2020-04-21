@@ -29,7 +29,7 @@ class Posts {
     },
     {
       postTitle: 'Post5',
-      postImg: 'https://res.cloudinary.com/ilnphotography/image/upload/v1582856305/HomePage/undraw_mobile_marketing_iqbr_bznozj.svg',
+      postImg: 'https://res.cloudinary.com/ilnphotography/image/upload/v1584784280/HomePage/undraw_events_2p66_lvgvqw.svg',
       userName: 'Rajesh',
       createdAt: '27/12/1966'
     }

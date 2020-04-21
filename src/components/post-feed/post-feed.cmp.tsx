@@ -1,7 +1,7 @@
 import React from 'react';
 import './post-feed.scss';
-import { Card, Avatar } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Card, Avatar,Typography,Button } from 'antd';
+import { CommentOutlined , LikeOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -19,9 +19,10 @@ interface Posts {
 const PostFeed: React.FC<Posts> = ({ posts }) => {
   return (
     <div>
-      {posts && posts.map(post => {
+      {posts && posts.map((post, index) => {
         return (
           <Card
+            key={index}
             bordered={false}
             style={{ width: '100%', marginBottom: '1rem' }}
             cover={
@@ -31,15 +32,15 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
               />
             }
             actions={[
-              <SettingOutlined key="setting" />,
-              <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
+              <LikeOutlined key="like" />,
+              <CommentOutlined key="comment" />,
+              <Button style={{backgroundColor:'#e16162', color:'#fffffe'}}>Save</Button>
             ]}
           >
             <Meta
-              avatar={<Avatar style={{ backgroundColor: "red" }}>{post.userName.split('')[0]}</Avatar>}
-              title={post.postTitle}
-              description={post.userName}
+              avatar={<Avatar style={{ backgroundColor: "#e16162" }}>{post.userName.split('')[0]}</Avatar>}
+              title={<Typography.Title level={2}>{post.postTitle}</Typography.Title>}
+              description={`Posted: ${post.createdAt}`}
             />
           </Card>
         )
