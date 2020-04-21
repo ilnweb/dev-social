@@ -24,14 +24,18 @@ const App: React.FC = observer(() => {
             photoURL: userAuth.photoURL,
             ...snapShot.data()
           };
-        
+        console.log({
+          id: snapShot.id,
+          photoURL: userAuth.photoURL,
+          ...snapShot.data()
+        });
         });
       }
     });
     return () => {
       unsubscribeFromAuth();
     }
-  });
+  },[]);
 
   return (
     <div className="App">

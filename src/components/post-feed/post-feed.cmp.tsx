@@ -14,12 +14,14 @@ interface Post {
     createdAt: string
   }
   user: {
-    displayName?: string | null
+    displayName?: string | null,
+    photoURL?:string
   }
 }
 
 
-const PostFeed: React.FC<Post> = ({ post,user }) => {
+const PostFeed: React.FC<Post> = ({ post, user }) => {
+ console.log(user);
   return (
     <div>
       <Card
@@ -58,7 +60,7 @@ const PostFeed: React.FC<Post> = ({ post,user }) => {
         ]}
       >
         <Meta
-          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+          avatar={<Avatar src={user.photoURL} />}
           title="Name from MobX after firebase auth"
           description={user.displayName}
         />

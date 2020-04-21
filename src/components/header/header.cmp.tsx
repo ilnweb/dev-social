@@ -2,6 +2,8 @@ import React from 'react';
 import './header.scss';
 import { Typography, Button, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase/firebase.config';
+
 
 const { Title } = Typography;
 
@@ -19,9 +21,11 @@ const Header: React.FC<Props> = ({ user }) => (
     </Col>
     <Col span={6}>
       <Button>
-        <Link to='/sign-in'>Signin</Link>
+        <Link to='/sign-in'>Sign In</Link>
       </Button>
-      
+      <Button onClick={()=>auth.signOut()}>
+        Sign Out
+      </Button>
     </Col>
   </Row>
   </div>
