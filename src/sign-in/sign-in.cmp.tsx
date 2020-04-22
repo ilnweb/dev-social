@@ -30,6 +30,7 @@ const SignIn: React.FC = () => {
   return (
     <div className="sign-in-up flex-c-c login-regester">
       <div style={{ color: '#ffffff', maxWidth: '1256px', margin: '0px auto' }}>
+
         <Row>
           <Col span={8}>
           </Col>

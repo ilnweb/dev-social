@@ -46,7 +46,7 @@ const App: React.FC = observer(() => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
-        <Route path="/write-post" component={WritePost} />
+        <Route path="/write-post" component={() => <WritePost user={userContext.user} />} />
         <Route path="/user-profile" component={() => <UserProfile user={userContext.user} />} />
       </Switch>
       <Link to='/write-post'>
