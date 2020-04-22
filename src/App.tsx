@@ -8,7 +8,8 @@ import { auth, createUserProfileDocument } from './firebase/firebase.config';
 import SignIn from './sign-in/sign-in.cmp';
 import { observer } from 'mobx-react-lite';
 import { UserContext } from './mobX/user/user.context';
-import 'mobx-react-lite/batchingForReactDom'
+import { Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 
 
@@ -20,23 +21,23 @@ const App: React.FC = observer(() => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapShot) => {
-          userContext.user={
+          userContext.user = {
             id: snapShot.id,
             photoURL: userAuth.photoURL,
             ...snapShot.data()
           };
-        console.log({
-          id: snapShot.id,
-          photoURL: userAuth.photoURL,
-          ...snapShot.data()
-        });
+          console.log({
+            id: snapShot.id,
+            photoURL: userAuth.photoURL,
+            ...snapShot.data()
+          });
         });
       }
     });
     return () => {
       unsubscribeFromAuth();
     }
-  },[]);
+  }, []);
 
   return (
     <div className="App">
@@ -44,8 +45,10 @@ const App: React.FC = observer(() => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
-        <Route path="/user-profile" component={()=><UserProfile user={userContext.user}/>} />
+        <Route path="/user-profile" component={() => <UserProfile user={userContext.user} />} />
       </Switch>
+      <Button type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+
     </div>
   );
 });

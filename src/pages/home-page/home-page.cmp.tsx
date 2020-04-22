@@ -11,7 +11,7 @@ const HomePage = observer(() => {
   console.log(postContext.posts);
   return (
     <div className='home-page'>
-      <Row gutter={[16, 16]}>
+      <Row>
         <Col span={6}></Col>
         <Col span={12}><PostFeed posts={postContext.posts}/></Col>
         <Col span={6}></Col>
