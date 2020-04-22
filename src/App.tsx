@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { auth, createUserProfileDocument } from './firebase/firebase.config';
 import SignIn from './sign-in/sign-in.cmp';
 import { observer } from 'mobx-react-lite';
@@ -11,6 +11,7 @@ import { UserContext } from './mobX/user/user.context';
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import UserProfile from './pages/user-profile/user-profile.cmp';
+import WritePost from './pages/write-post/write-post.cmp';
 
 
 const App: React.FC = observer(() => {
@@ -45,10 +46,12 @@ const App: React.FC = observer(() => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
+        <Route path="/write-post" component={WritePost} />
         <Route path="/user-profile" component={() => <UserProfile user={userContext.user} />} />
       </Switch>
-      <Button type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
-
+      <Link to='/write-post'>
+        <Button className='button-post' type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+      </Link>
     </div>
   );
 });
