@@ -4,10 +4,11 @@ import './App.scss';
 import Header from './components/header/header.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
 import { Route, Switch, Link } from 'react-router-dom';
-import { auth, createUserProfileDocument } from './firebase/firebase.config';
+import { auth, createUserProfileDocument, getPosts } from './firebase/firebase.config';
 import SignIn from './sign-in/sign-in.cmp';
 import { observer } from 'mobx-react-lite';
 import { UserContext } from './mobX/user/user.context';
+import { PostContext } from './mobX/post-feed/post-feed.context';
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import UserProfile from './pages/user-profile/user-profile.cmp';
@@ -16,6 +17,7 @@ import WritePost from './pages/write-post/write-post.cmp';
 
 const App: React.FC = observer(() => {
   const userContext = useContext(UserContext);
+  const postContext = useContext(PostContext);
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -27,11 +29,6 @@ const App: React.FC = observer(() => {
             photoURL: userAuth.photoURL,
             ...snapShot.data()
           };
-          console.log({
-            id: snapShot.id,
-            photoURL: userAuth.photoURL,
-            ...snapShot.data()
-          });
         });
       }
     });
@@ -40,6 +37,11 @@ const App: React.FC = observer(() => {
     }
   }, []);
 
+  useEffect(() => {
+    getPosts(postContext);
+   
+  }, []);
+  console.log(postContext.posts[0].userName);
   return (
     <div className="App">
       <Header user={userContext.user} />

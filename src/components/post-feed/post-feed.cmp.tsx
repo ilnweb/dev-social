@@ -6,14 +6,15 @@ import { CommentOutlined , LikeOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
 interface Object {
-  postTitle: string;
-  postImg: string;
-  userName: string;
-  createdAt: string;
+  postImg?: string;
+  userName?: string;
+  createdAt?: string;
+  postBody?: string;
+  userPhoto?: string;
 }
 
 interface Posts {
-  posts?: Object[]
+  posts?: Object[] 
 }
 
 const PostFeed: React.FC<Posts> = ({ posts }) => {
@@ -38,8 +39,8 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             ]}
           >
             <Meta
-              title={<Typography.Title level={2}>{post.postTitle}</Typography.Title>}
-              avatar={<Avatar style={{ backgroundColor: "#e16162" }}>{post.userName.split('')[0]}</Avatar>}
+              title={<Typography.Title level={2}>{post.postBody}</Typography.Title>}
+              avatar={<Avatar src={post.userPhoto}></Avatar>}
               description={`Posted: ${post.createdAt}`}
             />
           </Card>

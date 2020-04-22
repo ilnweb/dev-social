@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './write-post.scss';
-import { Row, Col, Input, Typography, Form, Button } from 'antd';
+import { Row, Col, Input, Typography, Form, Button, Tag } from 'antd';
 import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../firebase/firebase.config';
@@ -18,7 +18,6 @@ interface Props {
     email?: string
   }
 }
-
 
 const WritePost: React.FC<Props> = observer(({ user }) => {
   //state

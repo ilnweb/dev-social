@@ -25,7 +25,7 @@ const Header: React.FC<Props> = ({ user }) => (
       <Col span={12}>
         <Title level={3}>Hello, {user && user.displayName}</Title>
       </Col>
-      <Col span={6}>
+      <Col span={6} flex={1}>
         <Button>
           <Link to='/sign-in'>Sign In</Link>
         </Button>
