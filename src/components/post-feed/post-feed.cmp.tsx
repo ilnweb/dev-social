@@ -41,7 +41,7 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             <Meta
               title={<Typography.Title level={2}>{post.postBody}</Typography.Title>}
               avatar={<Avatar src={post.userPhoto}></Avatar>}
-              description={`Posted: ${post.createdAt}`}
+              description={`Posted by: ${post.userName}`}
             />
           </Card>
         )
