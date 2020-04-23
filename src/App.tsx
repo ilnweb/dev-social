@@ -9,7 +9,7 @@ import SignIn from './sign-in/sign-in.cmp';
 import { observer } from 'mobx-react-lite';
 import { UserContext } from './mobX/user/user.context';
 import { PostContext } from './mobX/post-feed/post-feed.context';
-import { Button } from 'antd';
+import Button from 'antd/es/button';
 import { PlusOutlined } from '@ant-design/icons';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 import WritePost from './pages/write-post/write-post.cmp';

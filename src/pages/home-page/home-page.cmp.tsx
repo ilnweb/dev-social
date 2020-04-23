@@ -13,7 +13,7 @@ const HomePage = observer(() => {
       <Row>
         <Col span={6}></Col>
         <Col span={12}>
-          <PostFeed posts={postContext.posts.reverse()}/>
+          <PostFeed posts={postContext.posts.slice().reverse()}/>
         </Col>
         <Col span={6}></Col>
       </Row>
