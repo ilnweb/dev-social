@@ -5,7 +5,6 @@ import PostFeed from '../../components/post-feed/post-feed.cmp';
 import { observer } from 'mobx-react-lite';
 import { PostContext } from '../../mobX/post-feed/post-feed.context';
 
-
 const HomePage = observer(() => {
   const postContext = useContext(PostContext);
   console.log(postContext.posts);
@@ -13,7 +12,9 @@ const HomePage = observer(() => {
     <div className='home-page'>
       <Row>
         <Col span={6}></Col>
-        <Col span={12}><PostFeed posts={postContext.posts}/></Col>
+        <Col span={12}>
+          <PostFeed posts={postContext.posts.reverse()}/>
+        </Col>
         <Col span={6}></Col>
       </Row>
     </div>

@@ -33,3 +33,12 @@
 .ant-card {
   background: $primary_black;
 }
+
+.post_card {
+  .postImg {
+    height: 400px;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    background-position: center!important;
+  }
+}

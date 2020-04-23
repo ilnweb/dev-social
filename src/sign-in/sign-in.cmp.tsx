@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { auth, signInWithGoogle } from '../firebase/firebase.config';
 import { Row, Col, Button, Input, Form } from 'antd';
 import { MailOutlined, GoogleOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
@@ -28,8 +31,8 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <div className="sign-in-up flex-c-c login-regester">
-      <div style={{ color: '#ffffff', maxWidth: '1256px', margin: '0px auto' }}>
+    <div style={{marginTop: 100}} className="sign-in-up flex-c-c login-regester">
+      <div style={{ maxWidth: '1256px', margin: '0px auto' }}>
 
         <Row>
           <Col span={8}>
@@ -47,6 +50,7 @@ const SignIn: React.FC = () => {
                 suffix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                 autoComplete="true"
                 onChange={handleChange}
+                
               />
               <Input.Password
                 name="password"
@@ -57,13 +61,12 @@ const SignIn: React.FC = () => {
                 placeholder="Password"
                 autoComplete="true"
                 onChange={handleChange}
+                style={{marginTop: 30}}
               />
-              <Button className="button primary block" size="large" type="primary" onClick={handleSubmit}>
+              <Button style={{marginTop: 30}} className="button primary block" size="large" type="primary" onClick={handleSubmit}>
                 Log In
 						</Button>
-              <div>
-                - or -
-						</div>
+              <Title style={{margin: '30px 0'}} level={2}>- or -</Title>
               <Button
                 className="button block"
                 size="large"
