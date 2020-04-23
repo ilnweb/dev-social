@@ -27,7 +27,7 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             className="post_card"
             bordered={false}
             style={{marginTop: index === 0 ? '3rem' : '0' }}
-            cover={post.postImg && <div className="postImg" style={{background: `url(${post.postImg})`}}></div>
+            cover={post.postImg && <div className="postImg" style={{backgroundImage: `url(${post.postImg})`}}/>
             }
             extra={<p>{'3h'}</p>}
             actions={[

@@ -34,14 +34,15 @@
   background: $primary_black;
 }
 
-.post_card {
-  .postImg {
-    height: 400px;
-    background-repeat: no-repeat!important;
-    background-size: cover!important;
-    background-position: center!important;
-  }
+
+.postImg {
+  width: 100%;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+
 
 .post_card {
   width: 100%;

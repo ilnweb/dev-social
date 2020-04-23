@@ -41,7 +41,7 @@ const App: React.FC = observer(() => {
     getPosts(postContext);
    
   }, []);
-  console.log(postContext.posts[0].userName);
+  
   return (
     <div className="App">
       <Header user={userContext.user} />
