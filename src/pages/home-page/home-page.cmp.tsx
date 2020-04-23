@@ -7,7 +7,6 @@ import { PostContext } from '../../mobX/post-feed/post-feed.context';
 
 const HomePage = observer(() => {
   const postContext = useContext(PostContext);
-  console.log(postContext.posts);
   return (
     <div className='home-page'>
       <Row>

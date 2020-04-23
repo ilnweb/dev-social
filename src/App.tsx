@@ -11,6 +11,7 @@ import { UserContext } from './mobX/user/user.context';
 import { PostContext } from './mobX/post-feed/post-feed.context';
 import Button from 'antd/es/button';
 import { PlusOutlined } from '@ant-design/icons';
+import 'mobx-react-lite/batchingForReactDom';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 import WritePost from './pages/write-post/write-post.cmp';
 
@@ -29,6 +30,7 @@ const App: React.FC = observer(() => {
             photoURL: userAuth.photoURL,
             ...snapShot.data()
           };
+          console.log('no');
         });
       }
     });
@@ -39,9 +41,9 @@ const App: React.FC = observer(() => {
 
   useEffect(() => {
     getPosts(postContext);
-   
+
   }, []);
-  
+
   return (
     <div className="App">
       <Header user={userContext.user} />

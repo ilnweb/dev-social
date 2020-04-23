@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './write-post.scss';
-import { Row, Col, Input, Typography, Form, Button, Tag } from 'antd';
+import { Row, Col, Input, Typography, Form } from 'antd';
+import Button from 'antd/es/button';
 import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../firebase/firebase.config';

@@ -1,6 +1,7 @@
 import React from 'react';
 import './header.scss';
-import { Typography, Button, Row, Col, Avatar } from 'antd';
+import { Typography, Row, Col, Avatar } from 'antd';
+import Button from 'antd/es/button';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.config';
 

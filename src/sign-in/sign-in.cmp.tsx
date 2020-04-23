@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { auth, signInWithGoogle } from '../firebase/firebase.config';
-import { Row, Col, Button, Input, Form } from 'antd';
+import { Row, Col, Input, Form } from 'antd';
+import Button from 'antd/es/button';
 import { MailOutlined, GoogleOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 
