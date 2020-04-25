@@ -5,6 +5,7 @@ import Button from 'antd/es/button';
 import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../firebase/firebase.config';
+import PostTags from '../../components/post-tags/post-tags.cmp';
 
 const { TextArea } = Input;
 
@@ -60,6 +61,7 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
               autoComplete="true"
               onChange={handleChange}
             />
+            <PostTags />
             <Input
               name="postTags"
               value={post.postTags}
