@@ -16,6 +16,12 @@ interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
 }
 
+interface Post {
+    postText: string
+    postTags: string[]
+    photoURL: string
+}
+
 interface Props {
   user: {
     displayName?: string
@@ -26,7 +32,7 @@ interface Props {
 
 const WritePost: React.FC<Props> = observer(({ user }) => {
   //state
-  const [post, setPost] = useState({ postText: '', postTags: new Array, photoURL: '' });
+  const [post, setPost] = useState<Post>({ postText: '', postTags:[], photoURL: '' });
   const [tag, setTag] = useState('');
 
   //handlers
