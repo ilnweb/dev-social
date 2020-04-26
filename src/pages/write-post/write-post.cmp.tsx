@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import './write-post.scss';
-import { Row, Col, Input, Typography, Form } from 'antd';
+import { Row, Col, Input, Typography, Form, Tag, Space } from 'antd';
 import Button from 'antd/es/button';
 import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../firebase/firebase.config';
-import PostTags from '../../components/post-tags/post-tags.cmp';
+import { T } from 'antd/lib/upload/utils';
 
 const { TextArea } = Input;
+
+interface KeyboardEvent {
+  enterKey: boolean;
+}
 
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
@@ -23,7 +27,8 @@ interface Props {
 
 const WritePost: React.FC<Props> = observer(({ user }) => {
   //state
-  const [post, setPost] = useState({ postText: '', postTags: '', photoURL: '' });
+  const [post, setPost] = useState({ postText: '', postTags: new Array, photoURL: '' });
+  const [tag, setTag] = useState('');
 
   //handlers
   const handleSubmit = async () => {
@@ -34,6 +39,21 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.charCode === 32 || e.keyCode === 32) {
+      e.preventDefault();
+      setPost({ ...post, postTags: [...post.postTags, tag] })
+      setTag('')
+    }
+  }
+
+  const handleClose = (tagToRemove:string): void => {
+    const tags = post.postTags.filter(item => item !== tagToRemove);
+    
+  console.log(tagToRemove);
+    setPost({ ...post, postTags: [...tags] })
+  }
+
   const handleImage = (imageUrl: string): void => {
     setPost({
       ...post, photoURL: imageUrl
@@ -43,8 +63,10 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement> | React.FormEvent<HTMLInputElement>): void => {
     const { value, name } = e.currentTarget;
     setPost({ ...post, [name]: value });
+    setTag(value);
   };
-  console.log(post);
+
+console.log(post.postTags);
   return (
     <div className='user-profile'>
       <Typography.Title level={2}>Write Post</Typography.Title>
@@ -52,6 +74,7 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
         <Col span={6}></Col>
         <Col span={12} >
           <Form className="login-regester__Form sign-in-up flex-c">
+          <Space direction="vertical" size="middle" style={{ width: '100%' }}>
             <TextArea
               rows={6}
               name="postText"
@@ -61,16 +84,19 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
               autoComplete="true"
               onChange={handleChange}
             />
-            <PostTags />
+            {post.postTags && post.postTags.map(item => (<Tag color='#e16162' closable onClose={()=>handleClose(item)}
+            >#{item}</Tag>))}
             <Input
-              name="postTags"
-              value={post.postTags}
+              name="tag"
+              value={tag}
               className="input-style"
-              placeholder="Tags ( write with space no commas )"
+              placeholder="Tags"
               autoComplete="true"
               onChange={handleChange}
+              onKeyPress={handleKeyPress}
             />
-            <UploadImage handleImage={handleImage} />
+              <UploadImage handleImage={handleImage} />
+              </Space>
           </Form>
           <Button className="button primary block" size="large" type="primary" onClick={handleSubmit}>
             Submit Post

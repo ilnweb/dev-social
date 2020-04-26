@@ -14,7 +14,7 @@ interface Object {
 }
 
 interface Posts {
-  posts?: Object[] 
+  posts?: Object[]
 }
 
 const PostFeed: React.FC<Posts> = ({ posts }) => {
