@@ -70,7 +70,7 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
     setTag(value);
   };
 
-  console.log(post.postTags);
+  console.log(post);
   return (
     <div className='user-profile'>
       <Typography.Title level={2}>Write Post</Typography.Title>
@@ -88,8 +88,11 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
                 autoComplete="true"
                 onChange={handleChange}
               />
-              {post.postTags && post.postTags.map(item => (<Tag color='#e16162' closable onClose={() => handleClose(item)}
-              >#{item}</Tag>))}
+              <div>
+                {
+                  post.postTags && post.postTags.map(item => (<Tag color='#e16162' closable onClose={() => handleClose(item)}>#{item}</Tag>))
+                }
+              </div>
               <Input
                 name="tag"
                 value={tag}

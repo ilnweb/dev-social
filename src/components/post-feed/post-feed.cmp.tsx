@@ -1,9 +1,10 @@
 import React from 'react';
 import './post-feed.scss';
-import { Card, Avatar,Typography } from 'antd';
-import { CommentOutlined , HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
+import { Card, Avatar, Typography, Tag } from 'antd';
+import { CommentOutlined, HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
+
 
 interface Object {
   postImg?: string;
@@ -11,6 +12,7 @@ interface Object {
   createdAt?: string;
   postBody?: string;
   userPhoto?: string;
+  tags?: string[]
 }
 
 interface Posts {
@@ -26,8 +28,8 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             key={index}
             className="post_card"
             bordered={false}
-            style={{marginTop: index === 0 ? '3rem' : '0' }}
-            cover={post.postImg && <div className="postImg" style={{backgroundImage: `url(${post.postImg})`}}/>
+            style={{ marginTop: index === 0 ? '3rem' : '0' }}
+            cover={post.postImg && <div className="postImg" style={{ backgroundImage: `url(${post.postImg})` }} />
             }
             extra={<p>{'3h'}</p>}
             actions={[
@@ -37,9 +39,15 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             ]}
           >
             <Meta
-              title={<Typography.Title style={{marginTop: 30}} level={3}>{post.userName}</Typography.Title>}
-              avatar={<Avatar style={{marginTop: 30}} size={50} src={post.userPhoto}></Avatar>}
+              title={
+                <div className="card-title">
+                  <Typography.Title style={{ marginTop: 30 }} level={3}>{post.userName}</Typography.Title>
+                  <div>{post.tags && post.tags.map(item => (<Tag color='#e16162'>#{item}</Tag>))}</div>
+                </div>
+              }
+              avatar={<Avatar style={{ marginTop: 30 }} size={50} src={post.userPhoto}></Avatar>}
               description={<p className="post-body">{post.postBody}</p>}
+
             />
           </Card>
         )
