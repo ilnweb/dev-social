@@ -5,7 +5,6 @@ import Button from 'antd/es/button';
 import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../firebase/firebase.config';
-import { T } from 'antd/lib/upload/utils';
 
 const { TextArea } = Input;
 
@@ -90,7 +89,7 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
               />
               <div>
                 {
-                  post.postTags && post.postTags.map(item => (<Tag color='#e16162' closable onClose={() => handleClose(item)}>#{item}</Tag>))
+                  post.postTags && post.postTags.map((item,index) => (<Tag key={index} color='#e16162' closable onClose={() => handleClose(item)}>#{item}</Tag>))
                 }
               </div>
               <Input

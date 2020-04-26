@@ -42,7 +42,7 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
               title={
                 <div className="card-title">
                   <Typography.Title style={{ marginTop: 30 }} level={3}>{post.userName}</Typography.Title>
-                  <div>{post.tags && post.tags.map(item => (<Tag color='#e16162'>#{item}</Tag>))}</div>
+                  <div>{post.tags && post.tags.map((item,index) => (<Tag key={index} color='#e16162'>#{item}</Tag>))}</div>
                 </div>
               }
               avatar={<Avatar style={{ marginTop: 30 }} size={50} src={post.userPhoto}></Avatar>}
