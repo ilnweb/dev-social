@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
+import CommentPage from './pages/comments-page/comments-page.cpm';
 import { Route, Switch, Link } from 'react-router-dom';
 import { auth, createUserProfileDocument, getPosts } from './firebase/firebase.config';
 import SignIn from './sign-in/sign-in.cmp';
@@ -50,6 +51,7 @@ const App: React.FC = observer(() => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
+        <Route path="/comments" component={CommentPage} />
         <Route path="/write-post" component={() => <WritePost user={userContext.user} />} />
         <Route path="/user-profile" component={() => <UserProfile user={userContext.user} />} />
       </Switch>

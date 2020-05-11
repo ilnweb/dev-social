@@ -60,7 +60,6 @@ export const createNewPost = async (post, user ) => {
 export const getPosts = async (setPosts) => {
 	const postsRef = firestore.collection(`posts`);
   const snapshot = await postsRef.get();
-  console.log(snapshot.docs);
   setPosts.posts = [...snapshot.docs.map(doc => doc.data())]
 };
 

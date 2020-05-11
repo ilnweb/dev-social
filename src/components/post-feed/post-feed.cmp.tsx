@@ -1,6 +1,7 @@
 import React from 'react';
 import './post-feed.scss';
 import { Card, Avatar, Typography, Tag } from 'antd';
+import { Link } from 'react-router-dom';
 import { CommentOutlined, HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
@@ -34,7 +35,7 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             extra={<p>{'3h'}</p>}
             actions={[
               <HeartOutlined className="icon-standart" key="like" />,
-              <CommentOutlined className="icon-standart" key="comment" />,
+              <Link to='/comments'><CommentOutlined className="icon-standart" key="comment" /></Link>,
               <ShareAltOutlined className="icon-standart" key="share" />
             ]}
           >
