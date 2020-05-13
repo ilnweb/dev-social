@@ -16,11 +16,10 @@ import 'mobx-react-lite/batchingForReactDom';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 import WritePost from './pages/write-post/write-post.cmp';
 
-
 const App: React.FC = observer(() => {
   const userContext = useContext(UserContext);
   const postContext = useContext(PostContext);
-
+  console.log('render');
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -51,7 +50,7 @@ const App: React.FC = observer(() => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
-        <Route path="/comments" component={CommentPage} />
+        <Route path="/comments" component={() => <CommentPage posts={postContext.posts} />} />
         <Route path="/write-post" component={() => <WritePost user={userContext.user} />} />
         <Route path="/user-profile" component={() => <UserProfile user={userContext.user} />} />
       </Switch>
