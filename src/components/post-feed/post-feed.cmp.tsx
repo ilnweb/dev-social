@@ -15,7 +15,8 @@ interface Object {
   userPhoto?: string;
   tags?: string[];
   comments?: string[]
-  userID?:string
+  userID?: string
+  id?:string
 }
 
 interface Posts {
@@ -41,6 +42,7 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
               <Link to={{
                 pathname: `/comments`,
                 state: {
+                  postID: post.id,
                   comments: post.comments?.map(item=>item)
                 }
               }}><CommentOutlined className="icon-standart" key="comment" /></Link>,

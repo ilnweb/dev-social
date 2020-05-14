@@ -60,9 +60,13 @@ export const createNewPost = async (post, user ) => {
 export const getPosts = async (setPosts) => {
 	const postsRef = firestore.collection(`posts`);
   const snapshot = await postsRef.get();
-  setPosts.posts = [...snapshot.docs.map(doc => doc.data())]
-  console.log(setPosts.posts[4].comments);
+  setPosts.posts = [...snapshot.docs.map(doc =>{ return {id:doc.id, ...doc.data()}})]
+  console.log(setPosts.posts[4]);
 };
+
+export const addComment = async (commentText, user) => {
+  
+}
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

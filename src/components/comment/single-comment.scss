@@ -1,10 +1,33 @@
-.ant-comment-content-author-name{
-  color: white;
-}
+.single-comment {
+  display: flex;
+  margin-bottom: 2rem;
 
-.ant-comment-content-author > span {
-  padding-right: 8px;
-  font-size: 17px;
-  line-height: 18px;
-  color: white;
+  &-right {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    p{
+      text-align: left;
+    }
+  }
+
+  &-info {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-left: 1rem;
+      margin-bottom: .5rem;
+    }
+  }
+
+  &-bottom{
+    display: flex;
+    align-items:center;
+    button{
+      margin-left: 1rem;
+    }
+  }
 }

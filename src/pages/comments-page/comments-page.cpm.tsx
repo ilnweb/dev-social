@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { UserContext } from '../../mobX/user/user.context';
 import SingleComment from '../../components/comment/single-comment.cmp';
 import { useLocation } from 'react-router-dom';
+import { addComment } from '../../firebase/firebase.config';
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const { whyDidYouUpdate } = require('why-did-you-update')
@@ -25,11 +26,15 @@ const CommentPage: React.FC = observer(() => {
   const [comment, setComment] = useState({ commentText: '' });
   const userContext = useContext<User>(UserContext);
   const location = useLocation<Comments>();
-
+  console.log(location.state);
   const handleChange = (e: React.FormEvent<HTMLTextAreaElement>): void => {
     const { value } = e.currentTarget;
     setComment({ commentText: value });
   };
+
+  const handleAddComment = ():void => {
+    addComment(comment.commentText, userContext.user)
+  }
 
   return (
     <div className='comments-page'>
@@ -39,20 +44,17 @@ const CommentPage: React.FC = observer(() => {
           <h1>Comments</h1>
           <div> {location?.state.comments?.map(comment => <SingleComment comment={comment} />)}</div>
           <div className='write-comment'>
-            <div>
-              <Avatar size={60} src={userContext?.user?.photoURL} />
-            </div>
             <div className="comment-right">
               <TextArea
                 rows={6}
                 name="postText"
                 value={comment.commentText}
                 className="comment-textarea"
-                placeholder="Text"
+                placeholder="White a comment"
                 autoComplete="true"
                 onChange={handleChange}
               />
-              <Button>Add Comment</Button>
+              <Button onClick={handleAddComment}>Add Comment</Button>
             </div>
           </div>
         </Col>
