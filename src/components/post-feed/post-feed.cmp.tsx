@@ -13,7 +13,9 @@ interface Object {
   createdAt?: string;
   postBody?: string;
   userPhoto?: string;
-  tags?: string[]
+  tags?: string[];
+  comments?: string[]
+  userID?:string
 }
 
 interface Posts {
@@ -21,6 +23,7 @@ interface Posts {
 }
 
 const PostFeed: React.FC<Posts> = ({ posts }) => {
+  console.log(posts&& posts[0]);
   return (
     <div>
       {posts && posts.map((post, index) => {
@@ -35,7 +38,12 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
             extra={<p>{'3h'}</p>}
             actions={[
               <HeartOutlined className="icon-standart" key="like" />,
-              <Link to='/comments'><CommentOutlined className="icon-standart" key="comment" /></Link>,
+              <Link to={{
+                pathname: `/comments`,
+                state: {
+                  comments: post.comments?.map(item=>item)
+                }
+              }}><CommentOutlined className="icon-standart" key="comment" /></Link>,
               <ShareAltOutlined className="icon-standart" key="share" />
             ]}
           >

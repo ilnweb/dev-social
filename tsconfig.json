@@ -15,10 +15,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "experimentalDecorators":true,
+    "experimentalDecorators": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "noEmit": true
   },
   "include": [
     "src"

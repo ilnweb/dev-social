@@ -1,16 +1,19 @@
-import React, { createElement, useState } from 'react';
-import { Comment, Tooltip, Avatar, Button } from 'antd';
+import React from 'react';
+import {Avatar, Button } from 'antd';
 import moment from 'moment';
 import { LikeOutlined, LikeFilled } from '@ant-design/icons';
-import { Post } from '../../interfaces/post-interface';
 
-const SingleComment: React.FC<Post> = ({ comments }) => {
+interface Comment {
+  comment:string
+}
+
+const SingleComment: React.FC<Comment> = ({ comment }) => {
 
   return (
     <div className='single-comment'>
       <div className='write-comment'>
         <div>
-          
+          {comment}
         </div>
         <div className="comment-right">
 
