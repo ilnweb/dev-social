@@ -14,6 +14,10 @@ const firebaseConfig = {
 	measurementId: 'G-L691DM9S17'
 };
 
+const idGenerator = () => {
+  return '_' + Math.random().toString(36).substr(2, 9) + '-' + Math.random().toString(36).substr(2, 9);
+};
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
 	const userRef = firestore.doc(`users/${userAuth.uid}`);
 	const snapShot = await userRef.get();
@@ -64,8 +68,22 @@ export const getPosts = async (setPosts) => {
   console.log(setPosts.posts[4]);
 };
 
-export const addComment = async (commentText, user) => {
+export const addComment = async (commentText, user, postID) => {
+  const postsRef = firestore.doc(`posts/${postID}`);
   
+  try {
+    await postsRef.update({
+			comments: firebase.firestore.FieldValue.arrayUnion({
+        commentText,
+        id: idGenerator(),
+        date: new Date(),
+        userName: user.displayName,
+        userImg:user.photoURL
+			})
+		});
+  } catch (error) {
+    alert('error adding comment', error.message);
+  }
 }
 
 // Initialize Firebase

@@ -3,24 +3,12 @@ import './post-feed.scss';
 import { Card, Avatar, Typography, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import { CommentOutlined, HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
+import { IPost } from '../../interfaces/post-interface';
 
 const { Meta } = Card;
 
-
-interface Object {
-  postImg?: string;
-  userName?: string;
-  createdAt?: string;
-  postBody?: string;
-  userPhoto?: string;
-  tags?: string[];
-  comments?: string[]
-  userID?: string
-  id?:string
-}
-
 interface Posts {
-  posts?: Object[]
+  posts?: IPost[]
 }
 
 const PostFeed: React.FC<Posts> = ({ posts }) => {
@@ -43,7 +31,7 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
                 pathname: `/comments`,
                 state: {
                   postID: post.id,
-                  comments: post.comments?.map(item=>item)
+                  comments: post?.comments?.map(item=>{return{...item}})
                 }
               }}><CommentOutlined className="icon-standart" key="comment" /></Link>,
               <ShareAltOutlined className="icon-standart" key="share" />
