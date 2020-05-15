@@ -8,8 +8,8 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { auth, createUserProfileDocument, getPosts } from './firebase/firebase.config';
 import SignIn from './sign-in/sign-in.cmp';
 import { observer } from 'mobx-react-lite';
-import { UserContext } from './mobX/user/user.context';
-import { PostContext } from './mobX/post-feed/post-feed.context';
+import { UserContext } from './mobX/user.context';
+// import { PostContext } from './mobX/post-feed.context';
 import Button from 'antd/es/button';
 import { PlusOutlined } from '@ant-design/icons';
 import 'mobx-react-lite/batchingForReactDom';
@@ -18,7 +18,7 @@ import WritePost from './pages/write-post/write-post.cmp';
 
 const App: React.FC = observer(() => {
   const userContext = useContext(UserContext);
-  const postContext = useContext(PostContext);
+  // const postContext = useContext(PostContext);
   console.log('render');
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -40,7 +40,7 @@ const App: React.FC = observer(() => {
   }, []);
 
   useEffect(() => {
-    getPosts(postContext);
+    // getPosts(postContext);
 
   }, []);
 

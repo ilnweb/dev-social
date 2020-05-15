@@ -1,7 +1,10 @@
 export interface IComment {
   commentText: string
   id: string
-  date: string
+  date: {
+    nanoseconds: number
+    seconds: number
+  }
   userName: string
   userImg: string
 }

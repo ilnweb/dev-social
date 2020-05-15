@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import './comments-page.scss';
 import { Button, Input, Row, Col } from 'antd';
 import { observer } from 'mobx-react-lite';
-import { UserContext } from '../../mobX/user/user.context';
+import { UserContext } from '../../mobX/user.context';
 import SingleComment from '../../components/comment/single-comment.cmp';
 import { useLocation } from 'react-router-dom';
 import { addComment } from '../../firebase/firebase.config';
