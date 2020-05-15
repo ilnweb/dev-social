@@ -50,3 +50,10 @@ export const Cart = types
       return self.items.reduce((sum, entry) => sum + entry.price, 0);
     }
   }));
+
+
+
+
+
+
+

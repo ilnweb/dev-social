@@ -19,7 +19,7 @@ console.log(comment.date);
       <div className="single-comment-right">
         <div className="single-comment-info">
           <h2>{comment?.userName}</h2>
-          <span>{moment(comment?.date.seconds).fromNow()}</span>
+          {/* <span>{moment(comment?.date.seconds).fromNow()}</span> */}
         </div>
         <p className="single-comment-text">{comment?.commentText}</p>
         <div className="single-comment-bottom">

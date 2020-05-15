@@ -7,15 +7,11 @@ import { RootInstance } from '../../mobX/root-store';
 
 const { Meta } = Card;
 
-interface Posts {
-  posts?: RootInstance
-}
-
 const PostFeed: React.FC<RootInstance> = ({ posts }) => {
-  console.log(posts&& posts[0]);
+ 
   return (
     <div>
-      {posts && posts.map((post, index) => {
+      {posts && posts.posts.map((post, index) => {
         return (
           <Card
             key={index}
@@ -30,7 +26,7 @@ const PostFeed: React.FC<RootInstance> = ({ posts }) => {
               <Link to={{
                 pathname: `/comments`,
                 state: {
-                 
+                  postID: post.id,
                   comments: post?.comments?.map(item=>{return{...item}})
                 }
               }}><CommentOutlined className="icon-standart" key="comment" /></Link>,

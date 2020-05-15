@@ -16,7 +16,7 @@ const HomePage: React.FC = observer(() => {
     <div className='home-page'>
       <Row>
         <Col span={6} sm={2} xs={1} lg={4}></Col>
-        <Col span={12} xs={22} sm={20} md={20} lg={16} xl={16}>
+        <Col span={6} xs={22} sm={20} md={20} lg={16} xl={16}>
           <PostFeed posts={posts} />
         </Col>
         <Col span={6} sm={2} xs={1} lg={4}></Col>

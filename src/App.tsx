@@ -16,12 +16,15 @@ import { PlusOutlined } from '@ant-design/icons';
 import 'mobx-react-lite/batchingForReactDom';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 import WritePost from './pages/write-post/write-post.cmp';
+import { RootInstance } from './mobX/root-store';
+
 
 const App: React.FC = observer(() => {
   const userContext = useContext(UserContext);
-  const { posts } = useMst();
+  const { posts }: RootInstance = useMst();
+  
   // const postContext = useContext(PostContext);
-  console.log('render');
+  console.log(posts);
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -42,7 +45,7 @@ const App: React.FC = observer(() => {
   }, []);
 
   useEffect(() => {
-    // getPosts(postContext);
+    getPosts(posts.addAllPosts);
 
   }, []);
 
