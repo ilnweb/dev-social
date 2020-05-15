@@ -3,15 +3,15 @@ import './post-feed.scss';
 import { Card, Avatar, Typography, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import { CommentOutlined, HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
-import { IPost } from '../../interfaces/post-interface';
+import { RootInstance } from '../../mobX/root-store';
 
 const { Meta } = Card;
 
 interface Posts {
-  posts?: IPost[]
+  posts?: RootInstance
 }
 
-const PostFeed: React.FC<Posts> = ({ posts }) => {
+const PostFeed: React.FC<RootInstance> = ({ posts }) => {
   console.log(posts&& posts[0]);
   return (
     <div>
@@ -30,7 +30,7 @@ const PostFeed: React.FC<Posts> = ({ posts }) => {
               <Link to={{
                 pathname: `/comments`,
                 state: {
-                  postID: post.id,
+                 
                   comments: post?.comments?.map(item=>{return{...item}})
                 }
               }}><CommentOutlined className="icon-standart" key="comment" /></Link>,

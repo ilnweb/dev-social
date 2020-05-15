@@ -15,7 +15,8 @@ export const SinglePostModel = types.model("SinglePost", {
   postBody: types.string,
   postImg: types.string,
   likes: types.number,
-  comments: types.array(CommentModel)
+  comments: types.array(CommentModel),
+  id:types.string
 })
 
 // export const PostsModel = types.model("Posts", {

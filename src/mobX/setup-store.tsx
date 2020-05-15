@@ -19,7 +19,8 @@ export const rootStore = RootModel.create({
     ],
     likes: 6,
     postBody: 'uhihkj',
-    postImg:'jkhkjhk' 
+    postImg: 'jkhkjhk',
+    id:'kggkjgk'
   }]
 });
 

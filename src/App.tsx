@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { useMst } from "./mobX/setup-store";
 import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
@@ -18,6 +19,7 @@ import WritePost from './pages/write-post/write-post.cmp';
 
 const App: React.FC = observer(() => {
   const userContext = useContext(UserContext);
+  const { posts } = useMst();
   // const postContext = useContext(PostContext);
   console.log('render');
   useEffect(() => {
