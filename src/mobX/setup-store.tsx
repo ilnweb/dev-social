@@ -4,7 +4,9 @@ import { RootInstance, RootModel } from './root-store';
 import {PostsInstance} from './post-feed.context';
 
 export const rootStore = RootModel.create({
-  posts: []
+  posts: {
+    posts:[]
+  } 
 });
 
 

@@ -6,7 +6,8 @@ export const CommentModel = types.model({
   commentText: types.string,
   id: types.identifier,
   userName: types.string,
-  userImg: types.string
+  userImg: types.string,
+  // date: 
 })
 
 export const SinglePostModel = types.model({
@@ -17,15 +18,15 @@ export const SinglePostModel = types.model({
   postBody: types.string,
   postImg: types.string,
   likes: types.number,
-  comments: types.array(CommentModel),
-  id:types.identifier
+  // comments: types.optional(types.array(CommentModel),[]),
+  id:types.string
 })
 
 export const PostsModel = types.model({
   posts: types.optional(types.array(SinglePostModel),[])
   
 }).actions(self => ({
-  addAllPosts(allPosts:[]) {
+  addAllPosts(allPosts:SnapshotIn<[]>) {
     self.posts = cast(allPosts);
   }
 }))
