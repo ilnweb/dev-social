@@ -47,9 +47,10 @@ const App: React.FC = observer(() => {
   useEffect(() => {
     getPosts(posts.addAllPosts);
 
-  }, []);
-
+  }, [posts.addAllPosts]);
+  console.log('some');
   return (
+    
     <div className="App">
       <Header user={userContext.user} />
       <Switch>
