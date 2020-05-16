@@ -22,9 +22,7 @@ import { RootInstance } from './mobX/root-store';
 const App: React.FC = observer(() => {
   const userContext = useContext(UserContext);
   const { posts }: RootInstance = useMst();
-  
   // const postContext = useContext(PostContext);
-  console.log(posts);
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -35,7 +33,6 @@ const App: React.FC = observer(() => {
             photoURL: userAuth.photoURL,
             ...snapShot.data()
           };
-          console.log('no');
         });
       }
     });
@@ -48,7 +45,7 @@ const App: React.FC = observer(() => {
     getPosts(posts.addAllPosts);
 
   }, [posts.addAllPosts]);
-  console.log('some');
+  
   return (
     
     <div className="App">

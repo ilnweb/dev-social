@@ -1,8 +1,8 @@
 import React from 'react';
 import './single-comment.scss';
 import { Avatar, Button } from 'antd';
-import moment from 'moment';
-import { HeartOutlined, LikeFilled } from '@ant-design/icons';
+// import moment from 'moment';
+import { HeartOutlined } from '@ant-design/icons';
 import {IComment} from '../../interfaces/post-interface';
 
 interface Comment{

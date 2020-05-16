@@ -1,7 +1,6 @@
 import { useContext, createContext } from "react";
-import { types, Instance, onSnapshot } from "mobx-state-tree";
+// import { onSnapshot } from "mobx-state-tree";
 import { RootInstance, RootModel } from './root-store';
-import {PostsInstance} from './post-feed.context';
 
 export const rootStore = RootModel.create({
   posts: {
@@ -9,8 +8,7 @@ export const rootStore = RootModel.create({
   } 
 });
 
-
-onSnapshot(rootStore, snapshot => console.log("Snapshot: ", snapshot));
+// onSnapshot(rootStore, snapshot => console.log("Snapshot: ", snapshot));
 
 const RootStoreContext = createContext<null | RootInstance>(null);
 
