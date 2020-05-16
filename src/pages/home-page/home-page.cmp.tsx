@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useMst } from "../../mobX/setup-store";
 import { RootInstance } from '../../mobX/root-store';
+
 import './home-page.scss';
 import { Row, Col } from 'antd';
 import PostFeed from '../../components/post-feed/post-feed.cmp';

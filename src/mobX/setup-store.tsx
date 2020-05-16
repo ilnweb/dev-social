@@ -5,7 +5,7 @@ import { RootInstance, RootModel } from './root-store';
 export const rootStore = RootModel.create({
   posts: {
     posts:[]
-  } 
+  }
 });
 
 // onSnapshot(rootStore, snapshot => console.log("Snapshot: ", snapshot));
