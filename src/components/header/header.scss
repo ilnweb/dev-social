@@ -1,11 +1,27 @@
 @import "src/styles/variables.scss";
 
 .header-main{
-  padding: 1rem;
+  padding: .7rem;
   background-color:$primary_black;
   margin-bottom: 1rem;
 
   h3{
     color:$primary_white;
+  }
+}
+
+.logo{
+  margin: 0;
+  text-decoration: double;
+  font-size: 2rem;
+  width: 10rem;
+  padding: .5rem;
+  padding-bottom: 0.6rem;
+  background-color:black;
+  line-height: normal;
+  border-radius: 5px;
+
+  span{
+    font-size: 1.8rem;
   }
 }

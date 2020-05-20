@@ -16,9 +16,9 @@ interface Props {
 
 const Header: React.FC<Props> = ({ user }) => (
   <div className='header-main'>
-    <Row justify='center'>
-      <Col span={6}>
-        
+    <Row align='middle'>
+      <Col span={6} flex={1}>
+        <h1 className='logo'>DEV<span>social</span></h1>
       </Col>
       <Col span={12}>
         <Title level={3}>Hello, {user && user.displayName}</Title>
