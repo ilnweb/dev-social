@@ -28,11 +28,7 @@ export const SinglePostModel = types.model({
 export const PostsModel = types.model({
   posts: types.optional(types.array(SinglePostModel),[])
   
-}).actions(self => ({
-  addAllPosts(allPosts:SnapshotIn<[]>) {
-    self.posts = cast(allPosts);
-  }
-}))
+})
 
 
 export type PostsInstance = Instance<typeof PostsModel>

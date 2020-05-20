@@ -1,19 +1,25 @@
 import { useContext, createContext } from "react";
-import { types, Instance } from "mobx-state-tree";
-import { PostsModel } from './post-feed.context';
-// import { currentUserModel } from './user.context';
+import { types, Instance,SnapshotIn,cast } from "mobx-state-tree";
+import { SinglePostModel } from './post-feed.context';
+import { currentUserModel,currentUserInstance } from './user.context';
 
-export const RootModel = types.model("RootStore", {
-  posts: PostsModel,
-  // currentUser: currentUserModel
-})
+export const RootModel = types.model({
+  posts: types.optional(types.array(SinglePostModel),[]),
+  currentUser: types.optional(types.maybeNull(currentUserModel), () => null)
+}).actions(self => ({
+  addAllPosts(allPosts:SnapshotIn<[]>) {
+    self.posts = cast(allPosts);
+  },
+  setCurrentUser(user: currentUserInstance) {
+    self.currentUser = user;
+  }
+}))
 
 export type RootInstance = Instance<typeof RootModel>
 
 export const rootStore = RootModel.create({
-  posts: {
-    posts:[]
-  }
+  posts: [],
+  currentUser: null
 });
 
 // onSnapshot(rootStore, snapshot => console.log("Snapshot: ", snapshot));

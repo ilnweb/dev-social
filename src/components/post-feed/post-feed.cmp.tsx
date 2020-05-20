@@ -3,15 +3,15 @@ import './post-feed.scss';
 import { Card, Avatar, Typography, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import { CommentOutlined, HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
-import { RootInstance } from '../../mobX/root-store';
+import { PostsInstance } from '../../mobX/post-feed.context';
 
 const { Meta } = Card;
 
-const PostFeed: React.FC<RootInstance> = ({ posts }) => {
+const PostFeed: React.FC<PostsInstance> = ({ posts }) => {
  
   return (
     <div>
-      {posts && posts.posts.map((post, index) => {
+      {posts && posts.map((post, index) => {
         return (
           <Card
             key={index}

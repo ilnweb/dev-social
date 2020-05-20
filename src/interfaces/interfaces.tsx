@@ -21,3 +21,12 @@ export interface IPost {
   userID?: string
   id?: string
 }
+
+interface IUser {
+  user: {
+    id: string
+    displayName?: string
+    photoURL?: string
+    email?: string
+  } | null
+}

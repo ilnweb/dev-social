@@ -17,9 +17,9 @@ interface SyntheticEvent<T> {
 }
 
 interface Post {
-    postText: string
-    postTags: string[]
-    photoURL: string
+  postText: string
+  postTags: string[]
+  photoURL: string
 }
 
 interface Props {
@@ -27,12 +27,12 @@ interface Props {
     displayName?: string
     photoURL?: string
     email?: string
-  }
+  } | null
 }
 
 const WritePost: React.FC<Props> = observer(({ user }) => {
   //state
-  const [post, setPost] = useState<Post>({ postText: '', postTags:[], photoURL: '' });
+  const [post, setPost] = useState<Post>({ postText: '', postTags: [], photoURL: '' });
   const [tag, setTag] = useState('');
 
   //handlers
@@ -95,7 +95,7 @@ const WritePost: React.FC<Props> = observer(({ user }) => {
               />
               <div>
                 {
-                  post.postTags && post.postTags.map((item,index) => (<Tag key={index} color='#e16162' closable onClose={() => handleClose(item)}>#{item}</Tag>))
+                  post.postTags && post.postTags.map((item, index) => (<Tag key={index} color='#e16162' closable onClose={() => handleClose(item)}>#{item}</Tag>))
                 }
               </div>
               <Input

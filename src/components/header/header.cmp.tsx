@@ -5,14 +5,13 @@ import Button from 'antd/es/button';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.config';
 
-
 const { Title } = Typography;
 
 interface Props {
   user: {
     displayName?: string
-    photoURL?: string
-  }
+    photoURL?: string | undefined
+  } | null
 }
 
 const Header: React.FC<Props> = ({ user }) => (
@@ -20,7 +19,7 @@ const Header: React.FC<Props> = ({ user }) => (
     <Row>
       <Col span={6}>
         <Link to='/user-profile'>
-          <Avatar size="large" src={user.photoURL} />
+          <Avatar size="large" src={user ? user.photoURL : 'N/a'} />
         </Link>
       </Col>
       <Col span={12}>

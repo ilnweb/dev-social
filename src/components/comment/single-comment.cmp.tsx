@@ -3,7 +3,7 @@ import './single-comment.scss';
 import { Avatar, Button } from 'antd';
 // import moment from 'moment';
 import { HeartOutlined } from '@ant-design/icons';
-import {IComment} from '../../interfaces/post-interface';
+import {IComment} from '../../interfaces/interfaces';
 
 interface Comment{
   comment:IComment
