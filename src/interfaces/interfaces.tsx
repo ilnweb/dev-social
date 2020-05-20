@@ -22,7 +22,7 @@ export interface IPost {
   id?: string
 }
 
-interface IUser {
+export interface IUser {
   user: {
     id: string
     displayName?: string

@@ -4,21 +4,18 @@ import { Typography, Row, Col, Avatar, Space } from 'antd';
 import Button from 'antd/es/button';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.config';
+import { IUser } from '../../interfaces/interfaces';
 
 const { Title } = Typography;
 
-interface Props {
-  user: {
-    displayName?: string
-    photoURL?: string | undefined
-  } | null
-}
 
-const Header: React.FC<Props> = ({ user }) => (
+const Header: React.FC<IUser> = ({ user }) => (
   <div className='header-main'>
     <Row align='middle'>
       <Col span={6} flex={1}>
-        <h1 className='logo'>DEV<span>social</span></h1>
+        <Link to='/'>
+          <h1 className='logo'>DEV<span>social</span></h1>
+        </Link>
       </Col>
       <Col span={12}>
         <Title level={3}>Hello, {user && user.displayName}</Title>

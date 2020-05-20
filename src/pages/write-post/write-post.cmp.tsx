@@ -5,6 +5,7 @@ import Button from 'antd/es/button';
 import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../firebase/firebase.config';
+import { IUser } from '../../interfaces/interfaces';
 
 const { TextArea } = Input;
 
@@ -22,15 +23,8 @@ interface Post {
   photoURL: string
 }
 
-interface Props {
-  user: {
-    displayName?: string
-    photoURL?: string
-    email?: string
-  } | null
-}
 
-const WritePost: React.FC<Props> = observer(({ user }) => {
+const WritePost: React.FC<IUser> = observer(({ user }) => {
   //state
   const [post, setPost] = useState<Post>({ postText: '', postTags: [], photoURL: '' });
   const [tag, setTag] = useState('');

@@ -66,7 +66,9 @@ export const getPosts = async (postsAdd) => {
 	const postsRef = firestore.collection(`posts`);
   const snapshot = await postsRef.get();
   // console.log(snapshot.docs.map(doc=>doc.data()));
-  postsAdd([...snapshot.docs.map(doc => { return { id: doc.id, ...doc.data() } })])
+  const allPosts =[...snapshot.docs.map(doc => { return { id: doc.id, ...doc.data() } })]
+  postsAdd(allPosts)
+  console.log(allPosts);
   
 };
 

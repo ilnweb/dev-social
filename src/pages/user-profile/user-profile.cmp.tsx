@@ -2,16 +2,9 @@ import React from 'react';
 import './user-profile.scss';
 import { Row, Col, Avatar, Typography } from 'antd';
 import { observer } from 'mobx-react-lite';
+import { IUser } from '../../interfaces/interfaces';
 
-interface Props {
-  user: {
-    id: string
-    displayName?: string
-    photoURL?: string
-    email?: string
-  } | null
-}
-const UserProfile: React.FC<Props> = observer(({ user }) => {
+const UserProfile: React.FC<IUser> = observer(({ user }) => {
 
   return (
     <div className='user-profile'>
