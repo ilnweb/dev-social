@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useMst } from "../../mobX/setup-store";
+import { useMst } from "../../mobX/root-store";
 import { RootInstance } from '../../mobX/root-store';
 
 import './home-page.scss';

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { useMst } from "./mobX/setup-store";
+import { useMst } from "./mobX/root-store";
 import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
