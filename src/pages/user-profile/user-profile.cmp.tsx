@@ -8,7 +8,7 @@ const UserProfile: React.FC<IUser> = observer(({ user }) => {
 
   return (
     <div className='user-profile'>
-      <Row gutter={[16, 16]}>
+      <Row>
         <Col span={6}></Col>
         <Col span={12}>
           <Avatar size={200} src={user ? user.photoURL : ''} />
