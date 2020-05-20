@@ -10,7 +10,7 @@ import { auth, createUserProfileDocument, getPosts } from './firebase/firebase.c
 import SignIn from './sign-in/sign-in.cmp';
 import { observer } from 'mobx-react-lite';
 import Button from 'antd/es/button';
-import { PlusOutlined } from '@ant-design/icons';
+import { EditOutlined  } from '@ant-design/icons';
 import 'mobx-react-lite/batchingForReactDom';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 import WritePost from './pages/write-post/write-post.cmp';
@@ -56,7 +56,7 @@ const App: React.FC = observer(() => {
         <Route path="/:comments" component={CommentPage} />
       </Switch>
       <Link to='/write-post'>
-        <Button className='button-post' type="primary" shape="circle" icon={<PlusOutlined />} size="large" />
+        <Button className='button-post' type="primary" shape="circle" icon={<EditOutlined style={{fontSize:'2rem'}}/>} size={"large"} />
       </Link>
     </div>
   );
