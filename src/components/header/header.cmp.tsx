@@ -22,12 +22,11 @@ const Header: React.FC<IUser> = ({ user }) => (
       <Col span={6}>
         <Row justify='end' align='middle' >
           <Space>
-            <Link to='/user-profile'>
+            {user ? <Link to='/user-profile'>
               <Avatar size="large" src={user ? user.photoURL : 'N/a'} />
-            </Link>
-            {user ? '' : <Button>
-              <Link to='/sign-in'>Sign In</Link>
-            </Button>}
+            </Link> : <Button>
+                <Link to='/sign-in'>Sign In</Link>
+              </Button>}
             <Button onClick={() => auth.signOut()}>
               Sign Out
           </Button>
