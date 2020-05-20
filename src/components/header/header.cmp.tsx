@@ -27,9 +27,9 @@ const Header: React.FC<IUser> = ({ user }) => (
             </Link> : <Button>
                 <Link to='/sign-in'>Sign In</Link>
               </Button>}
-            <Button onClick={() => auth.signOut()}>
+            {user&&<Button onClick={() => auth.signOut()}>
               Sign Out
-          </Button>
+          </Button>}
           </Space>
         </Row>
       </Col>

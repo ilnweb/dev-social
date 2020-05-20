@@ -36,9 +36,8 @@ const SignIn: React.FC = () => {
       <div style={{ maxWidth: '1256px', margin: '0px auto' }}>
 
         <Row>
-          <Col span={8}>
-          </Col>
-          <Col span={8}>
+        <Col span={6} sm={2} xs={1} lg={6}></Col>
+        <Col span={6} xs={22} sm={20} md={20} lg={12} xl={12}>
             <Form className="login-regester__Form sign-in-up flex-c">
               <h1 className="pageTitle">Log In</h1>
               <Input
@@ -77,8 +76,7 @@ const SignIn: React.FC = () => {
               >Login with Google</Button>
             </Form>
           </Col>
-          <Col span={8}>
-          </Col>
+          <Col span={6} sm={2} xs={1} lg={6}></Col>
         </Row>
       </div>
     </div>
