@@ -18,7 +18,8 @@ import { RootInstance } from './mobX/root-store';
 
 
 const App: React.FC = observer(() => {
-  const { addAllPosts, setCurrentUser,currentUser }: RootInstance = useMst();
+  const { addAllPosts, setCurrentUser, currentUser }: RootInstance = useMst();
+  
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -29,10 +30,8 @@ const App: React.FC = observer(() => {
               id: snapShot.id,
               ...snapShot.data()
             };
-            console.log(user);
             setCurrentUser(user)
           }
-
         });
       }
     });
@@ -43,7 +42,6 @@ const App: React.FC = observer(() => {
 
   useEffect(() => {
     getPosts(addAllPosts);
-
   }, [addAllPosts]);
 
   return (

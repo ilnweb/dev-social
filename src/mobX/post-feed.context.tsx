@@ -1,8 +1,8 @@
-import { types, Instance, SnapshotIn, cast  } from "mobx-state-tree";
+import { types, Instance } from "mobx-state-tree";
 
 interface Date {
   seconds: number
-  nanoseconds:number
+  nanoseconds: number
 }
 
 export const CommentModel = types.model({
@@ -14,22 +14,21 @@ export const CommentModel = types.model({
 })
 
 export const SinglePostModel = types.model({
-  userID:types.string,
+  userID: types.string,
   userPhoto: types.string,
   userName: types.string,
   tags: types.array(types.string),
   postBody: types.string,
   postImg: types.string,
   likes: types.number,
-  comments: types.optional(types.array(CommentModel),[]),
-  id:types.string
+  comments: types.optional(types.array(CommentModel), []),
+  id: types.string
 })
 
 export const PostsModel = types.model({
-  posts: types.optional(types.array(SinglePostModel),[])
-  
-})
+  posts: types.optional(types.array(SinglePostModel), [])
 
+})
 
 export type PostsInstance = Instance<typeof PostsModel>
 export type SinglePostInstance = Instance<typeof SinglePostModel>
