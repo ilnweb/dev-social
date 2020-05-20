@@ -8,7 +8,6 @@ import { IUser } from '../../interfaces/interfaces';
 
 const { Title } = Typography;
 
-
 const Header: React.FC<IUser> = ({ user }) => (
   <div className='header-main'>
     <Row align='middle'>

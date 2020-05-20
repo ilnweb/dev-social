@@ -21,7 +21,18 @@
   line-height: normal;
   border-radius: 5px;
 
+ 
+
   span{
     font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .header-main{
+  
+    h3{
+     display: none;
+    }
   }
 }
