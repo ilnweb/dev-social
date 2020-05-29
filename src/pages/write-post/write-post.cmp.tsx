@@ -75,7 +75,7 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
       <Typography.Title level={2}>Write Post</Typography.Title>
       <Row>
       <Col span={6} sm={2} xs={1} lg={6}></Col>
-        <Col span={6} xs={22} sm={21} md={20} lg={12} xl={12}>
+        <Col span={6} xs={22} sm={20} md={20} lg={12} xl={12}>
           <Form className="login-regester__Form sign-in-up flex-c">
             <Space direction="vertical" size="middle" style={{ width: '100%' }}>
               <TextArea
