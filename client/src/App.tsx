@@ -7,7 +7,8 @@ import HomePage from './pages/home-page/home-page.cmp';
 import CommentPage from './pages/comments-page/comments-page.cpm';
 import { Route, Switch, Link } from 'react-router-dom';
 import { auth, createUserProfileDocument, getPosts } from './firebase/firebase.config';
-import SignIn from './sign-in/sign-in.cmp';
+import SignIn from './pages/sign-in/sign-in.cmp';
+import SignUp from './pages/sign-up/sign-up.cmp';
 import { observer } from 'mobx-react-lite';
 import Button from 'antd/es/button';
 import { EditOutlined  } from '@ant-design/icons';
@@ -51,6 +52,7 @@ const App: React.FC = observer(() => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
+        <Route path="/sign-up" component={SignUp} />
         <Route path="/write-post" component={() => <WritePost user={currentUser} />} />
         <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
         <Route path="/:comments" component={CommentPage} />

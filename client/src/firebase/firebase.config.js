@@ -40,27 +40,27 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 	return userRef;
 };
 
-export const createNewPost = async (post, user ) => {
-	const postsRef = firestore.collection(`posts`);
-	const createdAt = new Date();
-  console.log(user);
-	try {
-		await postsRef.add({
-			userID: user.id,
-			userPhoto: user.photoURL,
-			userName: user.displayName,
-			tags: post.postTags,
-			postBody: post.postText,
-			postImg: post.photoURL,
-			likes: 0,
-			createdAt,
-			comments: []
-		});
-	} catch (error) {
-		alert('error creating new post', error.message);
-	}
-	return postsRef;
-};
+// export const createNewPost = async (post, user ) => {
+// 	const postsRef = firestore.collection(`posts`);
+// 	const createdAt = new Date();
+//   console.log(user);
+// 	try {
+// 		await postsRef.add({
+// 			userID: user.id,
+// 			userPhoto: user.photoURL,
+// 			userName: user.displayName,
+// 			tags: post.postTags,
+// 			postBody: post.postText,
+// 			postImg: post.photoURL,
+// 			likes: 0,
+// 			createdAt,
+// 			comments: []
+// 		});
+// 	} catch (error) {
+// 		alert('error creating new post', error.message);
+// 	}
+// 	return postsRef;
+// };
 
 export const getPosts = async (postsAdd) => {
 	const postsRef = firestore.collection(`posts`);

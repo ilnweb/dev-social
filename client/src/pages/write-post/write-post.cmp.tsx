@@ -4,7 +4,7 @@ import { Row, Col, Input, Typography, Form, Tag, Space } from 'antd';
 import Button from 'antd/es/button';
 import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
-import { createNewPost } from '../../firebase/firebase.config';
+import { createNewPost } from '../../database/connect';
 import { IUser } from '../../interfaces/interfaces';
 
 const { TextArea } = Input;
