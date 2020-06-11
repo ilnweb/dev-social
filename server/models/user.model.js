@@ -14,6 +14,9 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  imageUrl:{
+    type: String,
+  },
   status: {
     type: String,
     default: 'I am new!'

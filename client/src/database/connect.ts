@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const createNewPost = async (post: any, user: any) => {
-
   const createdAt = new Date();
   console.log(user);
   const postReady = {
@@ -30,18 +29,37 @@ export const createUserProfile = async (email: any, password: any, name: any) =>
     email
   }
   try {
-    axios.post(`http://localhost:5000/auth/signup`,{
+    const result = await axios.post(`http://localhost:5000/auth/signup`, {
       name,
       password,
       email
     })
-      .then(res => {
-        console.log('user created');
-      })
+
 
   } catch (error) {
     alert('error creating user ' + error.message);
   }
 
   return readyUser;
+};
+
+
+export const signInUser = async (email: any, password: any) => {
+  let result;
+  try {
+    result = await axios.post(`http://localhost:5000/auth/login`, {
+      password,
+      email
+    })
+
+    if (result.status === 200) {
+      console.log('user signed in');
+     
+    }
+
+
+  } catch (error) {
+    alert('error loging in user ' + error.message);
+  }
+  return result;
 };

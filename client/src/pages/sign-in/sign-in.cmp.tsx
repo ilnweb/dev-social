@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
-import { auth, signInWithGoogle } from '../../firebase/firebase.config';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';
-import { MailOutlined, GoogleOutlined } from '@ant-design/icons';
-import { Typography } from 'antd';
+import { MailOutlined } from '@ant-design/icons';
+import { History } from 'history';
 
-const { Title } = Typography;
+import { signInUser } from '../../database/connect';
 
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
 }
 
-const SignIn: React.FC = () => {
+interface Props {
+  history: History
+}
+
+const SignIn: React.FC<Props> = ({ history }) => {
   const [userCredentials, serCredentials] = useState({ email: '', password: '' })
 
   const handleSubmit = async () => {
     const { email, password } = userCredentials;
-
+    let result;
     try {
-      await auth.signInWithEmailAndPassword(email, password);
-
+      result = await signInUser(email, password);
+      console.log(result);
+      result && localStorage.setItem('token', result.data.token);
+      result && localStorage.setItem('userId', result.data.userId);
     } catch (error) {
       console.error(`wtf ${error}`);
     }
@@ -32,12 +37,12 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <div style={{marginTop: 100}} className="sign-in-up flex-c-c login-regester">
+    <div style={{ marginTop: 100 }} className="sign-in-up flex-c-c login-regester">
       <div style={{ maxWidth: '1256px', margin: '0px auto' }}>
 
         <Row>
-        <Col span={6} sm={2} xs={1} lg={6}></Col>
-        <Col span={6} xs={22} sm={20} md={20} lg={12} xl={12}>
+          <Col span={6} sm={2} xs={1} lg={6}></Col>
+          <Col span={6} xs={22} sm={20} md={20} lg={12} xl={12}>
             <Form className="login-regester__Form sign-in-up flex-c">
               <h1 className="pageTitle">Log In</h1>
               <Input
@@ -50,7 +55,7 @@ const SignIn: React.FC = () => {
                 suffix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                 autoComplete="true"
                 onChange={handleChange}
-                
+
               />
               <Input.Password
                 name="password"
@@ -61,19 +66,11 @@ const SignIn: React.FC = () => {
                 placeholder="Password"
                 autoComplete="true"
                 onChange={handleChange}
-                style={{marginTop: 30}}
+                style={{ marginTop: 30 }}
               />
-              <Button style={{marginTop: 30}} className="button primary block" size="large" type="primary" onClick={handleSubmit}>
+              <Button style={{ marginTop: 30 }} className="button primary block" size="large" type="primary" onClick={handleSubmit}>
                 Log In
 						</Button>
-              <Title style={{margin: '30px 0'}} level={2}>- or -</Title>
-              <Button
-                className="button block"
-                size="large"
-                type="danger"
-                icon={<GoogleOutlined />}
-                onClick={signInWithGoogle}
-              >Login with Google</Button>
             </Form>
           </Col>
           <Col span={6} sm={2} xs={1} lg={6}></Col>

@@ -11,33 +11,21 @@ import SignIn from './pages/sign-in/sign-in.cmp';
 import SignUp from './pages/sign-up/sign-up.cmp';
 import { observer } from 'mobx-react-lite';
 import Button from 'antd/es/button';
-import { EditOutlined  } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
 import 'mobx-react-lite/batchingForReactDom';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 import WritePost from './pages/write-post/write-post.cmp';
 import { RootInstance } from './mobX/root-store';
+import { signInUser } from './database/connect';
+
 
 
 const App: React.FC = observer(() => {
   const { addAllPosts, setCurrentUser, currentUser }: RootInstance = useMst();
-  
+
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot((snapShot) => {
-          if (snapShot.data()) {
-            let user:any = {
-              id: snapShot.id,
-              ...snapShot.data()
-            };
-            setCurrentUser(user)
-          }
-        });
-      }
-    });
     return () => {
-      unsubscribeFromAuth();
+
     }
   }, [setCurrentUser]);
 
@@ -45,20 +33,24 @@ const App: React.FC = observer(() => {
     getPosts(addAllPosts);
   }, [addAllPosts]);
 
+  const logInHandler = (email:string, password:string) => {
+    console.log(email);
+  }
+
   return (
 
     <div className="App">
       <Header user={currentUser} />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/sign-in" component={SignIn} />
+        <Route path="/sign-in" component={SignIn} logIn={logInHandler} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/write-post" component={() => <WritePost user={currentUser} />} />
         <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
         <Route path="/:comments" component={CommentPage} />
       </Switch>
       <Link to='/write-post'>
-        <Button className='button-post' type="primary" shape="circle" icon={<EditOutlined style={{fontSize:'2rem'}}/>} size={"large"} />
+        <Button className='button-post' type="primary" shape="circle" icon={<EditOutlined style={{ fontSize: '2rem' }} />} size={"large"} />
       </Link>
     </div>
   );

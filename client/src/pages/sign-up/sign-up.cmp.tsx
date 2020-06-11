@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { History } from 'history';
-import { auth, signInWithGoogle } from '../../firebase/firebase.config';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';
 import { MailOutlined, GoogleOutlined } from '@ant-design/icons';
@@ -92,14 +91,6 @@ const SignUp: React.FC <{history: History}>= ({history}) => {
               <Button style={{ marginTop: 30 }} className="button primary block" size="large" type="primary" onClick={handleSubmit}>
                 Sign Up
 						</Button>
-              <Title style={{ margin: '30px 0' }} level={2}>- or -</Title>
-              <Button
-                className="button block"
-                size="large"
-                type="danger"
-                icon={<GoogleOutlined />}
-                onClick={signInWithGoogle}
-              >Login with Google</Button>
             </Form>
           </Col>
           <Col span={6} sm={2} xs={1} lg={6}></Col>
