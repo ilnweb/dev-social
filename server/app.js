@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const feedRoutes = require('./routes/feed.rout');
-// const authRoutes = require('./routes/auth.rout');
+const authRoutes = require('./routes/auth.rout');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 app.use('/feed', feedRoutes);
-// app.use('/auth', authRoutes);
+app.use('/auth', authRoutes);
 
 mongoose.connect('mongodb+srv://iliyan:codemode8894@cluster0-s4kfe.mongodb.net/dev-social?retryWrites=true&w=majority', {useUnifiedTopology: true, useNewUrlParser: true});
 app.listen(port, err => {

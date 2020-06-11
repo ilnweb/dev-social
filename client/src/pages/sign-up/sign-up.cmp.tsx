@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { History } from 'history';
 import { auth, signInWithGoogle } from '../../firebase/firebase.config';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';
@@ -12,7 +13,7 @@ interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
 }
 
-const SignUp: React.FC = () => {
+const SignUp: React.FC <{history: History}>= ({history}) => {
   const [userCredentials, serCredentials] = useState({ email: '', password: '', confirmPassword: '', name: '' })
 
   const handleSubmit = async () => {
@@ -22,7 +23,7 @@ const SignUp: React.FC = () => {
     }
     try {
       await createUserProfile(email, password, name);
-
+      history.push('/sign-in')
     } catch (error) {
       console.error(`wtf ${error}`);
     }
@@ -33,7 +34,7 @@ const SignUp: React.FC = () => {
 
     serCredentials({ ...userCredentials, [name]: value });
   };
-  console.log(userCredentials);
+  
   return (
     <div style={{ marginTop: 100 }} className="sign-in-up flex-c-c login-regester">
       <div style={{ maxWidth: '1256px', margin: '0px auto' }}>

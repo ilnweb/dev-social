@@ -6,8 +6,8 @@ const authController = require('../controllers/auth.controler');
 
 const router = express.Router();
 
-router.put(
-  '/sign-in',
+router.post(
+  '/signup',
   [
     body('email')
       .isEmail()
@@ -31,6 +31,6 @@ router.put(
   authController.signup
 );
 
-router.post('/login', authController.login);
+// router.post('/login', authController.login);
 
 module.exports = router;
