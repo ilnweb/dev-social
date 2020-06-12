@@ -13,7 +13,7 @@ const Header: React.FC<IUser> = ({ user }) => (
     <Row align='middle'>
       <Col span={6} flex={1}>
         <Link to='/'>
-          <h1 className='logo'>DEV<span>social</span></h1>
+          <h1 className='logo'>DEV</h1>
         </Link>
       </Col>
       <Col span={12}>
@@ -22,9 +22,10 @@ const Header: React.FC<IUser> = ({ user }) => (
       <Col span={6}>
         <Row justify='end' align='middle' >
           <Space>
-            {user ? <Link to='/user-profile'>
-              <Avatar size="large" src={user ? user.photoURL : ''} />
-            </Link>
+            {user ?
+              <Link to='/user-profile'>
+                <Avatar size="large" style={{backgroundColor:'#e16162',fontSize:'1.4rem', fontWeight:500}} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
+              </Link>
               : (
                 <Space>
                   <Button>
