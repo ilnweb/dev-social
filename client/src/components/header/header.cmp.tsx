@@ -23,11 +23,19 @@ const Header: React.FC<IUser> = ({ user }) => (
         <Row justify='end' align='middle' >
           <Space>
             {user ? <Link to='/user-profile'>
-              <Avatar size="large" src={user ? user.photoURL : 'N/a'} />
-            </Link> : <Button>
-                <Link to='/sign-in'>Sign In</Link>
-              </Button>}
-            {user&&<Button onClick={() => auth.signOut()}>
+              <Avatar size="large" src={user ? user.photoURL : ''} />
+            </Link>
+              : (
+                <Space>
+                  <Button>
+                    <Link to='/sign-in'>Sign In</Link>
+                  </Button>
+                  <Button>
+                    <Link to='/sign-up'>Sign Up</Link>
+                  </Button>
+                </Space>
+              )}
+            {user && <Button onClick={() => auth.signOut()}>
               Sign Out
           </Button>}
           </Space>

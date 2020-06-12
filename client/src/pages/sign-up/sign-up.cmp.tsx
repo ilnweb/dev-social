@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { History } from 'history';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';
-import { MailOutlined, GoogleOutlined } from '@ant-design/icons';
-import { Typography } from 'antd';
+import { MailOutlined } from '@ant-design/icons';
 import { createUserProfile } from '../../database/connect';
 
-const { Title } = Typography;
 
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;

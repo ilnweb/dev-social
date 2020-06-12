@@ -23,13 +23,9 @@ export const createNewPost = async (post: any, user: any) => {
 };
 
 export const createUserProfile = async (email: any, password: any, name: any) => {
-  const readyUser = {
-    name,
-    password,
-    email
-  }
+  let user;
   try {
-    const result = await axios.post(`http://localhost:5000/auth/signup`, {
+    user = await axios.post(`http://localhost:5000/auth/signup`, {
       name,
       password,
       email
@@ -40,26 +36,25 @@ export const createUserProfile = async (email: any, password: any, name: any) =>
     alert('error creating user ' + error.message);
   }
 
-  return readyUser;
+  return user;
 };
 
 
 export const signInUser = async (email: any, password: any) => {
-  let result;
+  let user;
   try {
-    result = await axios.post(`http://localhost:5000/auth/login`, {
+    user = await axios.post(`http://localhost:5000/auth/login`, {
       password,
       email
     })
 
-    if (result.status === 200) {
+    if (user.status === 200) {
       console.log('user signed in');
-     
+
     }
-
-
-  } catch (error) {
+  }
+  catch (error) {
     alert('error loging in user ' + error.message);
   }
-  return result;
+  return user;
 };

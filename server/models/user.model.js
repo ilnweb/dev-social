@@ -10,12 +10,13 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  name: {
+  displayName: {
     type: String,
     required: true
   },
-  imageUrl:{
+  photoURL:{
     type: String,
+    default: ''
   },
   status: {
     type: String,
