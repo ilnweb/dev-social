@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMst } from "./mobX/root-store";
 import 'antd/dist/antd.css';
 import './App.scss';
@@ -15,12 +15,14 @@ import 'mobx-react-lite/batchingForReactDom';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 import WritePost from './pages/write-post/write-post.cmp';
 import { RootInstance } from './mobX/root-store';
+import { autoSignInUser } from './database/connect';
 
 const App: React.FC = observer(() => {
   const { addAllPosts, setCurrentUser, currentUser }: RootInstance = useMst();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log(token);
 		const expiryDate = localStorage.getItem('expiryDate');
 		if (!token || !expiryDate) {
 			return;
@@ -30,9 +32,14 @@ const App: React.FC = observer(() => {
 			return;
 		}
 		const userId = localStorage.getItem('userId');
-		const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
-		// this.setState({ isAuth: true, token: token, userId: userId });
-		// this.setAutoLogout(remainingMilliseconds);
+    const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
+    
+    // this.setState({ isAuth: true, token: token, userId: userId });
+    (async function signInUser() {
+      const user = await autoSignInUser(token)
+      setCurrentUser(user)
+    })();
+		
     return () => {
 
     }

@@ -30,31 +30,45 @@ export const createUserProfile = async (email: any, password: any, name: any) =>
       password,
       email
     })
-
-
-  } catch (error) {
+  }
+  catch (error) {
     alert('error creating user ' + error.message);
   }
-
   return user;
 };
 
 
 export const signInUser = async (email: any, password: any) => {
-  let user;
+  let result;
   try {
-    user = await axios.post(`http://localhost:5000/auth/login`, {
+    result = await axios.post(`http://localhost:5000/auth/login`, {
       password,
       email
     })
-
-    if (user.status === 200) {
-      console.log('user signed in');
-
+    if (result.status === 200) {
+      console.log('result signed in');
     }
   }
   catch (error) {
     alert('error loging in user ' + error.message);
   }
-  return user;
+  return result;
+};
+
+
+export const autoSignInUser = async (token: any) => {
+  let result;
+  try {
+    result = await axios.post(`http://localhost:5000/auth/login-auto`, {
+      token,
+      userId:''
+    })
+    if (result.status === 200) {
+      console.log('user signed in automaticaly');
+    }
+  }
+  catch (error) {
+    alert('error loging in user automaticaly' + error.message);
+  }
+  return result?.data.user;
 };

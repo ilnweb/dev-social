@@ -58,17 +58,15 @@ exports.login = (req, res, next) => {
 				'somesupersecretsecret',
 				{ expiresIn: '1h' }
 			);
-			res
-				.status(200)
-				.json({
-					token: token,
-					user: {
-						id: loadedUser._id.toString(),
-						email: loadedUser.email,
-            displayName: loadedUser.displayName,
-            photoURL:loadedUser.photoURL
-					}
-				});
+			res.status(200).json({
+				token: token,
+				user: {
+					id: loadedUser._id.toString(),
+					email: loadedUser.email,
+					displayName: loadedUser.displayName,
+					photoURL: loadedUser.photoURL
+				}
+			});
 		})
 		.catch((err) => {
 			if (!err.statusCode) {
@@ -77,3 +75,22 @@ exports.login = (req, res, next) => {
 			next(err);
 		});
 };
+
+exports.loginAuto = async (req, res, next) => { 
+  const userId = req.body.userId;
+  try {
+    const user = await User.findById(userId);
+    console.log(user);
+    res.status(200).json({
+      user: {
+        id: user._id.toString(),
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL
+      }
+    });
+  } catch(err){
+    console.log(err);
+  }
+  
+}

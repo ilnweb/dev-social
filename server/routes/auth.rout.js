@@ -1,6 +1,6 @@
 const express = require('express');
 const { body } = require('express-validator/check');
-
+const isAuth = require('../middleware/is-auth');
 const User = require('../models/user.model');
 const authController = require('../controllers/auth.controler');
 
@@ -32,5 +32,7 @@ router.post(
 );
 
 router.post('/login', authController.login);
+
+router.post('/login-auto', isAuth, authController.loginAuto);
 
 module.exports = router;
