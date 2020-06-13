@@ -26,10 +26,8 @@ const SignIn: React.FC<Props> = ({ history }) => {
       result = await signInUser(email, password);
       console.log(result);
       result && localStorage.setItem('token', result.data.token);
-      const remainingMilliseconds = 60 * 60 * 1000;
-      const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
-      localStorage.setItem('expiryDate', expiryDate.toISOString());
       setCurrentUser(result?.data.user)
+      history.push('/')
     } catch (error) {
       console.error(`Error signin in user ${error}`);
     }

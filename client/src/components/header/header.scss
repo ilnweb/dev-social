@@ -8,6 +8,22 @@
   h3{
     color:$primary_white;
   }
+
+  &-dropdown{
+    margin-top: 2rem;
+    width: 20rem;
+    cursor: pointer;
+    padding: 1rem;
+    padding-right: 0;
+    font-size: 1.2rem;
+    border-radius:2px;
+  }
+
+  &-menu{
+    background-color: $primary_violet;
+    padding: .7rem;
+    
+  }
 }
 
 .logo{
@@ -29,4 +45,9 @@
      display: none;
     }
   }
+}
+
+.ant-dropdown-menu-item > a{
+  color:$primary_white;
+  font-size: 1.1rem;
 }

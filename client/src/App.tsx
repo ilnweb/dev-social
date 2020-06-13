@@ -19,27 +19,20 @@ import { autoSignInUser } from './database/connect';
 
 const App: React.FC = observer(() => {
   const { addAllPosts, setCurrentUser, currentUser }: RootInstance = useMst();
+  const [state, setState] = useState({ isAuth: false })
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token);
-		const expiryDate = localStorage.getItem('expiryDate');
-		if (!token || !expiryDate) {
-			return;
-		}
-		if (new Date(expiryDate) <= new Date()) {
-			// this.logoutHandler();
-			return;
-		}
-		const userId = localStorage.getItem('userId');
-    const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
-    
+    if (!token) {
+      return;
+    } else {
+      (async function signInUser() {
+        const user = await autoSignInUser(token)
+        setCurrentUser(user);
+        setState({ isAuth: true })
+      })();
+    }
     // this.setState({ isAuth: true, token: token, userId: userId });
-    (async function signInUser() {
-      const user = await autoSignInUser(token)
-      setCurrentUser(user)
-    })();
-		
     return () => {
 
     }
@@ -49,22 +42,10 @@ const App: React.FC = observer(() => {
     // getPosts(addAllPosts);
   }, [addAllPosts]);
 
-  const logInHandler = (email:string, password:string) => {
-    console.log(email);
-  }
-
   const logoutHandler = () => {
-		// this.setState({ isAuth: false, token: null });
-		localStorage.removeItem('token');
-		localStorage.removeItem('expiryDate');
-		localStorage.removeItem('userId');
-	};
-
-  const setAutoLogout = (milliseconds:number) => {
-		setTimeout(() => {
-			logoutHandler();
-		}, milliseconds);
-	};
+    setState({ isAuth: false })
+    localStorage.removeItem('token');
+  };
 
   return (
 
@@ -72,7 +53,7 @@ const App: React.FC = observer(() => {
       <Header user={currentUser} />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/sign-in" component={SignIn} logIn={logInHandler} />
+        <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/write-post" component={() => <WritePost user={currentUser} />} />
         <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
