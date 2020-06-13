@@ -30,44 +30,37 @@ const Header: React.FC<IUser> = ({ user }) => {
         <Link to='/'>
          Sign Out
         </Link>
+        
       </Menu.Item>
-    </Menu>
-  );
-  return (
-    <div className='header-main'>
-      <Row align='middle'>
-        <Col span={6} flex={1}>
-          <Link to='/'>
-            <h1 className='logo'>DEV</h1>
-          </Link>
-        </Col>
-        <Col span={12}>
-          <Title level={3}>{user && `Hello ${user?.displayName}`}</Title>
-        </Col>
-        <Col span={6}>
-          <Row justify='end' align='middle' >
-            <Space>
-              {user ?
-                <Dropdown overlayClassName="header-main-dropdown" overlay={menu} placement="bottomCenter" trigger={['click']}>
-                  <Avatar size="large" style={{ backgroundColor: '#e16162', fontSize: '1.4rem', fontWeight: 500 }} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
-                </Dropdown>
-
-                : (
-                  <Space>
-                    <Button>
-                      <Link to='/sign-in'>Sign In</Link>
-                    </Button>
-                    <Button>
-                      <Link to='/sign-up'>Sign Up</Link>
-                    </Button>
-                  </Space>
-                )}
-            </Space>
-          </Row>
-        </Col>
-      </Row>
-    </div>
-  )
-};
+      
+      <Col span={12}>
+        <Title level={3}>Hey, {user && user.displayName}</Title>
+      </Col>
+      <Col span={6}>
+        <Row justify='end' align='middle' >
+          <Space>
+            {user ?
+              <Link to='/user-profile'>
+                <Avatar size="large" style={{backgroundColor:'#e16162',fontSize:'1.4rem', fontWeight:500}} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
+              </Link>
+              : (
+                <Space>
+                  <Button>
+                    <Link to='/sign-in'>Sign In</Link>
+                  </Button>
+                  <Button>
+                    <Link to='/sign-up'>Sign Up</Link>
+                  </Button>
+                </Space>
+              )}
+            {user && <Button onClick={() => auth.signOut()}>
+              Sign Out
+          </Button>}
+          </Space>
+        </Row>
+      </Col>
+    </Row>
+  </div>
+);
 
 export default Header;
