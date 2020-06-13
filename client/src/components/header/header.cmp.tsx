@@ -34,7 +34,7 @@ const Header: React.FC<IUser> = ({ user }) => {
       </Menu.Item>
       
       <Col span={12}>
-        <Title level={3}>Hey, {user && user.displayName}</Title>
+        <Title level={3}>Hello, {user && user.displayName}</Title>
       </Col>
       <Col span={6}>
         <Row justify='end' align='middle' >
