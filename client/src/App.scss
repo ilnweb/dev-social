@@ -25,12 +25,7 @@
 }
 
 
-h1,h2,h3,h4,h5,a{
-  color:$primary_white!important;
+h1,h2,h3,h4,h5{
+  color:white;
 }
 
-hr {
-  border: 0;
-  background-color:$primary_white;
-  height: 1px;
-}
