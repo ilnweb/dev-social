@@ -22,17 +22,9 @@ const App: React.FC = observer(() => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token);
-		const expiryDate = localStorage.getItem('expiryDate');
-		if (!token || !expiryDate) {
+		if (!token) {
 			return;
 		}
-		if (new Date(expiryDate) <= new Date()) {
-			// this.logoutHandler();
-			return;
-		}
-		const userId = localStorage.getItem('userId');
-    const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
     
     // this.setState({ isAuth: true, token: token, userId: userId });
     (async function signInUser() {
@@ -78,9 +70,6 @@ const App: React.FC = observer(() => {
         <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
         <Route path="/:comments" component={CommentPage} />
       </Switch>
-      <Link to='/write-post'>
-        <Button className='button-post' type="primary" shape="circle" icon={<EditOutlined style={{ fontSize: '2rem' }} />} size={"large"} />
-      </Link>
     </div>
   );
 });

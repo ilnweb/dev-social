@@ -26,6 +26,12 @@
 
 
 h1,h2,h3,h4,h5{
-  color:white;
+  color:$primary_white;
+}
+
+hr{
+  border:none;
+  height: 1px;
+  background-color:$primary_white;
 }
 
