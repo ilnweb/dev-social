@@ -8,6 +8,21 @@
   h3{
     color:$primary_white;
   }
+
+  &-dropdown{
+    width: 25rem;
+    padding: 1rem;
+    padding-right: 0;
+  }
+
+  &-menu{
+    background-color:$primary_violet;
+    padding: .5rem;
+    li a{
+      color:white;
+      font-size: 1.2rem;
+    }
+  }
 }
 
 .logo{
