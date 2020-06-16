@@ -38,7 +38,7 @@ const App: React.FC = observer(() => {
     return () => {
 
     }
-  }, [setCurrentUser]);
+  }, [setCurrentUser, history]);
 
   useEffect(() => {
     // getPosts(addAllPosts);
