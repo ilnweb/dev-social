@@ -5,33 +5,36 @@ import './App.scss';
 import Header from './components/header/header.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
 import CommentPage from './pages/comments-page/comments-page.cpm';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import SignIn from './pages/sign-in/sign-in.cmp';
 import SignUp from './pages/sign-up/sign-up.cmp';
 import { observer } from 'mobx-react-lite';
-import Button from 'antd/es/button';
-import { EditOutlined } from '@ant-design/icons';
 import 'mobx-react-lite/batchingForReactDom';
 import UserProfile from './pages/user-profile/user-profile.cmp';
 import WritePost from './pages/write-post/write-post.cmp';
 import { RootInstance } from './mobX/root-store';
 import { autoSignInUser } from './database/connect';
 
+
 const App: React.FC = observer(() => {
-  const { addAllPosts, setCurrentUser, currentUser }: RootInstance = useMst();
+  const { addAllPosts, setCurrentUser, currentUser, removeCurrentUser }: RootInstance = useMst();
+  const [state, setState] = useState({ isAuth: false });
+  let history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-		if (!token) {
-			return;
-		}
-    
-    // this.setState({ isAuth: true, token: token, userId: userId });
+    if (!token) {
+      return;
+    }
+    // this.setState({ state: true, token: token, userId: userId });
     (async function signInUser() {
       const user = await autoSignInUser(token)
-      setCurrentUser(user)
+      setCurrentUser(user);
+      console.log('Loged');
+      history.push('/');
     })();
-		
+
     return () => {
 
     }
@@ -41,35 +44,32 @@ const App: React.FC = observer(() => {
     // getPosts(addAllPosts);
   }, [addAllPosts]);
 
-  const logInHandler = (email:string, password:string) => {
-    console.log(email);
-  }
+  const signOutHandler = () => {
+    if (currentUser) {
+      removeCurrentUser(currentUser)
+      localStorage.removeItem('token');
+      history.push('/');
+    }
+  };
 
-  const logoutHandler = () => {
-		// this.setState({ isAuth: false, token: null });
-		localStorage.removeItem('token');
-		localStorage.removeItem('expiryDate');
-		localStorage.removeItem('userId');
-	};
-
-  const setAutoLogout = (milliseconds:number) => {
-		setTimeout(() => {
-			logoutHandler();
-		}, milliseconds);
-	};
-
-  return (
-
-    <div className="App">
-      <Header user={currentUser} />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/sign-in" component={SignIn} logIn={logInHandler} />
-        <Route path="/sign-up" component={SignUp} />
+  let routs;
+  if (currentUser) {
+    routs = (
+      <>
         <Route path="/write-post" component={() => <WritePost user={currentUser} />} />
         <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
-        <Route path="/:comments" component={CommentPage} />
+      </>)
+  }
+  return (
+    <div className="App">
+      <Header signOutHandler={signOutHandler} user={currentUser} />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/sign-in" component={SignIn} />
+        <Route path="/sign-up" component={SignUp} />
+        {routs ? routs : <Redirect to="/" />}
       </Switch>
+
     </div>
   );
 });

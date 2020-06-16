@@ -3,12 +3,16 @@ import './header.scss';
 import { Typography, Row, Col, Avatar, Space, Dropdown, Menu } from 'antd';
 import Button from 'antd/es/button';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase/firebase.config';
-import { IUser } from '../../interfaces/interfaces';
+import { currentUserInstance } from '../../mobX/user.context';
 
 const { Title } = Typography;
 
-const Header: React.FC<IUser> = ({ user }) => {
+interface Props {
+  user?: currentUserInstance | null;
+  signOutHandler: () => void;
+}
+
+const Header: React.FC<Props> = ({ user, signOutHandler }) => {
   const menu = (
     <Menu className="header-main-menu">
       <Menu.Item>
@@ -17,7 +21,7 @@ const Header: React.FC<IUser> = ({ user }) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link to='/user-profile'>
+        <Link to='/write-post'>
           Write Post
         </Link>
       </Menu.Item>
@@ -28,7 +32,7 @@ const Header: React.FC<IUser> = ({ user }) => {
       </Menu.Item>
       <hr></hr>
       <Menu.Item>
-        <Link to='/user-profile'>
+        <Link to='/' onClick={signOutHandler}>
           Sign Out
         </Link>
       </Menu.Item>
@@ -50,7 +54,7 @@ const Header: React.FC<IUser> = ({ user }) => {
             <Space>
               {user ?
                 <Dropdown overlay={menu} trigger={['click']} overlayClassName="header-main-dropdown" placement="bottomCenter">
-                  <Avatar size="large" style={{ backgroundColor: '#e16162', fontSize: '1.4rem', fontWeight: 500,cursor:"pointer" }} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
+                  <Avatar size="large" style={{ backgroundColor: '#e16162', fontSize: '1.4rem', fontWeight: 500, cursor: "pointer" }} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
                 </Dropdown>
                 : (
                   <Space>

@@ -27,6 +27,7 @@ const SignIn: React.FC<Props> = ({ history }) => {
       console.log(result);
       result && localStorage.setItem('token', result.data.token);
       setCurrentUser(result?.data.user)
+      history.push('/')
     } catch (error) {
       console.error(`Error signin in user ${error}`);
     }
