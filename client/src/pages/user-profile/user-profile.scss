@@ -1,9 +1,50 @@
-.user-info{
+@import "src/styles/variables.scss";
+
+.user-profile{
   display: flex;
   flex-direction: column;
+
+  &-data{
+    margin-top: 2rem;
+  }
+  &-info{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    margin-top: 2rem;
+    padding: 1rem;
+    align-items: flex-start;
+    background-color: $primary_blue;
+    
+    p{
+      font-size: 1.2rem;
+    }
+
+  }
+
+  &-image{
+    position: relative;
+  }
+
+  &-upload-icon{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    width: 101px;
+    height: 101px;
+    border-radius:100px;
+    background-color:$primary_blue;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  &-upload-icon:hover{
+    transition: all .2s ease-out;
+    opacity: 1;
+  }
 }
 
-.user-data{
-  display: flex;
-
-}

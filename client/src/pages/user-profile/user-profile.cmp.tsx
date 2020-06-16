@@ -3,6 +3,8 @@ import './user-profile.scss';
 import { Row, Col, Avatar, Typography } from 'antd';
 import { observer } from 'mobx-react-lite';
 import { IUser } from '../../interfaces/interfaces';
+import { UploadOutlined } from '@ant-design/icons';
+
 
 const UserProfile: React.FC<IUser> = observer(({ user }) => {
 
@@ -12,11 +14,28 @@ const UserProfile: React.FC<IUser> = observer(({ user }) => {
         <Col span={6} sm={2} xs={1} lg={6}></Col>
         <Col span={6} xs={22} sm={20} md={20} lg={12} xl={12}>
           <Typography.Title level={1} style={{ color: 'white' }}>Your Profile</Typography.Title>
-          <div className="user-data">
-            <div><Avatar size={70} src={user ? user.photoURL : ''} /> </div>
-            <div className="user-info">
-              <Typography.Title level={2} style={{ color: 'white' }}>{user && user.displayName}</Typography.Title>
-              <Typography.Title level={4} style={{ color: 'white' }}>{user && user.email}</Typography.Title>
+          <div className="user-profile-data">
+            <div className="user-profile-image">
+              <div className="user-profile-upload-icon"><UploadOutlined style={{ color: '#fffffe', fontSize: '3rem' }}/></div>
+              <Avatar
+                size={100}
+                style={{ backgroundColor: '#e16162', fontSize: '3rem', fontWeight: 500, cursor: "pointer" }}
+                src={user ? user.photoURL : ''} >
+                {user?.displayName?.split('')[0].toUpperCase()}
+              </Avatar>
+            </div>
+            <div className="user-profile-info">
+              <Typography.Title level={3} style={{ color: 'white' }}>@{user && user.displayName}</Typography.Title>
+              Email:
+              <p> {user && user.email}</p>
+              Location:
+              <p>Warsaw</p>
+              Job:
+              <p>Front-end developer</p>
+              Skills:
+              <p>REACT REDUX TypeScript</p>
+              Work status:
+              <p>I'm looking for work</p>
             </div>
           </div>
         </Col>

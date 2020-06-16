@@ -27,18 +27,19 @@ const App: React.FC = observer(() => {
     if (!token) {
       return;
     }
+    setState({ isAuth: true });
     // this.setState({ state: true, token: token, userId: userId });
     (async function signInUser() {
       const user = await autoSignInUser(token)
       setCurrentUser(user);
       console.log('Loged');
-      history.push('/');
+
     })();
 
     return () => {
 
     }
-  }, [setCurrentUser, history]);
+  }, [setCurrentUser]);
 
   useEffect(() => {
     // getPosts(addAllPosts);
@@ -48,18 +49,17 @@ const App: React.FC = observer(() => {
     if (currentUser) {
       removeCurrentUser(currentUser)
       localStorage.removeItem('token');
-      history.push('/');
+
     }
   };
 
-  let routs;
-  if (currentUser) {
-    routs = (
-      <>
-        <Route path="/write-post" component={() => <WritePost user={currentUser} />} />
-        <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
-      </>)
-  }
+
+  let routs = (
+    <>
+      <Route path="/write-post" component={() => <WritePost user={currentUser} />} />
+      <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
+    </>)
+
   return (
     <div className="App">
       <Header signOutHandler={signOutHandler} user={currentUser} />
@@ -67,7 +67,7 @@ const App: React.FC = observer(() => {
         <Route exact path="/" component={HomePage} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
-        {routs ? routs : <Redirect to="/" />}
+        {state.isAuth ? routs :''}
       </Switch>
 
     </div>
