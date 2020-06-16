@@ -39,7 +39,7 @@
     display: flex;
     align-items:center;
     justify-content: center;
-    opacity: 0;
+    // opacity: 0;
   }
 
   &-upload-icon:hover{
@@ -48,3 +48,19 @@
   }
 }
 
+.avatar-preview{
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100px;
+  padding: 0;
+}
+
+
+.ant-upload.ant-upload-select-picture-card {
+  border-radius: 100px;
+  background-color:#232946;
+  border: none;
+ 
+}
