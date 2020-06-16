@@ -12,9 +12,17 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const app = express();
 
 const port = process.env.PORT || 5000;
-
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null,'')
+  },
+  filename:(req, file, cb) => {
+    cb(null, new Date().toString() + '-' + file.originalname);
+  }
+})
 app.use(bodyParser.json()); // application/json
-app.use(bodyParser.urlencoded({ extended: true })); // application/json
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer({storage:fileStorage}).single('image'))
 app.use(cors());
 
 
@@ -29,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 
-mongoose.connect('mongodb+srv://iliyan:codemode8894@cluster0-s4kfe.mongodb.net/dev-social?retryWrites=true&w=majority', {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect(process.env.MONGO_DB_API_KEY, {useUnifiedTopology: true, useNewUrlParser: true});
 app.listen(port, err => {
   if (err) throw err;
   console.log('Server running on port' + port);
