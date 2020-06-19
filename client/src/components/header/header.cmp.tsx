@@ -54,7 +54,7 @@ const Header: React.FC<Props> = ({ user, signOutHandler }) => {
             <Space>
               {user ?
                 <Dropdown overlay={menu} trigger={['click']} overlayClassName="header-main-dropdown" placement="bottomCenter">
-                  <Avatar size="large" style={{ backgroundColor: '#e16162', fontSize: '1.4rem', fontWeight: 500, cursor: "pointer" }} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
+                  <Avatar size="large" style={{ backgroundColor: '#00eb66', fontSize: '1.4rem', fontWeight: 500, cursor: "pointer" }} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
                 </Dropdown>
                 : (
                   <Space>

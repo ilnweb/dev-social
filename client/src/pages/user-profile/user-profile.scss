@@ -1,13 +1,14 @@
 @import "src/styles/variables.scss";
 
-.user-profile{
+.user-profile {
   display: flex;
   flex-direction: column;
 
-  &-data{
+  &-data {
     margin-top: 2rem;
   }
-  &-info{
+
+  &-info {
     display: flex;
     flex-direction: column;
     border: 2px solid white;
@@ -15,42 +16,50 @@
     padding: 1rem;
     align-items: flex-start;
     background-color: $primary_blue;
-    
-    p{
+
+    p {
       font-size: 1.2rem;
+      color: $primary_green !important;
     }
-
   }
 
-  &-image{
+  &-image {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  &-upload-icon{
+  &-upload-icon {
     position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
     width: 101px;
     height: 101px;
-    border-radius:100px;
-    background-color:$primary_blue;
+    border-radius: 100px;
+    background-color: $primary_blue;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
-    // opacity: 0;
+    opacity: 1;
   }
 
-  &-upload-icon:hover{
+  &-upload-icon:hover {
     transition: all .2s ease-out;
     opacity: 1;
   }
 }
 
-.avatar-preview{
-  width: 100px;
-  height: 100px;
+.avatar-preview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 115px;
+  height: 115px;
   background-position: center;
   background-size: cover;
   border-radius: 100px;
@@ -60,7 +69,7 @@
 
 .ant-upload.ant-upload-select-picture-card {
   border-radius: 100px;
-  background-color:#232946;
+  background-color: #232946;
   border: none;
- 
+
 }

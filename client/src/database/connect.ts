@@ -17,7 +17,7 @@ export const createNewPost = async (post: any, user: any) => {
   try {
 
   } catch (error) {
-    alert('error creating new post ' + error.message);
+    console.log('error creating new post ' + error.message);
   }
   return postReady;
 };
@@ -32,11 +32,10 @@ export const createUserProfile = async (email: any, password: any, name: any) =>
     })
   }
   catch (error) {
-    alert('error creating user ' + error.message);
+    console.log('error creating user ' + error.message);
   }
   return user;
 };
-
 
 export const signInUser = async (email: any, password: any) => {
   let result;
@@ -50,7 +49,7 @@ export const signInUser = async (email: any, password: any) => {
     }
   }
   catch (error) {
-    alert('error loging in user ' + error.message);
+    console.log('error loging in user ' + error.message);
   }
   return result;
 };
@@ -68,7 +67,23 @@ export const autoSignInUser = async (token: any) => {
     }
   }
   catch (error) {
-    alert('error loging in user automaticaly' + error.message);
+    console.log('error loging in user automaticaly' + error.message);
   }
   return result?.data.user;
+};
+
+
+export const avatarUpload = async (image: any, userId: any) => {
+  console.log(image);
+  let user;
+  try {
+    user = await axios.post(`http://localhost:5000/user/avatar`, {
+      image,
+      userId
+    })
+  }
+  catch (error) {
+    console.log('error uploading image ' + error.message);
+  }
+  return user;
 };
