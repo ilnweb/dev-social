@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useMst } from "../../mobX/root-store";
 import { Upload, message } from 'antd';
 import { LoadingOutlined, UploadOutlined } from '@ant-design/icons';
 import { avatarUpload } from '../../database/connect';
 import { IUser } from '../../interfaces/interfaces';
-
+import { currentUserInstance } from '../../mobX/user.context';
 
 function getBase64(img: any, callback: any) {
   const reader = new FileReader();
@@ -25,7 +26,7 @@ function beforeUpload(file: any) {
 
 const UploadAvatar: React.FC<IUser> = ({ user }) => {
   const [state, setState] = useState({ loading: false, imageUrl: '' })
-
+  const { setCurrentUser } = useMst();
   const handleChange = (info: any) => {
     if (info.file.status === 'uploading') {
       setState({ ...state, loading: true });
@@ -33,13 +34,14 @@ const UploadAvatar: React.FC<IUser> = ({ user }) => {
     }
     if (info.file.status === 'done') {
       // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (imageUrl: any) => {
+      getBase64(info.file.originFileObj, async(imageUrl: any) => {
         setState({
           imageUrl,
           loading: false,
         })
         console.log(info.file.originFileObj);
-        avatarUpload(imageUrl, user?.id)
+        const updatedUser: currentUserInstance = await avatarUpload(imageUrl, user?.id)
+        setCurrentUser(updatedUser)
       }
       );
 
@@ -55,10 +57,10 @@ const UploadAvatar: React.FC<IUser> = ({ user }) => {
   const { imageUrl } = state;
 
   return (
-      <Upload
+    <Upload
         name="image"
         listType="picture-card"
-        className="avatar-uploader"
+        className={`avatar-uploader`}
         showUploadList={false}
         action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         beforeUpload={beforeUpload}

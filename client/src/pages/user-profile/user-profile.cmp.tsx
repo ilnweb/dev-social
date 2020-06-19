@@ -7,7 +7,6 @@ import UploadAvatar  from '../../components/upload-avatar/upload-avatar.cmp';
 
 
 const UserProfile: React.FC<IUser> = observer(({ user }) => {
-
   return (
     <div className='user-profile'>
       <Row>
@@ -16,7 +15,7 @@ const UserProfile: React.FC<IUser> = observer(({ user }) => {
           <Typography.Title level={1} style={{ color: '#01FF70' }}>Your Profile</Typography.Title>
           <div className="user-profile-data">
             <div className="user-profile-image">
-              <div className="user-profile-upload-icon">
+              <div className={`user-profile-upload-icon ${user?.photoURL&& "opacity0"}`}>
               <UploadAvatar user={user} /></div>
               <Avatar
                 size={100}

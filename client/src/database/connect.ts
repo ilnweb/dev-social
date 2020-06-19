@@ -75,9 +75,9 @@ export const autoSignInUser = async (token: any) => {
 
 export const avatarUpload = async (image: any, userId: any) => {
   console.log(image);
-  let user;
+  let result;
   try {
-    user = await axios.post(`http://localhost:5000/user/avatar`, {
+    result = await axios.post(`http://localhost:5000/user/avatar`, {
       image,
       userId
     })
@@ -85,5 +85,5 @@ export const avatarUpload = async (image: any, userId: any) => {
   catch (error) {
     console.log('error uploading image ' + error.message);
   }
-  return user;
+  return result?.data.user;
 };

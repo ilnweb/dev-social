@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
-import CommentPage from './pages/comments-page/comments-page.cpm';
+// import CommentPage from './pages/comments-page/comments-page.cpm';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import SignIn from './pages/sign-in/sign-in.cmp';
