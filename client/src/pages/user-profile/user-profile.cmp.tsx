@@ -3,7 +3,7 @@ import './user-profile.scss';
 import { Row, Col, Avatar, Typography } from 'antd';
 import { observer } from 'mobx-react-lite';
 import { IUser } from '../../interfaces/interfaces';
-import UploadAvatar  from '../../components/upload-avatar/upload-avatar.cmp';
+import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';
 
 
 const UserProfile: React.FC<IUser> = observer(({ user }) => {
@@ -15,8 +15,8 @@ const UserProfile: React.FC<IUser> = observer(({ user }) => {
           <Typography.Title level={1} style={{ color: '#01FF70' }}>Your Profile</Typography.Title>
           <div className="user-profile-data">
             <div className="user-profile-image">
-              <div className={`user-profile-upload-icon ${user?.photoURL&& "opacity0"}`}>
-              <UploadAvatar user={user} /></div>
+              <div className={`user-profile-upload-icon ${user?.photoURL && "opacity0"}`}>
+                <UploadAvatar user={user} /></div>
               <Avatar
                 size={100}
                 style={{ backgroundColor: '#00eb66', fontSize: '3rem', fontWeight: 500, cursor: "pointer" }}

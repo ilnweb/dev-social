@@ -13,7 +13,7 @@ interface Props {
   signOutHandler: () => void;
 }
 
-const Header: React.FC<Props> =observer( ({ user, signOutHandler }) => {
+const Header: React.FC<Props> = observer(({ user, signOutHandler }) => {
   const menu = (
     <Menu className="header-main-menu">
       <Menu.Item>
@@ -55,7 +55,7 @@ const Header: React.FC<Props> =observer( ({ user, signOutHandler }) => {
             <Space>
               {user ?
                 <Dropdown overlay={menu} trigger={['click']} overlayClassName="header-main-dropdown" placement="bottomCenter">
-                  <Avatar size="large" style={{ backgroundColor: '#00eb66', fontSize: '1.4rem', fontWeight: 500, cursor: "pointer" }} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
+                  <Avatar size="large" style={{ backgroundColor: `${user?.photoURL ? '' : '#00eb66'}`, fontSize: '1.4rem', fontWeight: 500, cursor: "pointer" }} src={user ? user.photoURL : ''} >{user?.displayName?.split('')[0].toUpperCase()}</Avatar>
                 </Dropdown>
                 : (
                   <Space>
