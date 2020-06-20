@@ -67,7 +67,6 @@ const Header: React.FC<Props> = observer(({ user, signOutHandler }) => {
                     </Button>
                   </Space>
                 )}
-
             </Space>
           </Row>
         </Col>

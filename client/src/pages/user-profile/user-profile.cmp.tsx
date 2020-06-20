@@ -4,6 +4,7 @@ import { Row, Col, Avatar, Typography } from 'antd';
 import { observer } from 'mobx-react-lite';
 import { IUser } from '../../interfaces/interfaces';
 import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';
+import UserAvatar from '../../components/avatar/avatar.cmp';
 
 
 const UserProfile: React.FC<IUser> = observer(({ user }) => {
@@ -17,12 +18,7 @@ const UserProfile: React.FC<IUser> = observer(({ user }) => {
             <div className="user-profile-image">
               <div className={`user-profile-upload-icon ${user?.photoURL && "opacity0"}`}>
                 <UploadAvatar user={user} /></div>
-              <Avatar
-                size={100}
-                style={{ backgroundColor: '#00eb66', fontSize: '3rem', fontWeight: 500, cursor: "pointer" }}
-                src={user ? user.photoURL : ''} >
-                {user?.displayName?.split('')[0].toUpperCase()}
-              </Avatar>
+              <UserAvatar user={user} size={100}/>
             </div>
             <div className="user-profile-info">
               <Typography.Title level={3} style={{ color: 'white' }}>@{user && user.displayName}</Typography.Title>
