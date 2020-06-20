@@ -23,7 +23,15 @@ exports.postAvatar = async (req, res, next) => {
     }
     console.log(user);
     user.photoURL = uploadedImage.url;
-    user.save()
+    await user.save()
+    res.status(200).json({
+      user: {
+        id: user._id.toString(),
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL
+      }
+    });
   } catch(err){
     console.log(err);
   }
