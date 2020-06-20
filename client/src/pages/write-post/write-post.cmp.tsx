@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import hljs from "highlight.js";
+import "highlight.js/styles/darcula.css";
 import './write-post.scss';
 import { Row, Col, Input, Typography, Form, Tag, Space } from 'antd';
 import Button from 'antd/es/button';
@@ -6,8 +8,11 @@ import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../database/connect';
 import { IUser } from '../../interfaces/interfaces';
-
 import ReactQuill from 'react-quill';
+
+hljs.configure({
+  languages: ["javascript", "ruby", "python"]
+});
 
 const { TextArea } = Input;
 
@@ -70,21 +75,38 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
     setTag(value);
   };
   const [value, setValue] = useState('');
+
   const modules = {
+
     toolbar: [
-      [{ 'header': [1, 2,3,4, false] }],
+      [{ 'header': [1, 2, 3, 4] }],
+      [{ 'align': null }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ 'font': [] }],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
       ['link', 'image'],
-      ['clean']
-    ],
+      ['code-block'],
+      ['clean'],
+    ]
+
   }
 
   const formats = [
     'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image'
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+    'video',
+    'code-block',
   ]
 
   console.log(value);
@@ -106,7 +128,7 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
                 autoComplete="true"
                 onChange={handleChange}
               />
-              <div>
+              <div className="tag-container">
                 {
                   post.postTags && post.postTags.map((item, index) => (<Tag key={index} color='#e16162' closable onClose={() => handleClose(item)}>#{item}</Tag>))
                 }
@@ -122,7 +144,7 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
               />
             </Space>
           </Form>
-          <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+          <Space direction="vertical" size="middle" style={{ width: '100%', marginBottom: '2rem' }}>
             <ReactQuill theme="snow" value={value} onChange={setValue} modules={modules}
               formats={formats} />
             <Button className="button primary block" size="large" type="primary" onClick={handleSubmit}>

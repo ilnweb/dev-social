@@ -15,6 +15,28 @@
   background-color: $primary_blue;
 }
 
+.input-style {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 500;
+  background-color: $primary_blue;
+}
+
+.ql-picker-label {
+  background-color: $primary_dark_blue;
+}
+
+.ant-tag {
+  font-size: 1.3rem;
+  padding: .3rem;
+  padding-bottom: .4rem;
+  margin: .3rem;
+}
+
+.ql-toolbar.ql-snow .ql-formats {
+  margin-right: 3px;
+}
+
 // .ql-toolbar .ql-stroke {
 //   fill: none;
 //   stroke: #fff;
