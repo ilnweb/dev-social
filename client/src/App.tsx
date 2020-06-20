@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMst } from "./mobX/root-store";
 import 'antd/dist/antd.css';
+import 'react-quill/dist/quill.snow.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
