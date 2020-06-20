@@ -1,4 +1,5 @@
 import React from 'react';
+import './upload-img.scss'
 import { Upload, message } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { storage } from '../../firebase/firebase.config';
@@ -80,7 +81,7 @@ class UploadImage extends React.Component {
 			<Upload
 				name="avatar"
 				listType="picture-card"
-				className="avatar-uploader"
+				className="avatar-up"
 				showUploadList={false}
 				action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
 				beforeUpload={beforeUpload}

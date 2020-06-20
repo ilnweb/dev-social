@@ -1,5 +1,43 @@
-.card-title{
+@import "src/styles/variables.scss";
+
+.card-title {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
+
+.sign-in-up {
+  margin-bottom: 2rem;
+}
+
+.ql-container {
+  min-height: 20rem;
+  background-color: $primary_blue;
+}
+
+// .ql-toolbar .ql-stroke {
+//   fill: none;
+//   stroke: #fff;
+// }
+
+// .ql-toolbar .ql-fill {
+//   fill: #fff;
+//   stroke: none;
+// }
+
+// .ql-toolbar .ql-picker {
+//   color: #fff;
+// }
+
+// .ql-formats .ql-fill {
+//   fill: #fff !important;
+//   stroke: none;
+// }
+
+// .ql-picker-item {
+//   color: $primary_blue;
+// }
+
+// .ql-editor {
+//   font-size: 1.3rem;
+// }
