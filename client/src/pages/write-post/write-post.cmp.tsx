@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import hljs from "highlight.js";
-import "highlight.js/styles/darcula.css";
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.core.css'
+import 'highlight.js/styles/monokai.css'
 import './write-post.scss';
 import { Row, Col, Input, Typography, Form, Tag, Space } from 'antd';
 import Button from 'antd/es/button';
@@ -11,10 +13,8 @@ import { IUser } from '../../interfaces/interfaces';
 import ReactQuill from 'react-quill';
 
 hljs.configure({
-  languages: ["javascript", "ruby", "python"]
+  languages: ["javascript", "ruby", "python", 'html']
 });
-
-const { TextArea } = Input;
 
 interface KeyboardEvent {
   enterKey: boolean;
@@ -30,16 +30,67 @@ interface Post {
   photoURL: string
 }
 
+const modules = {
+  syntax: {
+    highlight: (text: any) => hljs.highlightAuto(text).value,
+  },
+  toolbar: [
+    [{ 'font': [] }],
+    [{ 'header': [1, 2, 3, 4, false] }],
+    [{ 'size': ['small', false, 'large', 'huge'] }],
+    ['bold', 'italic', 'underline', 'blockquote'],
+    [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }],
+
+    [{ list: 'ordered' }, { list: 'bullet' },
+    { 'indent': '-1' }, { 'indent': '+1' }],
+    [{ 'color': [] }, { 'background': [] }],
+
+
+    ['code-block'],
+    ['link'],
+    ['clean'],
+  ],
+  clipboard: {
+    matchVisual: false,
+  },
+}
+
+const formats = [
+  'header',
+  'font',
+  'size',
+  'bold',
+  'italic',
+  'underline',
+  'strike',
+  'blockquote',
+  'list',
+  'bullet',
+  'indent',
+  'link',
+  'image',
+  'video',
+  'code-block',
+  'align',
+  'color',
+  'background'
+]
 
 const WritePost: React.FC<IUser> = observer(({ user }) => {
+
   // state
   const [post, setPost] = useState<Post>({ postText: '', postTags: [], photoURL: '' });
   const [tag, setTag] = useState('');
+  const [text, setText] = useState({ text: '' });
+
   // handlers
   const handleSubmit = async () => {
+    console.log(post);
+    console.log(tag);
+    console.log(text);
     try {
-      await createNewPost(post, user);
-    } catch (error) {
+      await createNewPost(post, user?.id, text.text);
+    } catch (error) { 
       console.error(`wtf ${error}`);
     }
   };
@@ -47,8 +98,10 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.charCode === 32 || e.keyCode === 32) {
       e.preventDefault();
+      if (tag !== '') {
       setPost({ ...post, postTags: [...post.postTags, tag] })
       setTag('')
+      }
     }
   }
 
@@ -65,6 +118,10 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
     });
   };
 
+  const handleQuill = (value: string): void => {
+    setText({ ...text, text: value });
+  };
+
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const { value } = e.currentTarget;
     setPost({ ...post, postText: value });
@@ -72,44 +129,14 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
 
   const handleChangeTag = (e: React.FormEvent<HTMLInputElement>): void => {
     const { value } = e.currentTarget;
-    setTag(value);
+    console.log(value);
+    if (value.length > 0) {
+      setTag(value)
+    }
+    return;
   };
-  const [value, setValue] = useState('');
 
-  const modules = {
-
-    toolbar: [
-      [{ 'header': [1, 2, 3, 4] }],
-      [{ 'align': null }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ 'font': [] }],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-      ['link', 'image'],
-      ['code-block'],
-      ['clean'],
-    ]
-
-  }
-
-  const formats = [
-    'header',
-    'font',
-    'size',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'blockquote',
-    'list',
-    'bullet',
-    'indent',
-    'link',
-    'image',
-    'video',
-    'code-block',
-  ]
-
-  console.log(value);
+ 
 
   return (
     <div className='user-profile'>
@@ -130,7 +157,7 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
               />
               <div className="tag-container">
                 {
-                  post.postTags && post.postTags.map((item, index) => (<Tag key={index} color='#e16162' closable onClose={() => handleClose(item)}>#{item}</Tag>))
+                  post.postTags && post.postTags.map((item, index) => (<Tag key={index} closable onClose={() => handleClose(item)}><span>{item}</span></Tag>))
                 }
               </div>
               <Input
@@ -145,9 +172,9 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
             </Space>
           </Form>
           <Space direction="vertical" size="middle" style={{ width: '100%', marginBottom: '2rem' }}>
-            <ReactQuill theme="snow" value={value} onChange={setValue} modules={modules}
+            <ReactQuill theme="snow" value={text.text} onChange={handleQuill} modules={modules}
               formats={formats} />
-            <Button className="button primary block" size="large" type="primary" onClick={handleSubmit}>
+            <Button className="button button-dev block" size="large" type="primary" onClick={handleSubmit}>
               Submit Post
 					</Button>
           </Space>

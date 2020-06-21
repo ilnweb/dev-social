@@ -14,20 +14,22 @@
   color:white;
 }
 
-.button-post{
-  position: fixed;
-  width: 4rem!important;
-  height: 4rem!important;
-  z-index: 10;
-  bottom: 2rem;
-  right: 2rem;
+.button-dev{
+  background-color:$primary_green;
+  border: none;
+  font-weight: 500;
   
+}
+
+.button-dev:hover{
+  background-color:$primary_green_dark;
 }
 
 
 h1,h2,h3,h4,h5{
   color:$primary_white;
 }
+
 
 hr{
   border:none;

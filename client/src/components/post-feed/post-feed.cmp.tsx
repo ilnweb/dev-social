@@ -41,7 +41,7 @@ const PostFeed: React.FC<PostsInstance> = ({ posts }) => {
                 </div>
               }
               avatar={<Avatar style={{ marginTop: 30 }} size={50} src={post.userPhoto}></Avatar>}
-              description={<p className="post-body">{post.postBody}</p>}
+              description={<p className="post-body">{post.postTitle}</p>}
 
             />
           </Card>

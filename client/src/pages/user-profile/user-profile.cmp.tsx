@@ -1,6 +1,6 @@
 import React from 'react';
 import './user-profile.scss';
-import { Row, Col, Avatar, Typography } from 'antd';
+import { Row, Col, Typography } from 'antd';
 import { observer } from 'mobx-react-lite';
 import { IUser } from '../../interfaces/interfaces';
 import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';

@@ -17,9 +17,11 @@
 
 .input-style {
   font-size: 1.5rem;
-  color: white;
+  color: $primary_white;
   font-weight: 500;
   background-color: $primary_blue;
+  border: none;
+  border-radius: 1px;
 }
 
 .ql-picker-label {
@@ -28,38 +30,65 @@
 
 .ant-tag {
   font-size: 1.3rem;
-  padding: .3rem;
-  padding-bottom: .4rem;
+  padding: .3rem .3rem .4rem .6rem;
   margin: .3rem;
+  background-color:$primary_green;
+  color:$primary_white;
+  border:none;
+}
+
+.ant-tag .anticon-close {
+  color:$primary_white;
+  padding: .2rem;
+  vertical-align: middle;
+  font-size: .8rem;
 }
 
 .ql-toolbar.ql-snow .ql-formats {
   margin-right: 3px;
 }
 
-// .ql-toolbar .ql-stroke {
-//   fill: none;
-//   stroke: #fff;
-// }
+.ql-snow .ql-editor pre.ql-syntax {
+  background-color: #1a1b17;
+  color: $primary_white;
+  overflow: visible;
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
+}
 
-// .ql-toolbar .ql-fill {
-//   fill: #fff;
-//   stroke: none;
-// }
+.ql-toolbar.ql-snow {
+  padding:.5rem 2rem;
+  text-align: left;
+  border:1px solid $primary_blue;
+}
 
-// .ql-toolbar .ql-picker {
-//   color: #fff;
-// }
+.ql-container.ql-snow {
+  border:none; 
+}
 
-// .ql-formats .ql-fill {
-//   fill: #fff !important;
-//   stroke: none;
-// }
+.ql-toolbar .ql-stroke {
+  fill: none;
+  stroke: $primary_white;
+}
 
-// .ql-picker-item {
-//   color: $primary_blue;
-// }
+.ql-toolbar .ql-fill {
+  fill: $primary_white;
+  stroke: none;
+}
 
-// .ql-editor {
-//   font-size: 1.3rem;
-// }
+.ql-toolbar .ql-picker {
+  color: $primary_white;
+}
+
+.ql-formats .ql-fill {
+  fill: $primary_white !important;
+  stroke: none;
+}
+
+.ql-picker-item {
+  color: $primary_blue;
+}
+
+.ql-editor {
+  font-size: 1rem;
+}

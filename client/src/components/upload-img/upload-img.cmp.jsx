@@ -41,28 +41,7 @@ class UploadImage extends React.Component {
 						loading: false
 					},
 					() => {
-						const id = () => {
-							return '_' + Math.random().toString(36).substr(2, 9) + '-' + Math.random().toString(36).substr(2, 9);
-						};
-						const imageID = id();
-						const uploadTask = storage.ref(`/post/${imageID}`).put(info.file.originFileObj);
-						uploadTask.on(
-							'state_changed',
-							(snapShot) => {
-								//takes a snap shot of the process as it is happening
-							},
-							(err) => {
-								//catches the errors
-								console.log(err);
-							},
-							() => {
-								// gets the functions from storage refences the image storage in firebase by the children
-								// gets the download url then sets the image from firebase as the value for the imgUrl key:
-								storage.ref('post').child(imageID).getDownloadURL().then((fireBaseUrl) => {
-									this.props.handleImage(fireBaseUrl);
-								});
-							}
-						);
+            this.props.handleImage(imageUrl);
 					}
 				)
 			);

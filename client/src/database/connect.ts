@@ -1,21 +1,15 @@
 import axios from 'axios';
 
-export const createNewPost = async (post: any, user: any) => {
-  const createdAt = new Date();
-  console.log(user);
-  const postReady = {
-    userID: user.id,
-    userPhoto: user.photoURL,
-    userName: user.displayName,
-    tags: post.postTags,
-    postBody: post.postText,
-    postImg: post.photoURL,
-    likes: 0,
-    createdAt,
-    comments: []
-  };
+export const createNewPost = async (post: any, userId: any , text:string) => {
+  let postReady;
   try {
-
+    postReady = await axios.post(`http://localhost:5000/feed/post`, {
+      userId: userId,
+      tags: post.postTags,
+      postBody: text,
+      postTitle: post.postText,
+      postImg: post.photoURL
+    })
   } catch (error) {
     console.log('error creating new post ' + error.message);
   }
@@ -60,7 +54,7 @@ export const autoSignInUser = async (token: any) => {
   try {
     result = await axios.post(`http://localhost:5000/auth/login-auto`, {
       token,
-      userId:''
+      userId: ''
     })
     if (result.status === 200) {
       console.log('user signed in automaticaly');

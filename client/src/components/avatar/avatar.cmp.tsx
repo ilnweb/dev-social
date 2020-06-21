@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { Avatar } from 'antd';
 import { IUser } from '../../interfaces/interfaces';
 

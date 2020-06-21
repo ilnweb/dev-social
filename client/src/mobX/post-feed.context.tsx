@@ -10,16 +10,18 @@ export const CommentModel = types.model({
   id: types.identifier,
   userName: types.string,
   userImg: types.string,
+  likes:types.number
   // date: types.custom<number, Date>()
 })
 
 export const SinglePostModel = types.model({
+  postTitle: types.string,
+  postImg: types.string,
+  postBody: types.string,
+  tags: types.array(types.string),
   userID: types.string,
   userPhoto: types.string,
   userName: types.string,
-  tags: types.array(types.string),
-  postBody: types.string,
-  postImg: types.string,
   likes: types.number,
   comments: types.optional(types.array(CommentModel), []),
   id: types.string
