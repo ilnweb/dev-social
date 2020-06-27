@@ -1,0 +1,31 @@
+@import "src/styles/variables.scss";
+
+.single_post{
+
+  &-image{
+    background-size:cover;
+    background-position:center;
+    height: 30rem;
+    border-top-right-radius: 3px;
+    border-top-left-radius:3px;
+  }
+
+  &-title{
+    background-color:$primary_blue;
+    margin:0!important;
+    padding-top: 1rem;
+  }
+
+  &-quill .ql-toolbar{
+    display: none;
+  }
+
+  &-quill .ql-container .ql-editor{
+    padding:2rem;
+    border-radius:3px;
+  }
+}
+
+
+
+

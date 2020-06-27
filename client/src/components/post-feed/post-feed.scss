@@ -31,6 +31,7 @@
 
 .ant-card {
   background: $primary_black;
+  overflow: hidden;
 }
 
 
@@ -40,6 +41,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
 }
 
 
@@ -50,15 +52,15 @@
 
 .ant-card-actions {
   background: $primary_black;
-  border-top: 1px solid $primary_green_dark;
+  border-top: 1px solid $primary_white;
   
   li span span svg{
-    color:$primary_green_dark;
+    color:$primary_white;
   }
 }
 
 .ant-card-actions > li:not(:last-child) {
-  border-right: 1px solid $primary_green_dark;
+  border-right: 1px solid$primary_white;
 }
 
 .post-body{
@@ -81,6 +83,3 @@ a > .icon-standart {
   font-size: 1.5rem;
 }
 
-.ebisavgaza .ql-toolbar{
-display: none;
-}

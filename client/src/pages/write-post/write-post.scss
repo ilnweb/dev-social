@@ -32,8 +32,9 @@
   font-size: 1.3rem;
   padding: .3rem .6rem .4rem .6rem;
   margin: .3rem;
-  background-color:$primary_green;
-  color:$primary_white;
+  background-color:transparent;
+  border:1px solid $primary_green;
+  color:$primary_green;
   border:none;
 }
 
