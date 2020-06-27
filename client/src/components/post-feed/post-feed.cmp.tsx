@@ -4,11 +4,12 @@ import { Card, Avatar, Typography, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import { CommentOutlined, HeartOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { PostsInstance } from '../../mobX/post-feed.context';
+import { observer } from 'mobx-react-lite';
 
 const { Meta } = Card;
 
-const PostFeed: React.FC<PostsInstance> = ({ posts }) => {
- 
+const PostFeed: React.FC<PostsInstance> = observer(({ posts }) => {
+
   return (
     <div>
       {posts && posts.map((post, index) => {
@@ -17,31 +18,37 @@ const PostFeed: React.FC<PostsInstance> = ({ posts }) => {
             key={index}
             className="post_card"
             bordered={false}
-            style={{ marginTop: index === 0 ? '3rem' : '0' }}
-            cover={post.postImg && <div className="postImg" style={{ backgroundImage: `url(${post.postImg})` }} />
+            style={{ marginTop: '.5rem' }}
+            cover={post.postImg &&
+              <Link to={{
+              pathname: `/post/${post._id}`,
+              state: {
+                post: {
+                 postTitle:post.postTitle,
+                 postImg:post.postImg,
+                 postBody:post.postBody
+              }}
+            }}>
+              <div className="postImg" style={{ backgroundImage: `url(${post.postImg})` }} />
+            </Link>
             }
-            extra={<p>{'3h'}</p>}
             actions={[
               <HeartOutlined className="icon-standart" key="like" />,
-              <Link to={{
-                pathname: `/comments`,
-                state: {
-                  postID: post.id,
-                  comments: post?.comments?.map(item=>{return{...item}})
-                }
-              }}><CommentOutlined className="icon-standart" key="comment" /></Link>,
+              <CommentOutlined className="icon-standart" key="comment" />,
               <ShareAltOutlined className="icon-standart" key="share" />
             ]}
           >
             <Meta
+              description={<Typography.Title level={1} className="post-body">{post.postTitle}</Typography.Title>}
               title={
                 <div className="card-title">
-                  <Typography.Title style={{ marginTop: 30 }} level={3}>{post.userName}</Typography.Title>
-                  <div>{post.tags && post.tags.map((item, index) => (<Tag key={index} color='#e16162'>#{item}</Tag>))}</div>
+                  <Typography.Title style={{ marginTop: 30 }} level={3}>{post?.postedBy?.displayName}</Typography.Title>
+                  <div>{post.tags && post.tags.map((item, index) => (<Tag key={index} style={{ fontSize: '1.1rem' }}>{item}</Tag>))}</div>
+
                 </div>
               }
-              avatar={<Avatar style={{ marginTop: 30 }} size={50} src={post.userPhoto}></Avatar>}
-              description={<p className="post-body">{post.postTitle}</p>}
+              avatar={<Avatar style={{ marginTop: 30 }} size={50} src={post.postedBy?.photoURL}></Avatar>}
+
 
             />
           </Card>
@@ -49,6 +56,6 @@ const PostFeed: React.FC<PostsInstance> = ({ posts }) => {
       })}
     </div>
   )
-};
+});
 
 export default PostFeed;

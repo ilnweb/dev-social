@@ -5,6 +5,12 @@ interface Date {
   nanoseconds: number
 }
 
+export const postedBy = types.model({
+  _id: types.identifier,
+  photoURL: types.string,
+  displayName: types.string,
+})
+
 export const CommentModel = types.model({
   commentText: types.string,
   id: types.identifier,
@@ -19,12 +25,10 @@ export const SinglePostModel = types.model({
   postImg: types.string,
   postBody: types.string,
   tags: types.array(types.string),
-  userID: types.string,
-  userPhoto: types.string,
-  userName: types.string,
-  likes: types.number,
+  postedBy:postedBy,
+  likes: types.optional(types.maybeNull(types.number), null),
   comments: types.optional(types.array(CommentModel), []),
-  id: types.string
+  _id: types.string
 })
 
 export const PostsModel = types.model({

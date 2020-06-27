@@ -16,6 +16,19 @@ export const createNewPost = async (post: any, userId: any , text:string) => {
   return postReady;
 };
 
+export const getAllPosts = async () => {
+  let result;
+  try {
+    result = await axios.get(`http://localhost:5000/feed/posts`);
+  }
+  catch (error) {
+    console.log('error getting all posts ' + error.message);
+  }
+  console.log(result?.data.posts);
+  // addAllPosts(result?.data.posts)
+  return result?.data?.posts;
+};
+
 export const createUserProfile = async (email: any, password: any, name: any) => {
   let user;
   try {
@@ -65,7 +78,6 @@ export const autoSignInUser = async (token: any) => {
   }
   return result?.data.user;
 };
-
 
 export const avatarUpload = async (image: any, userId: any) => {
   console.log(image);
