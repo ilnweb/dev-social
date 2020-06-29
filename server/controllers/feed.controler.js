@@ -1,18 +1,22 @@
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
 const cloudinary = require('cloudinary').v2;
-
+	// .countDocuments()
+		// .then((count) => {
+		// 	totalItems = count;
+		// 	return Post.find().skip((currentPage - 1) * perPage).limit(perPage);
+		// })
 
 exports.getPosts = (req, res, next) => {
 	const currentPage = req.query.page || 1;
-	const perPage = 2;
+	const perPage = 10;
 	let totalItems;
-	Post.find()
-		.countDocuments()
-		.then((count) => {
-			totalItems = count;
-			return Post.find().skip((currentPage - 1) * perPage).limit(perPage);
-		})
+  Post.find()
+    .populate({
+      path: 'postedBy',
+      select: 'displayName photoURL'
+    })
+    .exec()
 		.then((posts) => {
 			res.status(200).json({
 				message: 'Fetched posts successfully.',
@@ -64,3 +68,13 @@ exports.createPost = async (req, res, next) => {
     console.log(err);
   }
 };
+
+
+exports.getSinglePost = async (req, res, next) => {
+  console.log(req.body.postId);
+  const postId = req.body.postId;
+  const post = await Post.findById(postId);
+  res.status(200).json({
+    post: post
+  });
+}

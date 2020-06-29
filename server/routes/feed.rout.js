@@ -12,5 +12,7 @@ router.get('/posts', feedController.getPosts);
 
 router.post('/post', feedController.createPost);
 
+router.post('/single-post', feedController.getSinglePost);
+
 
 module.exports = router;
