@@ -24,7 +24,11 @@ function beforeUpload(file: any) {
   return isJpgOrPng && isLt2M;
 }
 
-const UploadAvatar: React.FC<IUser> = ({ user }) => {
+interface Props {
+  id:string | undefined
+}
+
+const UploadAvatar: React.FC<Props> = ({ id } ) => {
   const [state, setState] = useState({ loading: false, imageUrl: '' })
   const { setCurrentUser } = useMst();
   const handleChange = (info: any) => {
@@ -40,7 +44,7 @@ const UploadAvatar: React.FC<IUser> = ({ user }) => {
           loading: false,
         })
         console.log(info.file.originFileObj);
-        const updatedUser: currentUserInstance = await avatarUpload(imageUrl, user?.id)
+        const updatedUser: currentUserInstance = await avatarUpload(imageUrl, id)
         setCurrentUser(updatedUser)
       }
       );

@@ -37,3 +37,11 @@ hr{
   background-color:$primary_white;
 }
 
+.ant-input:focus, .ant-input-focused {
+  border-color: $primary_green;
+  border-right-width: 1px !important;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  box-shadow: 0 0 0 2px $primary_green;
+}
+

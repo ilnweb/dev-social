@@ -1,13 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './user-profile.scss';
-import { Row, Col, Typography } from 'antd';
+import { Row, Col, Typography, Input, Button } from 'antd';
 import { observer } from 'mobx-react-lite';
 import { IUser } from '../../interfaces/interfaces';
 import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp';
+import { currentUserInstance } from '../../mobX/user.context';
 
+interface Props {
+  user?: currentUserInstance | null
+}
 
-const UserProfile: React.FC<IUser> = observer(({ user }) => {
+const UserProfile: React.FC<Props> = observer(({ user }) => {
+  const [state, setState] = useState({
+    location: user?.location,
+    jobTitle:  user?.jobTitle,
+    workStatus:  user?.workStatus,
+    skills: user?.skills
+  });
+
+  const [edit, toggleEdit] = useState(true);
+
+  const handleSave = () => {
+    toggleEdit(true);
+  }
+  
+  const handleEdit= () => {
+    toggleEdit(false);
+  }
+
+  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    const { value, name } = e.currentTarget;
+    setState({ ...state , [name]: value  });
+  };
+
+  console.log(state);
+
   return (
     <div className='user-profile'>
       <Row>
@@ -17,22 +45,78 @@ const UserProfile: React.FC<IUser> = observer(({ user }) => {
           <div className="user-profile-data">
             <div className="user-profile-image">
               <div className={`user-profile-upload-icon ${user?.photoURL && "opacity0"}`}>
-                <UploadAvatar user={user} /></div>
-              <UserAvatar user={user} size={100}/>
+                <UploadAvatar id={user?.id} /></div>
+              <UserAvatar displayName={user?.displayName} photoURL={user?.photoURL} size={100} />
             </div>
             <div className="user-profile-info">
               <Typography.Title level={3} style={{ color: 'white' }}>@{user && user.displayName}</Typography.Title>
-              Email:
-              <p> {user && user.email}</p>
-              Location:
-              <p>Warsaw</p>
-              Job:
-              <p>Front-end developer</p>
-              Skills:
-              <p>REACT REDUX TypeScript</p>
-              Work status:
-              <p>I'm looking for work</p>
+              <label>Email:</label>
+              <Input
+                name="email"
+                value={user?.email}
+                style={{paddingLeft:'0'}}
+                className="input-style "
+                type="email"
+                size="large"
+                placeholder="Email"
+                autoComplete="true"
+                onChange={handleChange}
+                disabled={true}
+              />
+              <label>Location:</label>
+              <Input
+                name="location"
+                value={state.location ? state.location : ''}
+                className={`input-style user-profile-input ${!edit && 'edit-border'}`}
+                type="text"
+                size="large"
+                placeholder=" ..."
+                autoComplete="true"
+                onChange={handleChange}
+                disabled={edit}
+              />
+
+              <label>Job Title:</label>
+              <Input
+                name="jobTitle"
+                value={state.jobTitle ? state.jobTitle : ''}
+                className={`input-style user-profile-input ${!edit && 'edit-border'}`}
+                type="text"
+                size="large"
+                placeholder=" ..."
+                autoComplete="true"
+                onChange={handleChange}
+                disabled={edit}
+              />
+
+              <label>Skills:</label>
+              <Input
+                name="skills"
+                value={state?.skills ? state.skills : ''}
+                className={`input-style user-profile-input ${!edit && 'edit-border'}`}
+                type="text"
+                size="large"
+                placeholder=" ..."
+                autoComplete="true"
+                onChange={handleChange}
+                disabled={edit}
+              />
+              <label>Work status:</label>
+              <Input
+                name="workStatus"
+                value={state?.workStatus ? state.workStatus : ''}
+                className={`input-style user-profile-input ${!edit && 'edit-border'}`}
+                type="text"
+                size="large"
+                placeholder=" ..."
+                autoComplete="true"
+                onChange={handleChange}
+                disabled={edit}
+              />
             </div>
+            <Button className="button button-dev block" size="large" type="primary" style={{marginTop:'1rem'}} onClick={!edit?handleSave:handleEdit}>
+              {!edit?'Save':'Edit Profile'}
+					</Button>
           </div>
         </Col>
         <Col span={6} sm={2} xs={1} lg={6}></Col>
