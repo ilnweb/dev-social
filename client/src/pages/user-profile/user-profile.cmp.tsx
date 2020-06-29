@@ -120,7 +120,7 @@ const UserProfile: React.FC<Props> = observer(({ user }) => {
                 disabled={edit}
               />
             </div>
-            <Button className="button button-dev block" size="large" type="primary" style={{ marginTop: '1rem' }} onClick={!edit ? handleSave : handleEdit}>
+            <Button className="button button-dev block" size="large" style={{ marginTop: '1rem' }} onClick={!edit ? handleSave : handleEdit}>
               {!edit ? 'Save' : 'Edit Profile'}
             </Button>
           </div>

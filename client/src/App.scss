@@ -15,19 +15,16 @@
 }
 
 .button-dev{
-  background-color:$primary_green;
-  border: none;
+  background-color:rgba(255, 255, 255, 0);
+  color:$primary_green;
+  border: 1px solid $primary_green;
   font-weight: 500;
-  
 }
 
-.ant-btn-primary:hover, .ant-btn-primary:focus {
-  color: #fff;
-  background-color: $primary_green_dark;
-  border-color:$primary_green_dark;
-}
-.button-dev:hover{
+.button-dev:hover,.button-dev:active,.ant-btn:hover, .ant-btn:focus{
+  border: 1px solid $primary_green_dark;
   background-color:$primary_green_dark;
+  color:$primary_white;
 }
 
 .button-dev:active{

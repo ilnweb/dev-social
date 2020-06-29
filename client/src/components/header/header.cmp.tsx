@@ -59,10 +59,10 @@ const Header: React.FC<Props> = observer(({ user, signOutHandler }) => {
                 </Dropdown>
                 : (
                   <Space>
-                    <Button>
+                    <Button className="button button-dev block" size="large">
                       <Link to='/sign-in'>Sign In</Link>
                     </Button>
-                    <Button>
+                    <Button className="button button-dev block" size="large">
                       <Link to='/sign-up'>Sign Up</Link>
                     </Button>
                   </Space>

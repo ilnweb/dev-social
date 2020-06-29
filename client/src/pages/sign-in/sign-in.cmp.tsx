@@ -71,7 +71,7 @@ const SignIn: React.FC<Props> = ({ history }) => {
                 onChange={handleChange}
                 style={{ marginTop: 30 }}
               />
-              <Button style={{ marginTop: 30 }} className="button primary block" size="large" type="primary" onClick={handleSubmit}>
+               <Button className="button button-dev block" size="large" style={{ marginTop: 30 }} onClick={handleSubmit}>
                 Log In
 						</Button>
             </Form>
