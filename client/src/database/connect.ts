@@ -24,7 +24,7 @@ export const getAllPosts = async () => {
   catch (error) {
     console.log('error getting all posts ' + error.message);
   }
-  console.log(result?.data.posts);
+  // console.log(result?.data.posts);
   // addAllPosts(result?.data.posts)
   return result?.data?.posts;
 };
@@ -70,7 +70,6 @@ export const autoSignInUser = async (token: any) => {
       userId: ''
     })
     if (result.status === 200) {
-      console.log('user signed in automaticaly');
     }
   }
   catch (error) {
@@ -92,4 +91,18 @@ export const avatarUpload = async (image: any, userId: any) => {
     console.log('error uploading image ' + error.message);
   }
   return result?.data.user;
+};
+
+export const getsinglePost = async (postId:string) => {
+  let result;
+  try {
+    result = await axios.post(`http://localhost:5000/feed/single-post`, {
+      postId
+    })
+  }
+  catch (error) {
+    console.log('error getting single post ' + error.message);
+  }
+  console.log('Post got from DB');
+  return result?.data.post;
 };

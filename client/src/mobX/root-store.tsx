@@ -16,6 +16,15 @@ export const RootModel = types.model({
   removeCurrentUser(user: currentUserInstance) {
     destroy(user)
   }
+})).views(self => ({
+  getSinglePost(id: string) {
+    const post: any = () => {
+      
+    } 
+    return new Promise((res, reg) => {
+      res(self.posts.find(post => id === post._id))
+    })
+  }
 }))
 
 export type RootInstance = Instance<typeof RootModel>

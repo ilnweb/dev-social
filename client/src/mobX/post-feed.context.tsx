@@ -33,7 +33,6 @@ export const SinglePostModel = types.model({
 
 export const PostsModel = types.model({
   posts: types.optional(types.array(SinglePostModel), [])
-
 })
 
 export type PostsInstance = Instance<typeof PostsModel>

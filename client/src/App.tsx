@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useMst } from "./mobX/root-store";
-
 import 'antd/dist/antd.css';
 import './App.scss';
 import 'react-quill/dist/quill.core.css'
@@ -68,7 +67,8 @@ const App: React.FC = observer(() => {
     <>
       <Route path="/write-post" component={() => <WritePost user={currentUser} />} />
       <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
-    </>)
+    </>
+  )
 
   return (
     <div className="App">

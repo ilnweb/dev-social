@@ -47,7 +47,7 @@ const modules = {
 
 
     ['code-block'],
-    ['link'],
+    ['link','image'],
     ['clean'],
   ],
   clipboard: {
@@ -73,7 +73,8 @@ const formats = [
   'code-block',
   'align',
   'color',
-  'background'
+  'background',
+  'image'
 ]
 
 const WritePost: React.FC<IUser> = observer(({ user }) => {

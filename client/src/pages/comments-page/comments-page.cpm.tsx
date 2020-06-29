@@ -4,7 +4,6 @@ import { Button, Input, Row, Col } from 'antd';
 import { observer } from 'mobx-react-lite';
 import SingleComment from '../../components/comment/single-comment.cmp';
 import { useLocation } from 'react-router-dom';
-import { addComment } from '../../firebase/firebase.config';
 import { IComment } from '../../interfaces/interfaces';
 import { useMst } from "../../mobX/root-store";
 import { RootInstance } from '../../mobX/root-store';
@@ -30,7 +29,7 @@ const CommentPage: React.FC = observer(() => {
   };
 
   const handleAddComment = (): void => {
-    addComment(comment.commentText, currentUser, location.state.postID)
+    
   }
 
   return (

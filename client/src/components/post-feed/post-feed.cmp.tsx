@@ -21,13 +21,7 @@ const PostFeed: React.FC<PostsInstance> = observer(({ posts }) => {
             style={{ marginTop: '.5rem' }}
             cover={post.postImg &&
               <Link to={{
-              pathname: `/post/${post._id}`,
-              state: {
-                post: {
-                 postTitle:post.postTitle,
-                 postImg:post.postImg,
-                 postBody:post.postBody
-              }}
+              pathname: `/post/${post._id}`
             }}>
               <div className="postImg" style={{ backgroundImage: `url(${post.postImg})` }} />
             </Link>
