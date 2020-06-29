@@ -48,7 +48,7 @@ const Header: React.FC<Props> = observer(({ user, signOutHandler }) => {
           </Link>
         </Col>
         <Col span={12}>
-          <Title level={3}>{user && `Hello, ${user.displayName}`}</Title>
+         
         </Col>
         <Col span={6}>
           <Row justify='end' align='middle' >

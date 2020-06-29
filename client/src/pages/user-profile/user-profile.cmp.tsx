@@ -41,11 +41,12 @@ const UserProfile: React.FC<Props> = observer(({ user }) => {
       <Row>
         <Col span={6} sm={2} xs={1} lg={6}></Col>
         <Col span={6} xs={22} sm={20} md={20} lg={12} xl={12}>
-          <Typography.Title level={1} style={{ color: '#01FF70' }}>Your Profile</Typography.Title>
+        <Typography.Title level={1}>{user && `Hello, ${user.displayName}`}</Typography.Title>
           <div className="user-profile-data">
             <div className="user-profile-image">
-              <div className={`user-profile-upload-icon ${user?.photoURL && "opacity0"}`}>
-                <UploadAvatar id={user?.id} /></div>
+              <div className={`user-profile-upload-icon ${edit && "opacity0"}`}>
+                <UploadAvatar id={user?.id} />
+              </div>
               <UserAvatar displayName={user?.displayName} photoURL={user?.photoURL} size={100} />
             </div>
             <div className="user-profile-info">

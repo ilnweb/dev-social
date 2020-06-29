@@ -5,6 +5,7 @@ import './App.scss';
 import 'react-quill/dist/quill.core.css'
 import 'highlight.js/styles/monokai.css'
 import Header from './components/header/header.cmp';
+import Footer from './components/footer/footer.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
 // import CommentPage from './pages/comments-page/comments-page.cpm';
 import { Route, Switch } from 'react-router-dom';
@@ -80,7 +81,7 @@ const App: React.FC = observer(() => {
         <Route path="/sign-up" component={SignUp} />
         {state.isAuth ? routs :''}
       </Switch>
-
+    <Footer/>
     </div>
   );
 });
