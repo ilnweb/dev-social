@@ -6,6 +6,7 @@ import { IUser } from '../../interfaces/interfaces';
 import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp';
 import { currentUserInstance } from '../../mobX/user.context';
+import { updateUserInfo } from '../../database/connect';
 
 interface Props {
   user?: currentUserInstance | null
@@ -21,7 +22,8 @@ const UserProfile: React.FC<Props> = observer(({ user }) => {
 
   const [edit, toggleEdit] = useState(true);
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    const updatedUser = updateUserInfo(state, user?.id);
     toggleEdit(true);
   }
   
@@ -34,7 +36,7 @@ const UserProfile: React.FC<Props> = observer(({ user }) => {
     setState({ ...state , [name]: value  });
   };
 
-  console.log(state);
+  console.log(user);
 
   return (
     <div className='user-profile'>

@@ -74,7 +74,9 @@ export const autoSignInUser = async (token: any) => {
   }
   catch (error) {
     console.log('error loging in user automaticaly' + error.message);
+    
   }
+  console.log(result?.data.user);
   return result?.data.user;
 };
 
@@ -105,4 +107,19 @@ export const getsinglePost = async (postId:string) => {
   }
   console.log('Post got from DB');
   return result?.data.post;
+};
+
+export const updateUserInfo = async (user:any, id:string | undefined) => {
+  let result;
+  try {
+    result = await axios.post(`http://localhost:5000/user/profile-info`, {
+      user,
+      id
+    })
+  }
+  catch (error) {
+    console.log('error updating user Info ' + error.message);
+  }
+  // console.log('Post got from DB');
+  return result?.data.user;
 };
