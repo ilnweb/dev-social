@@ -21,8 +21,17 @@
   
 }
 
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+  color: #fff;
+  background-color: $primary_green_dark;
+  border-color:$primary_green_dark;
+}
 .button-dev:hover{
   background-color:$primary_green_dark;
+}
+
+.button-dev:active{
+  background-color:$primary_green_dark!important;
 }
 
 
