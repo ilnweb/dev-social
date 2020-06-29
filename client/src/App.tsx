@@ -13,10 +13,9 @@ import { Route, Switch } from 'react-router-dom';
 import SignIn from './pages/sign-in/sign-in.cmp';
 import SignUp from './pages/sign-up/sign-up.cmp';
 import SinglePost from './pages/single-post/single-post.cmp';
+import ProtectedRouts from './components/protected-routs/protected-routs.cmp';
 import { observer } from 'mobx-react-lite';
 import 'mobx-react-lite/batchingForReactDom';
-import UserProfile from './pages/user-profile/user-profile.cmp';
-import WritePost from './pages/write-post/write-post.cmp';
 import { RootInstance } from './mobX/root-store';
 import { autoSignInUser, getAllPosts } from './database/connect';
 
@@ -64,12 +63,6 @@ const App: React.FC = observer(() => {
   };
 
 
-  let routs = (
-    <>
-      <Route path="/write-post" component={() => <WritePost user={currentUser} />} />
-      <Route path="/user-profile" component={() => <UserProfile user={currentUser} />} />
-    </>
-  )
 
   return (
     <div className="App">
@@ -79,7 +72,7 @@ const App: React.FC = observer(() => {
         <Route path="/post/:postId" component={SinglePost} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
-        {state.isAuth ? routs :''}
+        {state.isAuth ? <ProtectedRouts/> : ''}
       </Switch>
     <Footer/>
     </div>

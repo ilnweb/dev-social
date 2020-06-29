@@ -5,15 +5,13 @@ import { Row, Col, Typography, Input, Button } from 'antd';
 import { observer } from 'mobx-react-lite';
 import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp';
-import { currentUserInstance } from '../../mobX/user.context';
+// import { currentUserInstance } from '../../mobX/user.context';
 import { updateUserInfo } from '../../database/connect';
 
-interface Props {
-  user?: currentUserInstance | null
-}
 
-const UserProfile: React.FC<Props> = observer(({ user }) => {
-  const { setCurrentUser } = useMst();
+const UserProfile: React.FC = observer(() => {
+  const { setCurrentUser, currentUser } = useMst();
+  const user = currentUser;
   const [state, setState] = useState({
     location: user?.location,
     jobTitle: user?.jobTitle,

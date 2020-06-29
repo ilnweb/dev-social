@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMst } from "../../mobX/root-store";
 import hljs from "highlight.js";
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.core.css'
@@ -9,7 +10,6 @@ import Button from 'antd/es/button';
 import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../database/connect';
-import { IUser } from '../../interfaces/interfaces';
 import ReactQuill from 'react-quill';
 
 hljs.configure({
@@ -77,8 +77,8 @@ const formats = [
   'image'
 ]
 
-const WritePost: React.FC<IUser> = observer(({ user }) => {
-
+const WritePost: React.FC = observer(() => {
+  const { currentUser } = useMst();
   // state
   const [post, setPost] = useState<Post>({ postText: '', postTags: [], photoURL: '' });
   const [tag, setTag] = useState('');
@@ -90,7 +90,7 @@ const WritePost: React.FC<IUser> = observer(({ user }) => {
     console.log(tag);
     console.log(text);
     try {
-      await createNewPost(post, user?.id, text.text);
+      await createNewPost(post, currentUser?.id, text.text);
     } catch (error) { 
       console.error(`wtf ${error}`);
     }
