@@ -1,12 +1,10 @@
 import React from 'react';
 import './header.scss';
 import { observer } from 'mobx-react-lite';
-import { Typography, Row, Col, Avatar, Space, Dropdown, Menu } from 'antd';
+import { Row, Col, Avatar, Space, Dropdown, Menu } from 'antd';
 import Button from 'antd/es/button';
 import { Link } from 'react-router-dom';
 import { currentUserInstance } from '../../mobX/user.context';
-
-const { Title } = Typography;
 
 interface Props {
   user?: currentUserInstance | null;

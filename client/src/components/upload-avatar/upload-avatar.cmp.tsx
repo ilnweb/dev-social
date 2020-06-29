@@ -3,7 +3,6 @@ import { useMst } from "../../mobX/root-store";
 import { Upload, message } from 'antd';
 import { LoadingOutlined, UploadOutlined } from '@ant-design/icons';
 import { avatarUpload } from '../../database/connect';
-import { IUser } from '../../interfaces/interfaces';
 import { currentUserInstance } from '../../mobX/user.context';
 
 function getBase64(img: any, callback: any) {

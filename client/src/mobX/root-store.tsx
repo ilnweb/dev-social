@@ -17,10 +17,7 @@ export const RootModel = types.model({
     destroy(user)
   }
 })).views(self => ({
-  getSinglePost(id: string) {
-    const post: any = () => {
-      
-    } 
+  getSinglePost(id: string) { 
     return new Promise((res, reg) => {
       res(self.posts.find(post => id === post._id))
     })

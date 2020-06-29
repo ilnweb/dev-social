@@ -37,7 +37,7 @@ const PostFeed: React.FC<PostsInstance> = observer(({ posts }) => {
               title={
                 <div className="card-title">
                   <Typography.Title style={{ marginTop: 30 }} level={3}>{post?.postedBy?.displayName}</Typography.Title>
-                  <div>{post.tags && post.tags.map((item, index) => (<Tag key={index} style={{ fontSize: '1.1rem' }}><NumberOutlined style={{fontSize:'.8rem'}}/>{item}</Tag>))}</div>
+                  <div className="tag-grid">{post.tags && post.tags.map((item, index) => (<Tag key={index} style={{ fontSize: '1.1rem' }}><NumberOutlined style={{fontSize:'.8rem'}}/>{item}</Tag>))}</div>
 
                 </div>
               }

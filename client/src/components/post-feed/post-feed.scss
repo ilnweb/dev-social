@@ -83,3 +83,14 @@ a > .icon-standart {
   font-size: 1.5rem;
 }
 
+.ant-card-meta-detail > div:not(:last-child) {
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+
+.tag-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}

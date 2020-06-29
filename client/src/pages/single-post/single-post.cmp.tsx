@@ -7,9 +7,8 @@ import './single-post.scss';
 import { Row, Col, Typography, Skeleton } from 'antd';
 // import Button from 'antd/es/button';
 import { observer } from 'mobx-react-lite';
-// import { IUser } from '../../interfaces/interfaces';
 import ReactQuill from 'react-quill';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { SinglePostInstance } from '../../mobX/post-feed.context';
 import { useMst } from "../../mobX/root-store";
 import { getsinglePost } from '../../database/connect';
@@ -49,7 +48,7 @@ const SinglePost: React.FC<Props> = observer(() => {
       }
     })();
 
-  }, [getSinglePost]);
+  }, [getSinglePost,postId]);
 
   console.log(post);
 

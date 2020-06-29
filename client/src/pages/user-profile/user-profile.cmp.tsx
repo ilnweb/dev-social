@@ -3,7 +3,6 @@ import { useMst } from "../../mobX/root-store";
 import './user-profile.scss';
 import { Row, Col, Typography, Input, Button } from 'antd';
 import { observer } from 'mobx-react-lite';
-import { IUser } from '../../interfaces/interfaces';
 import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp';
 import { currentUserInstance } from '../../mobX/user.context';
