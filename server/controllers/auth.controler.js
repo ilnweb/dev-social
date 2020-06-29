@@ -63,7 +63,11 @@ exports.login = (req, res, next) => {
 					id: loadedUser._id.toString(),
 					email: loadedUser.email,
 					displayName: loadedUser.displayName,
-					photoURL: loadedUser.photoURL
+          photoURL: loadedUser.photoURL,
+          location: loadedUser.location,
+          jobTitle:  loadedUser.jobTitle,
+          workStatus:  loadedUser.workStatus,
+          skills: loadedUser.skills
 				}
 			});
 		})
@@ -85,7 +89,11 @@ exports.loginAuto = async (req, res, next) => {
         id: user._id.toString(),
         email: user.email,
         displayName: user.displayName,
-        photoURL: user.photoURL
+        photoURL: user.photoURL,
+        location: user.location,
+        jobTitle:  user.jobTitle,
+        workStatus:  user.workStatus,
+        skills: user.skills
       }
     });
   } catch(err){

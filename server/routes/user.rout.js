@@ -10,6 +10,7 @@ const router = express.Router();
 
 // GET /feed/posts
 router.post('/avatar', userController.postAvatar);
+router.post('/profile-info', userController.updateUserInfo);
 
 
 module.exports = router;

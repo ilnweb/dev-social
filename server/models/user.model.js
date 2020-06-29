@@ -22,9 +22,15 @@ const userSchema = new Schema({
 		type: String,
 		default: ''
 	},
-	jobTitle: String,
-	workStatus: String,
-	skills: [ String ],
+	jobTitle: {
+		type: String,
+		default: ''
+	},
+	workStatus: {
+		type: String,
+		default: ''
+	},
+	skills: String ,
 	posts: [
 		{
 			type: Schema.Types.ObjectId,
