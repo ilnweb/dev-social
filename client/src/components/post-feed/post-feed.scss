@@ -1,5 +1,8 @@
 @import "src/styles/variables.scss";
 
+.post-feed{
+  min-height: 100vh;
+}
 .ant-card-body {
   padding: 13px;
 }

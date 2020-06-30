@@ -9,7 +9,7 @@ import Footer from './components/footer/footer.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
 // import CommentPage from './pages/comments-page/comments-page.cpm';
 import { Route, Switch } from 'react-router-dom';
-// import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import SignIn from './pages/sign-in/sign-in.cmp';
 import SignUp from './pages/sign-up/sign-up.cmp';
 import SinglePost from './pages/single-post/single-post.cmp';
@@ -24,6 +24,7 @@ const App: React.FC = observer(() => {
   const { addAllPosts, setCurrentUser, currentUser, removeCurrentUser }: RootInstance = useMst();
   const [state, setState] = useState({ isAuth: false });
   // let history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -51,7 +52,7 @@ const App: React.FC = observer(() => {
       console.log('posts');
 
     })();
-    
+
   }, [addAllPosts]);
 
   const signOutHandler = () => {
@@ -62,8 +63,6 @@ const App: React.FC = observer(() => {
     }
   };
 
-
-
   return (
     <div className="App">
       <Header signOutHandler={signOutHandler} user={currentUser} />
@@ -72,9 +71,9 @@ const App: React.FC = observer(() => {
         <Route path="/post/:postId" component={SinglePost} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
-        {state.isAuth ? <ProtectedRouts/> : ''}
+        {state.isAuth ? <ProtectedRouts /> : ''}
       </Switch>
-    <Footer/>
+      {location.pathname !== '/sign-in' && location.pathname !== '/sign-up' && <Footer />}
     </div>
   );
 });

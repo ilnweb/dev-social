@@ -78,7 +78,6 @@ const UserProfile: React.FC = observer(() => {
                 onChange={handleChange}
                 disabled={edit}
               />
-
               <label>Job Title:</label>
               <Input
                 name="jobTitle"
@@ -91,7 +90,6 @@ const UserProfile: React.FC = observer(() => {
                 onChange={handleChange}
                 disabled={edit}
               />
-
               <label>Skills:</label>
               <Input
                 name="skills"

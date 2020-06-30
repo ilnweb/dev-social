@@ -11,7 +11,7 @@ const { Meta } = Card;
 const PostFeed: React.FC<PostsInstance> = observer(({ posts }) => {
 
   return (
-    <div>
+    <div className="post-feed">
       {posts && posts.map((post, index) => {
         return (
           <Card
