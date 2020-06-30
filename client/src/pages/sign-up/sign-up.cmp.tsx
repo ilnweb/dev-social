@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { History } from 'history';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';
-import { MailOutlined } from '@ant-design/icons';
+import { MailOutlined,UserOutlined } from '@ant-design/icons';
 import { createUserProfile } from '../../database/connect';
 
 
@@ -48,7 +48,7 @@ const SignUp: React.FC <{history: History}>= ({history}) => {
                 type="email"
                 size="large"
                 placeholder="Email"
-                suffix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+                suffix={<MailOutlined style={{ color: 'rgba(0, 0, 0, 0.45)' }} />}
                 autoComplete="true"
                 onChange={handleChange}
               />
@@ -59,7 +59,7 @@ const SignUp: React.FC <{history: History}>= ({history}) => {
                 type="text"
                 size="large"
                 placeholder="Name"
-                suffix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+                suffix={<UserOutlined style={{ color: 'rgba(0, 0, 0, 0.45)' }} />}
                 autoComplete="true"
                 onChange={handleChange}
                 style={{ marginTop: 30 }}

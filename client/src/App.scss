@@ -1,50 +1,61 @@
 @import "src/styles/variables.scss";
+
 .App {
   text-align: center;
-  background-color:$primary_dark_blue;
+  background-color: $primary_dark_blue;
   min-height: 100vh;
   box-sizing: border-box;
-  color:white!important;
+  color: white !important;
   flex: 1 0 auto;
 }
 
-.ant-typography, p{
-  color:white!important;
-}
-.ant-card-meta-description {
-  color:white;
+.ant-typography,
+p {
+  color: white !important;
 }
 
-.button-dev{
-  background-color:rgba(255, 255, 255, 0);
-  color:$primary_green;
+.ant-card-meta-description {
+  color: white;
+}
+
+.button-dev {
+  background-color: rgba(255, 255, 255, 0);
+  color: $primary_green;
   border: 1px solid $primary_green;
   font-weight: 500;
 }
 
-.button-dev:hover,.button-dev:active,.ant-btn:hover, .ant-btn:focus{
+.button-dev:hover,
+.button-dev:active,
+.ant-btn:hover,
+.ant-btn:focus {
   border: 1px solid $primary_green_dark;
-  background-color:$primary_green_dark;
-  color:$primary_white;
+  background-color: $primary_green_dark;
+  color: $primary_white;
 }
 
-.button-dev:active{
-  background-color:$primary_green_dark!important;
-}
-
-
-h1,h2,h3,h4,h5{
-  color:$primary_white;
+.button-dev:active {
+  background-color: $primary_green_dark !important;
 }
 
 
-hr{
-  border:none;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $primary_white;
+}
+
+
+hr {
+  border: none;
   height: 1px;
-  background-color:$primary_white;
+  background-color: $primary_white;
 }
 
-.ant-input:focus, .ant-input-focused {
+.ant-input:focus,
+.ant-input-focused {
   border-color: $primary_green;
   border-right-width: 1px !important;
   outline: 0;
@@ -52,8 +63,23 @@ hr{
   box-shadow: 0 0 0 2px $primary_green;
 }
 
+.input-style,
+.ant-input {
+  font-size: 1.5rem;
+  color: $primary_white;
+  font-weight: 500;
+  background-color: $primary_blue !important;
+  border: none;
+  border-radius: 3px;
+}
+
+.ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+  box-shadow: 0 0 0 2px $primary_green_dark;
+}
+ 
+
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active,
 textarea:-webkit-autofill,
@@ -62,10 +88,10 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus,
-  select:-webkit-autofill:active {
-  border: none!important;
-  -webkit-text-fill-color: $primary_white!important;
-  -webkit-box-shadow: 0 0 0px 1000px $primary_blue inset!important;
-  transition: background-color 5000s ease-in-out 0s!important;
+select:-webkit-autofill:active {
+  font-size: 1.5rem;
+  border: none !important;
+  -webkit-text-fill-color: $primary_white !important;
+  -webkit-box-shadow: 0 0 0px 1000px $primary_blue inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
-

@@ -55,7 +55,7 @@ const SignIn: React.FC<Props> = ({ history }) => {
                 type="email"
                 size="large"
                 placeholder="Email"
-                suffix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+                suffix={<MailOutlined style={{ color: 'rgba(0, 0, 0, 0.45)' }} />}
                 autoComplete="true"
                 onChange={handleChange}
 
