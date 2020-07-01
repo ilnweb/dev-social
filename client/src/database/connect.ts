@@ -24,8 +24,6 @@ export const getAllPosts = async () => {
   catch (error) {
     console.log('error getting all posts ' + error.message);
   }
-  console.log(result?.data.posts);
-  // addAllPosts(result?.data.posts)
   return result?.data?.posts;
 };
 
@@ -76,7 +74,6 @@ export const autoSignInUser = async (token: any) => {
     console.log('error loging in user automaticaly' + error.message);
     
   }
-  console.log(result?.data.user);
   return result?.data.user;
 };
 
