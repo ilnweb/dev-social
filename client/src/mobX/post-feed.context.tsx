@@ -28,7 +28,8 @@ export const SinglePostModel = types.model({
   postedBy:postedBy,
   likes: types.optional(types.maybeNull(types.number), null),
   comments: types.optional(types.array(CommentModel), []),
-  _id: types.string
+  _id: types.string,
+  createdAt:types.string
 })
 
 export const PostsModel = types.model({

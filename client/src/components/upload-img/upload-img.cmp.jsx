@@ -21,6 +21,12 @@ function beforeUpload(file) {
 	return isJpgOrPng && isLt2M;
 }
 
+const dummyRequest = ({ file, onSuccess }) => {
+  setTimeout(() => {
+    onSuccess("ok");
+  }, 0);
+};
+
 class UploadImage extends React.Component {
 	state = {
 		loading: false
@@ -61,7 +67,7 @@ class UploadImage extends React.Component {
 				listType="picture-card"
 				className="avatar-up"
 				showUploadList={false}
-				action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+				customRequest={dummyRequest}
 				beforeUpload={beforeUpload}
 				onChange={this.handleChange}
 			>

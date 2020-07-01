@@ -24,7 +24,7 @@ export const getAllPosts = async () => {
   catch (error) {
     console.log('error getting all posts ' + error.message);
   }
-  // console.log(result?.data.posts);
+  console.log(result?.data.posts);
   // addAllPosts(result?.data.posts)
   return result?.data?.posts;
 };

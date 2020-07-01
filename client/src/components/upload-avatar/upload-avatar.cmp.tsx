@@ -20,12 +20,18 @@ function beforeUpload(file: any) {
   if (!isLt2M) {
     message.error('Image must smaller than 2MB!');
   }
-  return isJpgOrPng && isLt2M;
+  return isJpgOrPng&&isLt2M;
 }
 
 interface Props {
   id:string | undefined
 }
+
+const dummyRequest = ({ file, onSuccess }:any):any => {
+  setTimeout(() => {
+    onSuccess("ok");
+  }, 0);
+};
 
 const UploadAvatar: React.FC<Props> = ({ id } ) => {
   const [state, setState] = useState({ loading: false, imageUrl: '' })
@@ -42,7 +48,6 @@ const UploadAvatar: React.FC<Props> = ({ id } ) => {
           imageUrl,
           loading: false,
         })
-        console.log(info.file.originFileObj);
         const updatedUser: currentUserInstance = await avatarUpload(imageUrl, id)
         setCurrentUser(updatedUser)
       }
@@ -65,7 +70,7 @@ const UploadAvatar: React.FC<Props> = ({ id } ) => {
         listType="picture-card"
         className={`avatar-uploader`}
         showUploadList={false}
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        customRequest={dummyRequest}
         beforeUpload={beforeUpload}
         onChange={handleChange}
       >
