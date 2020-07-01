@@ -54,30 +54,30 @@ const SinglePost: React.FC<Props> = observer(() => {
 
   }, [getSinglePost, postId]);
 
-  console.log(post);
+
 
   return (
     <Row className="single_post">
-      <Col span={6} sm={2} xs={1} lg={4}></Col>
-      <Col span={12} xs={22} sm={20} md={20} lg={16} xl={16}>
+      <Col span={6} sm={0}  lg={3}  xl={4}></Col>
+      <Col span={24} sm={24}  lg={18} xl={16}>
         {post ?
           <div>
             <div className="single_post-image" style={{ backgroundImage: `url(${post?.postImg})` }} />
             <div className="single_post-header">
               <h1 className="single_post-title">{post?.postTitle}</h1>
               <div className="tag-grid">
-                  {post.tags && post.tags.map((item: string, index: number) => (<Tag key={index} style={{ fontSize: '1.1rem' }}><NumberOutlined style={{ fontSize: '.8rem' }} />{item}</Tag>))}
-                </div>
+                {post.tags && post.tags.map((item: string, index: number) => (<Tag key={index} style={{ fontSize: '1.1rem' }}><NumberOutlined style={{ fontSize: '.8rem' }} />{item}</Tag>))}
+              </div>
               <div className="single_post-user_info">
                 <UserAvatar displayName={post?.postedBy?.displayName} photoURL={post.postedBy?.photoURL} size='large' />
                 <div className="single_post-user_name">{post?.postedBy?.displayName}</div>
-                <div className="single_post-date">posted: &nbsp; <Moment  style={{lineHeight:1 }} format="DD/MM/YYYY" withTitle>{post.createdAt}</Moment></div>
+                <div className="single_post-date">posted: &nbsp; <Moment style={{ lineHeight: 1 }} format="DD/MM/YYYY" withTitle>{post.createdAt}</Moment></div>
               </div>
             </div>
             <ReactQuill readOnly={true} className="single_post-quill" theme="snow" value={post?.postBody} modules={modules} style={{ width: '100%', marginBottom: '2rem' }} />
           </div> : ''}
       </Col>
-      <Col span={6} sm={2} xs={1} lg={4}></Col>
+      <Col span={6} sm={0} lg={3}  xl={4}></Col>
     </Row>
   )
 })
