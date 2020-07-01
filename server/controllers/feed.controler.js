@@ -73,7 +73,11 @@ exports.createPost = async (req, res, next) => {
 exports.getSinglePost = async (req, res, next) => {
   console.log(req.body.postId);
   const postId = req.body.postId;
-  const post = await Post.findById(postId);
+  const post = await Post.findById(postId).populate({
+    path: 'postedBy',
+    select: 'displayName photoURL'
+  })
+  .exec();
   res.status(200).json({
     post: post
   });
