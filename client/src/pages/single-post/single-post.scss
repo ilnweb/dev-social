@@ -1,31 +1,61 @@
 @import "src/styles/variables.scss";
 
-.single_post{
+.single_post {
+  min-height: 100vh;
 
-  &-image{
-    background-size:cover;
-    background-position:center;
+  &-header {
+    background-color: $primary_blue;
+    padding: 1rem 3rem;
+  }
+
+  &-image {
+    background-size: cover;
+    background-position: center;
     height: 30rem;
     border-top-right-radius: 3px;
-    border-top-left-radius:3px;
+    border-top-left-radius: 3px;
   }
 
-  &-title{
-    background-color:$primary_blue;
-    margin:0!important;
-    padding-top: 1rem;
+  &-title {
+    text-align: left;
+    padding: 1rem 0rem;
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
   }
 
-  &-quill .ql-toolbar{
+  &-date {
+    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: .9rem;
+    margin-left: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-user_name {
+    display: flex;
+    margin-left: .8rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  &-user_info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 1;
+  }
+
+  &-quill .ql-toolbar {
     display: none;
   }
 
-  &-quill .ql-container .ql-editor{
-    padding:2rem;
-    border-radius:3px;
+  &-quill .ql-container .ql-editor {
+    padding: 1rem 3rem 3rem;
+    border-radius: 3px;
   }
 }
-
-
-
-

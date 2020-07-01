@@ -95,7 +95,7 @@ export const avatarUpload = async (image: any, userId: any) => {
   return result?.data.user;
 };
 
-export const getsinglePost = async (postId:string) => {
+export const getPostFromDB = async (postId:string) => {
   let result;
   try {
     result = await axios.post(`http://localhost:5000/feed/single-post`, {

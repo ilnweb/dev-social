@@ -4,17 +4,20 @@ import { Avatar } from 'antd';
 interface Props {
   size: number | 'large';
   displayName?: string;
-  photoURL?:string
+  photoURL?: string
 }
 
-const UserAvatar: React.FC<Props> = ({ photoURL, displayName, size }) => {
+const UserAvatar: React.FC<Props> = ({ photoURL, displayName, size, children }) => {
   return (
-    <Avatar
-      size={size}
-      style={{ backgroundColor: `${photoURL ? '' : '#00eb66'}`, fontSize: `${typeof size === 'number' ? '3.5rem' :'1.4rem'}`, fontWeight: 500, cursor: "pointer" }}
-      src={photoURL ? photoURL : ''} >
-      {displayName?.split('')[0].toUpperCase()}
-    </Avatar>
+    <div>
+      <Avatar
+        size={size}
+        style={{ backgroundColor: `${photoURL ? '' : '#00eb66'}`, fontSize: `${typeof size === 'number' ? '3.5rem' : '1.4rem'}`, fontWeight: 500, cursor: "pointer" }}
+        src={photoURL ? photoURL : ''} >
+        {displayName?.split('')[0].toUpperCase()}
+      </Avatar>
+      {children && children }
+    </div>
   )
 }
 
