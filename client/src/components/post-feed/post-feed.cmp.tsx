@@ -3,14 +3,13 @@ import './post-feed.scss';
 import { Card, Avatar, Typography, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import { CommentOutlined, HeartOutlined, TagOutlined, NumberOutlined } from '@ant-design/icons';
-import { PostsInstance } from '../../mobX/post-feed.context';
-import { observer } from 'mobx-react-lite';
 import Moment from 'react-moment';
+import { IPosts } from '../../redux/posts/posts.types';
 
 
 const { Meta } = Card;
 
-const PostFeed: React.FC<PostsInstance> = observer(({ posts }) => {
+const PostFeed: React.FC<IPosts> = ({ posts }) => {
 
   return (
     <div className="post-feed">
@@ -66,6 +65,6 @@ const PostFeed: React.FC<PostsInstance> = observer(({ posts }) => {
       })}
     </div>
   )
-});
+};
 
 export default PostFeed;

@@ -4,10 +4,10 @@ import { observer } from 'mobx-react-lite';
 import { Row, Col, Avatar, Space, Dropdown, Menu } from 'antd';
 import Button from 'antd/es/button';
 import { Link } from 'react-router-dom';
-import { currentUserInstance } from '../../mobX/user.context';
+import { IUserData } from '../../redux/user/user.types';
 
 interface Props {
-  user?: currentUserInstance | null;
+  user?: IUserData | null;
   signOutHandler: () => void;
 }
 

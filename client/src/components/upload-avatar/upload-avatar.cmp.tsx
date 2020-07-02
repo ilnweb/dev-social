@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Upload, message } from 'antd';
 import { LoadingOutlined, UploadOutlined } from '@ant-design/icons';
 import { avatarUpload } from '../../database/connect';
-import { currentUserInstance } from '../../mobX/user.context';
 
 function getBase64(img: any, callback: any) {
   const reader = new FileReader();
@@ -46,7 +45,7 @@ const UploadAvatar: React.FC<Props> = ({ id } ) => {
           imageUrl,
           loading: false,
         })
-        const updatedUser: currentUserInstance = await avatarUpload(imageUrl, id)
+        const updatedUser: any = await avatarUpload(imageUrl, id)
       }
       );
 

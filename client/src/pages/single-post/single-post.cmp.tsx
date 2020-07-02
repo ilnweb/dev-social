@@ -11,8 +11,6 @@ import UserAvatar from '../../components/avatar/avatar.cmp'
 import { observer } from 'mobx-react-lite';
 import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
-import { SinglePostInstance } from '../../mobX/post-feed.context';
-import { useMst } from "../../mobX/root-store";
 import { getPostFromDB } from '../../database/connect';
 import Moment from 'react-moment';
 
@@ -28,31 +26,25 @@ const modules = {
   }
 }
 
-interface Props {
-  post: SinglePostInstance
 
-}
 
-const SinglePost: React.FC<Props> = observer(() => {
-  const [post, setPost] = useState<any>()
-  const { getSinglePost } = useMst();
+const SinglePost: React.FC = () => {
+  const [post, setPost] = useState<any>();
   let { postId } = useParams();
-  // console.log(postId);
-  // let post: any;
 
   useEffect(() => {
     (async function posts() {
       if (postId) {
-        let post = await getSinglePost(postId);
+        // let post = await getSinglePost(postId);
         setPost(post)
         if (!post) {
-          post = await getPostFromDB(postId);
+          let post = await getPostFromDB(postId);
           setPost(post)
         }
       }
     })();
 
-  }, [getSinglePost, postId]);
+  }, [postId]);
 
   return (
     <Row className="single_post">
@@ -78,6 +70,6 @@ const SinglePost: React.FC<Props> = observer(() => {
       <Col span={6} sm={0} lg={3}  xl={4}></Col>
     </Row>
   )
-})
+}
 
 export default SinglePost;

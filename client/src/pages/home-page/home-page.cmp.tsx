@@ -6,8 +6,7 @@ import { Row, Col } from 'antd';
 import PostFeed from '../../components/post-feed/post-feed.cmp';
 
 const HomePage: React.FC = () => {
-  const posts=useSelector(selectAllPosts)
-
+  const posts = useSelector(selectAllPosts);
   return (
     <div className='home-page'>
       <Row>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useMst } from "../../mobX/root-store";
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import hljs from "highlight.js";
