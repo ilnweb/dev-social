@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../redux/user/user-selectors';
+import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../redux/user/user-actions';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';

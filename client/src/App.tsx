@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser } from './redux/user/user-actions';
 import { setAllPosts } from './redux/posts/posts-actions';
 import { selectCurrentUser } from './redux/user/user-selectors';
-import { selectAllPosts } from './redux/posts/post-selectors';
 import { useLocation } from "react-router-dom";
 import 'antd/dist/antd.css';
 import './App.scss';
-import 'react-quill/dist/quill.core.css'
-import 'highlight.js/styles/monokai.css'
 import Header from './components/header/header.cmp';
 import Footer from './components/footer/footer.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
@@ -53,7 +50,7 @@ const App: React.FC = () => {
 
     })();
 
-  }, []);
+  }, [dispatch]);
 
   const signOutHandler = () => {
     // if (currentUser) {

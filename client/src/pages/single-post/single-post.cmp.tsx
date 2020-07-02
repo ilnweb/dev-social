@@ -8,7 +8,6 @@ import { Row, Col, Tag } from 'antd';
 import { NumberOutlined } from '@ant-design/icons';
 import UserAvatar from '../../components/avatar/avatar.cmp'
 // import Button from 'antd/es/button';
-import { observer } from 'mobx-react-lite';
 import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
 import { getPostFromDB } from '../../database/connect';
@@ -44,7 +43,7 @@ const SinglePost: React.FC = () => {
       }
     })();
 
-  }, [postId]);
+  }, [post,postId]);
 
   return (
     <Row className="single_post">

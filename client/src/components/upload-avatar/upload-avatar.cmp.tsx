@@ -45,7 +45,8 @@ const UploadAvatar: React.FC<Props> = ({ id } ) => {
           imageUrl,
           loading: false,
         })
-        const updatedUser: any = await avatarUpload(imageUrl, id)
+        // const updatedUser: any =
+        await avatarUpload(imageUrl, id)
       }
       );
 

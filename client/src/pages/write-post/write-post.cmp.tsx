@@ -8,7 +8,6 @@ import 'highlight.js/styles/monokai.css'
 import './write-post.scss';
 import { Row, Col, Input, Typography, Form, Tag, Space } from 'antd';
 import Button from 'antd/es/button';
-import { observer } from 'mobx-react-lite';
 import UploadImage from '../../components/upload-img/upload-img.cmp';
 import { createNewPost } from '../../database/connect';
 import ReactQuill from 'react-quill';
@@ -78,7 +77,7 @@ const formats = [
   'image'
 ]
 
-const WritePost: React.FC = observer(() => {
+const WritePost: React.FC = () => {
   
   const currentUser = useSelector(selectCurrentUser);
  
@@ -187,6 +186,6 @@ const WritePost: React.FC = observer(() => {
       </Row>
     </div>
   )
-});
+};
 
 export default WritePost;

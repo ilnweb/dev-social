@@ -1,6 +1,5 @@
 import React from 'react';
 import './header.scss';
-import { observer } from 'mobx-react-lite';
 import { Row, Col, Avatar, Space, Dropdown, Menu } from 'antd';
 import Button from 'antd/es/button';
 import { Link } from 'react-router-dom';
@@ -11,7 +10,7 @@ interface Props {
   signOutHandler: () => void;
 }
 
-const Header: React.FC<Props> = observer(({ user, signOutHandler }) => {
+const Header: React.FC<Props> = ({ user, signOutHandler }) => {
 
   const menu = (
     <Menu className="header-main-menu">
@@ -73,6 +72,6 @@ const Header: React.FC<Props> = observer(({ user, signOutHandler }) => {
       </Row>
     </div>
   )
-});
+};
 
 export default Header;
