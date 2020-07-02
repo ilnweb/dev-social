@@ -13,7 +13,7 @@ export interface IComment {
   _id: string,
   userName: string,
   userImg: string,
-  likes:number
+  likes: number
   // date: custom<number, Date>()
 }
 
@@ -22,14 +22,20 @@ export interface ISinglePost {
   postImg: string,
   postBody: string,
   tags: string[],
-  postedBy:IPostedBy,
-  likes: number|null,
-  comments: IComment [],
+  postedBy: IPostedBy,
+  likes: number | null,
+  comments: IComment[],
   _id: string,
-  createdAt:string
+  createdAt: string
 }
 
 export interface IPosts {
-  posts: ISinglePost[]
+  posts?: ISinglePost[] | null
 }
 
+export interface setAllPosts {
+  type: typeof PostsActionTypes.SET_ALL_POSTS,
+  payload: IPosts
+}
+
+export type PostActionsInterface = setAllPosts;

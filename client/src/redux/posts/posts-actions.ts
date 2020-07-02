@@ -1,6 +1,6 @@
-import { PostsActionTypes, IPosts } from './posts.types';
+import { PostsActionTypes, IPosts,PostActionsInterface } from './posts.types';
 
-export const setAllPosts = (posts: IPosts) => ({
+export const setAllPosts = (posts: IPosts):PostActionsInterface => ({
   type: PostsActionTypes.SET_ALL_POSTS,
   payload: posts
 });

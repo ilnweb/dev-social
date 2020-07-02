@@ -4,7 +4,7 @@ const INITIAL_STATE:ICurrentUser = {
 	currentUser: null
 };
 
-const userReducer = (state = INITIAL_STATE, action:any):ICurrentUser => {
+const userReducer = (state = INITIAL_STATE, action:UserActionsInterface):ICurrentUser => {
 	switch (action.type) {
 		case UserActionTypes.SET_CURRENT_USER:
 			return {

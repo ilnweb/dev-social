@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
+import { RootState } from '../root-reducer';
 
-const selectPosts = (state:any) => state.allPosts;
+const selectPosts = (state:RootState) => state.allPosts;
 
 export const selectAllPosts = createSelector(
   [selectPosts],

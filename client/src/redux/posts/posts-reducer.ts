@@ -1,10 +1,10 @@
-import { PostsActionTypes } from './posts.types';
+import { PostsActionTypes, PostActionsInterface,IPosts } from './posts.types';
 
-const INITIAL_STATE = {
+const INITIAL_STATE:IPosts = {
 	posts: null
 };
 
-const userReducer = (state = INITIAL_STATE, action:any) => {
+const userReducer = (state = INITIAL_STATE, action:any):IPosts => {
 	switch (action.type) {
 		case PostsActionTypes.SET_ALL_POSTS:
 			return {

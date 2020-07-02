@@ -24,7 +24,7 @@ export const getAllPosts = async () => {
   catch (error) {
     console.log('error getting all posts ' + error.message);
   }
-  return result?.data?.posts;
+  return result?.data?.posts?.reverse();
 };
 
 export const createUserProfile = async (email: any, password: any, name: any) => {
@@ -74,6 +74,7 @@ export const autoSignInUser = async (token: any) => {
     console.log('error loging in user automaticaly' + error.message);
     
   }
+  console.log(result?.data.user);
   return result?.data.user;
 };
 
@@ -102,7 +103,7 @@ export const getPostFromDB = async (postId:string) => {
   catch (error) {
     console.log('error getting single post ' + error.message);
   }
-  console.log('Post got from DB');
+  console.log(result?.data.post);
   return result?.data.post;
 };
 

@@ -36,7 +36,6 @@ const App: React.FC = () => {
       console.log('Loged');
 
     })();
-
     return () => {
 
     }
@@ -46,7 +45,7 @@ const App: React.FC = () => {
     (async function posts() {
       const posts = await getAllPosts();
       dispatch(setAllPosts(posts));
-      console.log('posts');
+      console.log(posts);
 
     })();
 

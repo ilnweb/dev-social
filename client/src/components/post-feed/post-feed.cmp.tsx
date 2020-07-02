@@ -13,7 +13,7 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
 
   return (
     <div className="post-feed">
-      {posts && posts.reverse().map((post, index) => {
+      {posts && posts.map((post, index) => {
         return (
           <Card
             key={index}

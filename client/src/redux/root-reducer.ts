@@ -7,7 +7,7 @@ import postsReducer from './posts/posts-reducer';
 const persisitConfig = {
   key: 'root',
   storage,
-  whitelist:['user']
+  whitelist:['user','allPosts']
 }
 
 const rootReducer = combineReducers({
