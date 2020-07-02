@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useMst } from "../../mobX/root-store";
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../redux/user/user-selectors';
 import hljs from "highlight.js";
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.core.css'
@@ -78,7 +80,9 @@ const formats = [
 ]
 
 const WritePost: React.FC = observer(() => {
-  const { currentUser } = useMst();
+  
+  const currentUser = useSelector(selectCurrentUser);
+ 
   // state
   const [post, setPost] = useState<Post>({ postText: '', postTags: [], photoURL: '' });
   const [tag, setTag] = useState('');

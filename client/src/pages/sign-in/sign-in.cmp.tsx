@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useMst } from "../../mobX/root-store";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../redux/user/user-selectors';
+import { setCurrentUser } from '../../redux/user/user-actions';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';
 import { MailOutlined } from '@ant-design/icons';
@@ -16,8 +18,8 @@ interface Props {
 }
 
 const SignIn: React.FC<Props> = ({ history }) => {
+  const dispatch = useDispatch();
   const [userCredentials, serCredentials] = useState({ email: '', password: '' });
-  const { setCurrentUser } = useMst();
 
   const handleSubmit = async () => {
     const { email, password } = userCredentials;
@@ -26,7 +28,7 @@ const SignIn: React.FC<Props> = ({ history }) => {
       result = await signInUser(email, password);
       console.log(result);
       result && localStorage.setItem('token', result.data.token);
-      setCurrentUser(result?.data.user)
+      dispatch(setCurrentUser(result?.data.user))
       history.push('/')
     } catch (error) {
       console.error(`Error signin in user ${error}`);

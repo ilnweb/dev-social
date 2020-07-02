@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useMst } from "../../mobX/root-store";
 import { Upload, message } from 'antd';
 import { LoadingOutlined, UploadOutlined } from '@ant-design/icons';
 import { avatarUpload } from '../../database/connect';
@@ -35,7 +34,6 @@ const dummyRequest = ({ file, onSuccess }:any):any => {
 
 const UploadAvatar: React.FC<Props> = ({ id } ) => {
   const [state, setState] = useState({ loading: false, imageUrl: '' })
-  const { setCurrentUser } = useMst();
   const handleChange = (info: any) => {
     if (info.file.status === 'uploading') {
       setState({ ...state, loading: true });
@@ -49,7 +47,6 @@ const UploadAvatar: React.FC<Props> = ({ id } ) => {
           loading: false,
         })
         const updatedUser: currentUserInstance = await avatarUpload(imageUrl, id)
-        setCurrentUser(updatedUser)
       }
       );
 

@@ -54,8 +54,6 @@ const SinglePost: React.FC<Props> = observer(() => {
 
   }, [getSinglePost, postId]);
 
-
-
   return (
     <Row className="single_post">
       <Col span={6} sm={0}  lg={3}  xl={4}></Col>

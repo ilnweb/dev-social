@@ -12,6 +12,7 @@ interface Props {
 }
 
 const Header: React.FC<Props> = observer(({ user, signOutHandler }) => {
+
   const menu = (
     <Menu className="header-main-menu">
       <Menu.Item>
@@ -37,6 +38,7 @@ const Header: React.FC<Props> = observer(({ user, signOutHandler }) => {
       </Menu.Item>
     </Menu>
   );
+  
   return (
     <div className='header-main'>
       <Row align='middle'>

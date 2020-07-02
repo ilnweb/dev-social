@@ -1,27 +1,24 @@
 import React from 'react';
-import { useMst } from "../../mobX/root-store";
-import { RootInstance } from '../../mobX/root-store';
+import { useSelector } from 'react-redux';
+import { selectAllPosts } from '../../redux/posts/post-selectors';
 import './home-page.scss';
 import { Row, Col } from 'antd';
 import PostFeed from '../../components/post-feed/post-feed.cmp';
-import { observer } from 'mobx-react-lite';
-// import { PostContext } from '../../mobX/post-feed/post-feed.context';
 
-const HomePage: React.FC = observer(() => {
-  // const postContext = useContext(PostContext);
-  const { posts }:RootInstance = useMst();
+const HomePage: React.FC = () => {
+  const posts=useSelector(selectAllPosts)
 
   return (
     <div className='home-page'>
       <Row>
-        <Col span={6} sm={2} xs={1} lg={6}></Col>
-        <Col span={6} xs={22} sm={20} md={20} lg={12} xl={12}>
+        <Col span={6} sm={0} md={2} lg={4} xl={4}></Col>
+        <Col span={24} sm={24} md={20} lg={16} xl={16}>
           <PostFeed posts={posts} />
         </Col>
-        <Col span={6} sm={2} xs={1} lg={6}></Col>
+        <Col span={6} sm={0} md={2} lg={4} xl={4}></Col>
       </Row>
     </div>
   )
-});
+};
 
 export default HomePage;

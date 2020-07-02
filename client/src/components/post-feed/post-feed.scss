@@ -78,6 +78,11 @@
   font-size: 1.5rem;
 }
 
+.ant-card-actions li span span svg:hover {
+  transition: color .3s;
+ color:$primary_green_dark;
+}
+
 a > .icon-standart {
   font-size: 1.5rem;
 }

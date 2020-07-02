@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useMst } from "../../mobX/root-store";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../redux/user/user-selectors';
+import { setCurrentUser } from '../../redux/user/user-actions';
 import './user-profile.scss';
 import { Row, Col, Typography, Input, Button } from 'antd';
-import { observer } from 'mobx-react-lite';
 import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp';
-// import { currentUserInstance } from '../../mobX/user.context';
 import { updateUserInfo } from '../../database/connect';
 
 
-const UserProfile: React.FC = observer(() => {
-  const { setCurrentUser, currentUser } = useMst();
+const UserProfile: React.FC = () => {
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
   const user = currentUser;
   const [state, setState] = useState({
     location: user?.location,
@@ -23,7 +24,7 @@ const UserProfile: React.FC = observer(() => {
 
   const handleSave = async () => {
     const updatedUser = await updateUserInfo(state, user?.id);
-    setCurrentUser(updatedUser)
+    dispatch(setCurrentUser(updatedUser))
     toggleEdit(true);
   }
 
@@ -124,6 +125,6 @@ const UserProfile: React.FC = observer(() => {
       </Row>
     </div>
   )
-});
+};
 
 export default UserProfile;
