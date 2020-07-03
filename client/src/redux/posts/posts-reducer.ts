@@ -1,4 +1,4 @@
-import { PostsActionTypes, PostActionsInterface,IPosts } from './posts.types';
+import { PostsActionTypes,IPosts } from './posts.types';
 
 const INITIAL_STATE:IPosts = {
 	posts: null

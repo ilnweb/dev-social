@@ -10,3 +10,21 @@ export const signOutUser = () => ({
   payload: null
 });
 
+export const emailSignInstart = (email:string,password:string) => ({
+  type: UserActionTypes.EMAIL_SING_IN_START,
+  payload: {
+    email,
+    password
+  }
+});
+
+export const emailSignInSuccsess = (user:IUserData) => ({
+  type: UserActionTypes.EMAIL_SING_IN_SUCCESS,
+  payload: user
+});
+
+export const emailSignInFalure = (error:string) => ({
+  type: UserActionTypes.EMAIL_SING_IN_FAILURE,
+  payload: error
+});
+
