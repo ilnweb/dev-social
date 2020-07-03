@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setCurrentUser } from '../../redux/user/user-actions';
+import { emailSignInstart } from '../../redux/user/user-actions';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';
 import { MailOutlined } from '@ant-design/icons';
 import { History } from 'history';
 
-import { signInUser } from '../../database/connect';
+// import { signInUser } from '../../database/connect';
 
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
@@ -24,10 +24,10 @@ const SignIn: React.FC<Props> = ({ history }) => {
     const { email, password } = userCredentials;
     let result;
     try {
-      result = await signInUser(email, password);
-      console.log(result);
-      result && localStorage.setItem('token', result.data.token);
-      dispatch(setCurrentUser(result?.data.user))
+      // result = await signInUser(email, password);
+      // console.log(result);
+      // result && localStorage.setItem('token', result.data.token);
+      dispatch(emailSignInstart(email, password))
       history.push('/')
     } catch (error) {
       console.error(`Error signin in user ${error}`);

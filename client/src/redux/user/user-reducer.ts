@@ -6,7 +6,7 @@ const INITIAL_STATE: ICurrentUser = {
 
 const userReducer = (state = INITIAL_STATE, action:UserActionsInterface):ICurrentUser => {
 	switch (action.type) {
-		case UserActionTypes.SET_CURRENT_USER:
+		// case UserActionTypes.SET_CURRENT_USER:
       case UserActionTypes.EMAIL_SING_IN_SUCCESS:
 			return {
 				...state,
