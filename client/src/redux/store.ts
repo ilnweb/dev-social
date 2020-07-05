@@ -4,10 +4,15 @@ import { persistStore } from 'redux-persist';
 import logger from 'redux-logger';
 import rootReducer from './root-reducer';
 import rootSaga from './root-saga';
+import { createBrowserHistory } from "history";
+
+import { routerMiddleware } from 'react-router-redux'
+
+const history = createBrowserHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares:any = [sagaMiddleware];
+const middlewares: any = [routerMiddleware(history), sagaMiddleware];
 
 if (process.env.NODE_ENV === 'development') {
   middlewares.push(logger)
@@ -19,4 +24,4 @@ export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga)
 
-export default {store, persistor};
+export default { store, persistor };

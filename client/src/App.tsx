@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentUser } from './redux/user/user-actions';
+import { setCurrentUser, signOutUser } from './redux/user/user-actions';
 import { setAllPosts } from './redux/posts/posts-actions';
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { useLocation } from "react-router-dom";
@@ -52,11 +52,10 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   const signOutHandler = () => {
-    // if (currentUser) {
-    //   removeCurrentUser(currentUser)
-    //   localStorage.removeItem('token');
-
-    // }
+    if (currentUser) {
+      dispatch(signOutUser());
+      localStorage.removeItem('token');
+    }
   };
 
 
@@ -64,7 +63,7 @@ const App: React.FC = () => {
     <div className="App">
       <Header signOutHandler={signOutHandler} user={currentUser} />
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route strict exact path="/" component={HomePage} />
         <Route path="/post/:postId" component={SinglePost} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />

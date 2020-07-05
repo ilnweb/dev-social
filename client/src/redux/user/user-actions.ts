@@ -10,11 +10,12 @@ export const signOutUser = () => ({
   payload: null
 });
 
-export const emailSignInstart = (email:string,password:string) => ({
+export const emailSignInStart = (email:string, password:string, history:any) => ({
   type: UserActionTypes.EMAIL_SING_IN_START,
   payload: {
     email,
-    password
+    password,
+    history
   }
 });
 

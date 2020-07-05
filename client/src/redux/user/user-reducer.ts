@@ -16,7 +16,12 @@ const userReducer = (state = INITIAL_STATE, action:UserActionsInterface):ICurren
 			return {
 				...state,
 				currentUser: action.payload
-			};
+      };
+      case UserActionTypes.SIGN_OUT_USER:
+        return {
+          ...state,
+          currentUser: action.payload
+      };
 
 		default:
 			return state;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { emailSignInstart } from '../../redux/user/user-actions';
+import { emailSignInStart } from '../../redux/user/user-actions';
 import { Row, Col, Input, Form } from 'antd';
 import Button from 'antd/es/button';
 import { MailOutlined } from '@ant-design/icons';
@@ -20,18 +20,9 @@ const SignIn: React.FC<Props> = ({ history }) => {
   const dispatch = useDispatch();
   const [userCredentials, serCredentials] = useState({ email: '', password: '' });
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const { email, password } = userCredentials;
-    let result;
-    try {
-      // result = await signInUser(email, password);
-      // console.log(result);
-      // result && localStorage.setItem('token', result.data.token);
-      dispatch(emailSignInstart(email, password))
-      history.push('/')
-    } catch (error) {
-      console.error(`Error signin in user ${error}`);
-    }
+    dispatch(emailSignInStart(email, password, history))
   };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -72,7 +63,7 @@ const SignIn: React.FC<Props> = ({ history }) => {
                 onChange={handleChange}
                 style={{ marginTop: 30 }}
               />
-               <Button className="button button-dev block" size="large" style={{ marginTop: 30 }} onClick={handleSubmit}>
+              <Button className="button button-dev block" size="large" style={{ marginTop: 30 }} onClick={handleSubmit}>
                 Log In
 						</Button>
             </Form>
