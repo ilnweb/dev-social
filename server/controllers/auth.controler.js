@@ -22,8 +22,16 @@ exports.signup = (req, res, next) => {
 			});
 			return user.save();
 		})
-		.then((user) => {
-			res.status(200).json({
+    .then((user) => {
+      const token = jwt.sign(
+				{
+					email: user.email,
+					userId: user._id.toString()
+				},
+				'somesupersecretsecret'
+			);
+      res.status(200).json({
+        token: token,
 				user: {
 					id: user._id.toString(),
 					email: user.email,
