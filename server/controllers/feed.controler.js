@@ -49,7 +49,6 @@ exports.createPost = async (req, res, next) => {
         notification_url: 'https://mysite.example.com/notify_endpoint'
       }
     )
-    console.log(uploadedImage.url);
     const user = await User.findById(userId);
     const post = new Post({
       postTitle,

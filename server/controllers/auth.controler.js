@@ -22,8 +22,19 @@ exports.signup = (req, res, next) => {
 			});
 			return user.save();
 		})
-		.then((result) => {
-			res.status(201).json({ message: 'User created!', userId: result._id });
+		.then((user) => {
+			res.status(200).json({
+				user: {
+					id: user._id.toString(),
+					email: user.email,
+					displayName: user.displayName,
+          photoURL: user.photoURL,
+          location: user.location,
+          jobTitle:  user.jobTitle,
+          workStatus:  user.workStatus,
+          skills: user.skills
+				}
+			});
 		})
 		.catch((err) => {
 			console.log(err);
