@@ -42,22 +42,22 @@ export const createUserProfile = async (email: any, password: any, name: any) =>
   return user;
 };
 
-export const signInUser = async (email: any, password: any) => {
-  let result;
-  try {
-    result = await axios.post(`http://localhost:5000/auth/login`, {
-      password,
-      email
-    })
-    if (result.status === 200) {
-      console.log('result signed in');
-    }
-  }
-  catch (error) {
-    console.log('error loging in user ' + error.message);
-  }
-  return result;
-};
+// export const signInUser = async (email: any, password: any) => {
+//   let result;
+//   try {
+//     result = await axios.post(`http://localhost:5000/auth/login`, {
+//       password,
+//       email
+//     })
+//     if (result.status === 200) {
+//       console.log('result signed in');
+//     }
+//   }
+//   catch (error) {
+//     console.log('error loging in user ' + error.message);
+//   }
+//   return result;
+// };
 
 
 export const autoSignInUser = async (token: any) => {

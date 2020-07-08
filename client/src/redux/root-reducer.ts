@@ -4,10 +4,11 @@ import storage from 'redux-persist/lib/storage';
 import userReducer from './user/user-reducer';
 import postsReducer from './posts/posts-reducer';
 
+
 const persisitConfig = {
   key: 'root',
   storage,
-  whitelist:['user','allPosts']
+  whitelist:['allPosts']
 }
 
 const rootReducer = combineReducers({

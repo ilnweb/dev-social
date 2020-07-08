@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentUser, signOutUser } from './redux/user/user-actions';
+import { autoSignInStart, signOutUser } from './redux/user/user-actions';
 import { setAllPosts } from './redux/posts/posts-actions';
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { useLocation } from "react-router-dom";
@@ -14,7 +14,7 @@ import SignIn from './pages/sign-in/sign-in.cmp';
 import SignUp from './pages/sign-up/sign-up.cmp';
 import SinglePost from './pages/single-post/single-post.cmp';
 import ProtectedRouts from './components/protected-routs/protected-routs.cmp';
-import { autoSignInUser, getAllPosts } from './database/connect';
+import { getAllPosts } from './database/connect';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -31,8 +31,8 @@ const App: React.FC = () => {
     setState({ isAuth: true });
     // this.setState({ state: true, token: token, userId: userId });
     (async function signInUser() {
-      const user = await autoSignInUser(token)
-      dispatch(setCurrentUser(user));
+      // const user = await autoSignInUser(token)
+      dispatch(autoSignInStart(token));
       console.log('Loged');
 
     })();
