@@ -1,6 +1,6 @@
 import { takeLatest, put,all,call } from 'redux-saga/effects';
 import { UserActionTypes } from './user.types';
-import { emailSignInSuccsess, signInFalure , autoSignInSuccsess} from './user-actions';
+import { emailSignInSuccsess, signInFalure , autoSignInSuccsess, createUserProfileSuccess} from './user-actions';
 import axios from 'axios'; 
 
 export function* signIn({payload:{email, password, history}}) {
@@ -27,15 +27,14 @@ export function* signIn({payload:{email, password, history}}) {
   }
   return result;
 }
-
 export function* onSignIn() {
   yield takeLatest(UserActionTypes.EMAIL_SING_IN_START, signIn)
 }
+
 //////////////////////////////////////
 
 export function* autoSignIn({payload:{token}}) {
   let result;
-  console.log(token);
   try {
     result = yield axios.post(`http://localhost:5000/auth/login-auto`, {
       token
@@ -53,15 +52,39 @@ export function* autoSignIn({payload:{token}}) {
     )
   }
 }
-
 export function* onAutoSignIn() {
   yield takeLatest(UserActionTypes.AUTO_SING_IN_START, autoSignIn)
 }
 
+//////////////////////////////////////
 
+export function* createUserProfile({payload:{email, password, name}}) {
+  let result;
+  try {
+    result = yield axios.post(`http://localhost:5000/auth/signup`, {
+      name,
+      password,
+      email
+    })
+    if (result.status === 200) {
+      yield put(
+        createUserProfileSuccess(result?.data.user)
+      )
+    }
+  }
+  catch (error) {
+    console.log('error creating user ' + error.message);
+    yield put(
+      signInFalure(error)
+    )
+  }
+}
 
+export function* onCreateUserProfile() {
+  yield takeLatest(UserActionTypes.CREATE_USER_PROFILE_START, createUserProfile)
+}
 
 /////////////////MainSAGA
 export function* userSagas() {
-  yield all([call(onSignIn),call(onAutoSignIn)])
+  yield all([call(onSignIn),call(onAutoSignIn),call(onCreateUserProfile)])
 }

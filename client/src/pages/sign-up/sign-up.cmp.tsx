@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { History } from 'history';
 import { Row, Col, Input, Form } from 'antd';
+import { useDispatch } from 'react-redux';
 import Button from 'antd/es/button';
 import { MailOutlined,UserOutlined } from '@ant-design/icons';
-import { createUserProfile } from '../../database/connect';
+import { createUserProfileStart, } from '../../redux/user/user-actions';
 
 
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
 }
 
-const SignUp: React.FC <{history: History}>= ({history}) => {
+const SignUp: React.FC<{ history: History }> = ({ history }) => {
+  const dispatch = useDispatch();
   const [userCredentials, serCredentials] = useState({ email: '', password: '', confirmPassword: '', name: '' })
 
   const handleSubmit = async () => {
@@ -19,8 +21,8 @@ const SignUp: React.FC <{history: History}>= ({history}) => {
       return alert('Passwords dont match!')
     }
     try {
-      await createUserProfile(email, password, name);
-      history.push('/sign-in')
+      dispatch(createUserProfileStart(email, password, name));
+      history.push('/')
     } catch (error) {
       console.error(`wtf ${error}`);
     }

@@ -7,10 +7,15 @@ export const UserActionTypes = {
   AUTO_SING_IN_START: 'AUTO_SING_IN_START',
   AUTO_SING_IN_SUCCSESS: 'AUTO_SING_IN_SUCCSESS',
 
+  CREATE_USER_PROFILE_START: 'CREATE_USER_PROFILE_START',
+  CREATE_USER_PROFILE_SUCCESS: 'CREATE_USER_PROFILE_SUCCESS',
+
   SING_IN_FAILURE: 'EMAIL_SING_IN_FAILURE',
   SIGN_OUT_USER: 'SIGN_OUT_USER',
 };
 
+
+////INTERFACE USER DATA
 export interface IUserData {
   photoURL: string,
   id: string,
@@ -27,6 +32,7 @@ export interface ICurrentUser {
   error: string | null;
 }
 
+/////INTERFACES USER ACTIONS
 interface setCurrentUser {
   type: typeof UserActionTypes.SET_CURRENT_USER,
   payload: IUserData
@@ -42,6 +48,11 @@ interface autoSignInSuccsess {
   payload: IUserData
 }
 
+interface createUserProfileSuccess {
+  type: typeof UserActionTypes.CREATE_USER_PROFILE_SUCCESS,
+  payload: IUserData
+}
+
 interface signInFalure {
   type: typeof UserActionTypes.SING_IN_FAILURE,
   payload: string
@@ -54,4 +65,4 @@ interface signOutUser {
 
 
 
-export type UserActionsInterface = emailSignInSuccsess | signInFalure | signOutUser | setCurrentUser | autoSignInSuccsess;
+export type UserActionsInterface = emailSignInSuccsess | signInFalure | signOutUser | setCurrentUser | autoSignInSuccsess |createUserProfileSuccess;

@@ -45,8 +45,6 @@ const App: React.FC = () => {
     (async function posts() {
       const posts = await getAllPosts();
       dispatch(setAllPosts(posts));
-      console.log(posts);
-
     })();
 
   }, [dispatch]);

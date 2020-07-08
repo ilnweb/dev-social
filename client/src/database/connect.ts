@@ -60,26 +60,25 @@ export const createUserProfile = async (email: any, password: any, name: any) =>
 // };
 
 
-export const autoSignInUser = async (token: any) => {
-  let result;
-  try {
-    result = await axios.post(`http://localhost:5000/auth/login-auto`, {
-      token,
-      userId: ''
-    })
-    if (result.status === 200) {
-    }
-  }
-  catch (error) {
-    console.log('error loging in user automaticaly' + error.message);
+// export const autoSignInUser = async (token: any) => {
+//   let result;
+//   try {
+//     result = await axios.post(`http://localhost:5000/auth/login-auto`, {
+//       token,
+//       userId: ''
+//     })
+//     if (result.status === 200) {
+//     }
+//   }
+//   catch (error) {
+//     console.log('error loging in user automaticaly' + error.message);
     
-  }
-  console.log(result?.data.user);
-  return result?.data.user;
-};
+//   }
+//   console.log(result?.data.user);
+//   return result?.data.user;
+// };
 
 export const avatarUpload = async (image: any, userId: any) => {
-  console.log(image);
   let result;
   try {
     result = await axios.post(`http://localhost:5000/user/avatar`, {
@@ -103,7 +102,6 @@ export const getPostFromDB = async (postId:string) => {
   catch (error) {
     console.log('error getting single post ' + error.message);
   }
-  console.log(result?.data.post);
   return result?.data.post;
 };
 

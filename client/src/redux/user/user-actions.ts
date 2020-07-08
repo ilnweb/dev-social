@@ -24,6 +24,16 @@ export const autoSignInStart = (token: string) => ({
   payload: { token }
 })
 
+export const createUserProfileStart = (email: string, password: string, name: string) => ({
+  type: UserActionTypes.CREATE_USER_PROFILE_START,
+  payload: { email, password, name }
+})
+
+export const createUserProfileSuccess = (user:IUserData):UserActionsInterface => ({
+  type: UserActionTypes.CREATE_USER_PROFILE_SUCCESS,
+  payload: user
+})
+
 export const autoSignInSuccsess = (user: IUserData): UserActionsInterface => ({
   type: UserActionTypes.AUTO_SING_IN_SUCCSESS,
   payload: user
