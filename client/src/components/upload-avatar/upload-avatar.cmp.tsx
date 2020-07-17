@@ -46,7 +46,6 @@ const UploadAvatar: React.FC = () => {
         dispatch(updateUserAvatarStart(imageUrl))
       }
       );
-
     }
   };
 
