@@ -9,10 +9,9 @@ export function* addLike({ payload: { postId } }) {
   if (!token) {
     return;
   }
-  console.log(postId);
-  let result;
+  yield put(addPostLikeSuccess(postId))
   try {
-    result = yield axios.post(
+     yield axios.post(
       `http://localhost:5000/feed/like`,
       {
         postId,
@@ -22,13 +21,9 @@ export function* addLike({ payload: { postId } }) {
           Authorization: "Bearer " + token,
         },
       }
-    );
-    
-      yield put(addPostLikeSuccess(postId));
-    
+    );  
   } catch (error) {
     console.log("error getting all posts " + error.message);
-    // yield put(autoSignInSuccsess(result?.data.user));
   }
 }
 

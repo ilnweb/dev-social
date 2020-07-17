@@ -60,7 +60,7 @@ const SinglePost: React.FC = () => {
               <div className="single_post-user_info">
                 <UserAvatar displayName={post?.postedBy?.displayName} photoURL={post.postedBy?.photoURL} size='large' />
                 <div className="single_post-user_name">{post?.postedBy?.displayName}</div>
-                <div className="single_post-date">posted: &nbsp; <Moment style={{ lineHeight: 1 }} format="DD/MM/YYYY" withTitle>{post.createdAt}</Moment></div>
+                <div className="single_post-date">posted: &nbsp; <Moment style={{ lineHeight: 1 }} format="DD MMMM YYYY" withTitle>{post.createdAt}</Moment></div>
               </div>
             </div>
             <ReactQuill readOnly={true} className="single_post-quill" theme="snow" value={post?.postBody} modules={modules} style={{ width: '100%', marginBottom: '2rem' }} />

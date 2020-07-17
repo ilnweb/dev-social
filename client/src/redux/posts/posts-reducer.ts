@@ -1,6 +1,6 @@
 import { PostsActionTypes, IPosts,ISinglePost } from './posts.types';
 
-const INITIAL_STATE: any = {
+const INITIAL_STATE: IPosts = {
   posts: null
 };
 
@@ -14,7 +14,7 @@ const userReducer = (state = INITIAL_STATE, action: any): IPosts => {
     case PostsActionTypes.ADD_POST_LIKE_SUCCESS:
       return {
         ...state,
-        posts: state?.posts?.map((post:any) => post._id === action.payload.postId ? {...post, likes: post.likes+1} : post)
+        posts: state?.posts?.map((post:ISinglePost) => post._id === action.payload.postId ? {...post, likes: post.likes+1} : post)
       };
     // case UserActionTypes.SIGN_OUT_USER:
     // 	return {

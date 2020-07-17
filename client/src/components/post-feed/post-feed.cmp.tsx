@@ -32,15 +32,14 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
             <Link to={{ pathname: `/post/${post._id}` }}>
               <div className="post-img" style={{ backgroundImage: `url(${post?.postImg})` }} />
             </Link>
-
             <div className="post-user-detail">
               <Avatar size={50} src={post.postedBy?.photoURL} />
               <div className="post-username-date">
                 <Typography.Title level={4}>
                   {post?.postedBy?.displayName}
                 </Typography.Title>
-                <div style={{ color: 'rgba(255, 255, 255, 0.33)', fontSize: '.8rem' }}>
-                  <Moment format="DD/MM/YYYY" withTitle>{post.createdAt}</Moment>
+                <div style={{ color: 'rgba(255, 255, 255, 0.50)', fontSize: '.8rem' }}>
+                  <Moment format="DD MMMM YYYY" withTitle>{post.createdAt}</Moment>
                 </div>
               </div>
             </div>
