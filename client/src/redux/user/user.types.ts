@@ -10,7 +10,13 @@ export const UserActionTypes = {
   CREATE_USER_PROFILE_START: 'CREATE_USER_PROFILE_START',
   CREATE_USER_PROFILE_SUCCESS: 'CREATE_USER_PROFILE_SUCCESS',
 
-  SING_IN_FAILURE: 'EMAIL_SING_IN_FAILURE',
+  UPDATE_USER_INFO_START: 'UPDATE_USER_INFO_START',
+  UPDATE_USER_INFO_SUCCESS: 'UPDATE_USER_INFO_SUCCESS',
+
+  UPDATE_USER_AVATAR_START: 'UPDATE_USER_AVATAR_START',
+  UPDATE_USER_AVATAR_SUCCESS: 'UPDATE_USER_AVATAR_SUCCESS',
+
+  SING_IN_FAILURE: 'SING_IN_FAILURE',
   SIGN_OUT_USER: 'SIGN_OUT_USER',
 };
 
@@ -50,6 +56,20 @@ interface autoSignInSuccsess {
 
 interface createUserProfileSuccess {
   type: typeof UserActionTypes.CREATE_USER_PROFILE_SUCCESS,
+  payload: {
+    email: string;
+    password: string;
+    name: string;
+  }
+}
+
+interface updateUserInfoSuccess {
+  type: typeof UserActionTypes.UPDATE_USER_INFO_SUCCESS,
+  payload: IUserData
+}
+
+interface updateUserAvatarSuccess {
+  type: typeof UserActionTypes.UPDATE_USER_AVATAR_SUCCESS,
   payload: IUserData
 }
 
@@ -65,4 +85,4 @@ interface signOutUser {
 
 
 
-export type UserActionsInterface = emailSignInSuccsess | signInFalure | signOutUser | setCurrentUser | autoSignInSuccsess |createUserProfileSuccess;
+export type UserActionsInterface = emailSignInSuccsess | signInFalure | signOutUser | setCurrentUser | autoSignInSuccsess |createUserProfileSuccess | updateUserInfoSuccess;

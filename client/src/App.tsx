@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { autoSignInStart, signOutUser } from './redux/user/user-actions';
 import { setAllPosts } from './redux/posts/posts-actions';
 import { selectCurrentUser } from './redux/user/user-selectors';
+import { selectUserError } from './redux/user/user-selectors';
 import { useLocation } from "react-router-dom";
 import 'antd/dist/antd.css';
 import './App.scss';
 import Header from './components/header/header.cmp';
 import Footer from './components/footer/footer.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch,Redirect } from 'react-router-dom';
 import SignIn from './pages/sign-in/sign-in.cmp';
 import SignUp from './pages/sign-up/sign-up.cmp';
 import SinglePost from './pages/single-post/single-post.cmp';
@@ -19,20 +20,18 @@ import { getAllPosts } from './database/connect';
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const userError = useSelector(selectUserError);
+
   const [state, setState] = useState({ isAuth: false });
   // let history = useHistory();
   const location = useLocation();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      return;
-    }
-    setState({ isAuth: true });
+    
     // this.setState({ state: true, token: token, userId: userId });
     (async function signInUser() {
       // const user = await autoSignInUser(token)
-      dispatch(autoSignInStart(token));
+      dispatch(autoSignInStart());
       console.log('Loged');
 
     })();
@@ -65,7 +64,7 @@ const App: React.FC = () => {
         <Route path="/post/:postId" component={SinglePost} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
-        {state.isAuth ? <ProtectedRouts /> : ''}
+        {userError === 'no-user' ? <Redirect to='/' /> : <ProtectedRouts />}
       </Switch>
       {location.pathname !== '/sign-in' && location.pathname !== '/sign-up' && <Footer />}
     </div>

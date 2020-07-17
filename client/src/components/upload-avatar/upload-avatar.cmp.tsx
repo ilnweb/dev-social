@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Upload, message } from 'antd';
+import { useDispatch } from 'react-redux';
 import { LoadingOutlined, UploadOutlined } from '@ant-design/icons';
-import { avatarUpload } from '../../database/connect';
+import { updateUserAvatarStart } from '../../redux/user/user-actions';
 
 function getBase64(img: any, callback: any) {
   const reader = new FileReader();
@@ -21,17 +22,14 @@ function beforeUpload(file: any) {
   return isJpgOrPng&&isLt2M;
 }
 
-interface Props {
-  id:string | undefined
-}
-
 const dummyRequest = ({ file, onSuccess }:any):any => {
   setTimeout(() => {
     onSuccess("ok");
   }, 0);
 };
 
-const UploadAvatar: React.FC<Props> = ({ id } ) => {
+const UploadAvatar: React.FC = () => {
+  const dispatch = useDispatch();
   const [state, setState] = useState({ loading: false, imageUrl: '' })
   const handleChange = (info: any) => {
     if (info.file.status === 'uploading') {
@@ -45,8 +43,7 @@ const UploadAvatar: React.FC<Props> = ({ id } ) => {
           imageUrl,
           loading: false,
         })
-        // const updatedUser: any =
-        await avatarUpload(imageUrl, id)
+        dispatch(updateUserAvatarStart(imageUrl))
       }
       );
 

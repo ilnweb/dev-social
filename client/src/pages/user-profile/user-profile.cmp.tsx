@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
-import { setCurrentUser } from '../../redux/user/user-actions';
+import { updateUserInfoStart } from '../../redux/user/user-actions';
 import './user-profile.scss';
 import { Row, Col, Typography, Input, Button } from 'antd';
 import UploadAvatar from '../../components/upload-avatar/upload-avatar.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp';
-import { updateUserInfo } from '../../database/connect';
 
 
 const UserProfile: React.FC = () => {
@@ -21,11 +20,13 @@ const UserProfile: React.FC = () => {
   });
 
   const [edit, toggleEdit] = useState(true);
-
-  const handleSave = async () => {
-    const updatedUser = await updateUserInfo(state, user?.id);
-    dispatch(setCurrentUser(updatedUser))
-    toggleEdit(true);
+  
+  const handleSave = () => {
+    console.log(state);
+      dispatch(updateUserInfoStart(state))
+      toggleEdit(true);
+  
+    
   }
 
   const handleEdit = () => {
@@ -37,7 +38,7 @@ const UserProfile: React.FC = () => {
     setState({ ...state, [name]: value });
   };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className='user-profile'>
@@ -48,7 +49,7 @@ const UserProfile: React.FC = () => {
           <div className="user-profile-data">
             <div className="user-profile-image">
               <div className={`user-profile-upload-icon ${edit && "opacity0"}`}>
-                <UploadAvatar id={user?.id} />
+                <UploadAvatar />
               </div>
               <UserAvatar displayName={user?.displayName} photoURL={user?.photoURL} size={100} />
             </div>

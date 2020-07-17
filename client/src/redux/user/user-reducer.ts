@@ -11,6 +11,8 @@ const userReducer = (state = INITIAL_STATE, action: any): ICurrentUser => {
     case UserActionTypes.EMAIL_SING_IN_SUCCESS:
     case UserActionTypes.AUTO_SING_IN_SUCCSESS:
     case UserActionTypes.CREATE_USER_PROFILE_SUCCESS:
+    case UserActionTypes.UPDATE_USER_INFO_SUCCESS:
+    case UserActionTypes.UPDATE_USER_AVATAR_SUCCESS:
       return {
         ...state,
         currentUser: action.payload
