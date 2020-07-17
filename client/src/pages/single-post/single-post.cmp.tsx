@@ -54,7 +54,7 @@ const SinglePost: React.FC = () => {
             <div className="single_post-image" style={{ backgroundImage: `url(${post?.postImg})` }} />
             <div className="single_post-header">
               <h1 className="single_post-title">{post?.postTitle}</h1>
-              <div className="tag-grid">
+              <div className="post-tag-grid">
                 {post.tags && post.tags.map((item: string, index: number) => (<Tag key={index} style={{ fontSize: '1.1rem' }}><NumberOutlined style={{ fontSize: '.8rem' }} />{item}</Tag>))}
               </div>
               <div className="single_post-user_info">

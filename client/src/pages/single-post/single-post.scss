@@ -44,6 +44,7 @@
   }
 
   &-user_info {
+    margin-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -58,4 +59,6 @@
     padding: 1rem 3rem 3rem;
     border-radius: 3px;
   }
+
+
 }

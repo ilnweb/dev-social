@@ -54,6 +54,21 @@ hr {
   background-color: $primary_white;
 }
 
+button {
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+button:focus,
+button:active,
+button:hover {
+  outline: none;
+  color: $primary_green_dark;
+}
+
 .ant-input:focus,
 .ant-input-focused {
   border-color: $primary_green;
@@ -73,10 +88,11 @@ hr {
   border-radius: 3px;
 }
 
-.ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
   box-shadow: 0 0 0 2px $primary_green_dark;
 }
- 
+
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -94,4 +110,11 @@ select:-webkit-autofill:active {
   -webkit-text-fill-color: $primary_white !important;
   -webkit-box-shadow: 0 0 0px 1000px $primary_blue inset !important;
   transition: background-color 5000s ease-in-out 0s !important;
+}
+
+
+.post-tag-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }

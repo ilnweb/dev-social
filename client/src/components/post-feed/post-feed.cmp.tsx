@@ -1,21 +1,34 @@
 import React from 'react';
 import './post-feed.scss';
-import { Card, Avatar, Typography, Tag, Space } from 'antd';
+import { Avatar, Typography, Tag } from 'antd';
+import { useDispatch } from 'react-redux';
+import { addPostLikeStart } from '../../redux/posts/posts-actions';
 import { Link } from 'react-router-dom';
-import { CommentOutlined, HeartOutlined, TagOutlined, NumberOutlined } from '@ant-design/icons';
+import { CommentOutlined, HeartOutlined, BookOutlined, NumberOutlined } from '@ant-design/icons';
 import Moment from 'react-moment';
 import { IPosts } from '../../redux/posts/posts.types';
 
 
-const { Meta } = Card;
-
 const PostFeed: React.FC<IPosts> = ({ posts }) => {
+  const dispatch = useDispatch()
+  const addLike = (id: string) => {
+    console.log(id);
+    dispatch(addPostLikeStart(id))
+  }
+
+  const scrollToComment = () => {
+
+  }
+
+  const saveInReadingList = () => {
+
+  }
 
   return (
     <div className="post-feed">
       {posts && posts.map((post, index) => {
         return (
-          <div className="post">
+          <div className="post" key={post._id}>
             <Link to={{ pathname: `/post/${post._id}` }}>
               <div className="post-img" style={{ backgroundImage: `url(${post?.postImg})` }} />
             </Link>
@@ -27,7 +40,7 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
                   {post?.postedBy?.displayName}
                 </Typography.Title>
                 <div style={{ color: 'rgba(255, 255, 255, 0.33)', fontSize: '.8rem' }}>
-                <Moment format="DD/MM/YYYY" withTitle>{post.createdAt}</Moment>
+                  <Moment format="DD/MM/YYYY" withTitle>{post.createdAt}</Moment>
                 </div>
               </div>
             </div>
@@ -49,10 +62,16 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
             </div>
             <div className="post-icons">
               <div>
-                <HeartOutlined className="icon-standart" key="like" /> {post.likes}
-                <CommentOutlined className="icon-standart" style={{marginLeft:"1rem"}} key="comment" /> 0
+                <button onClick={()=>addLike(post._id)}>
+                  <HeartOutlined className="icon-standart" key="like" /> {post.likes}
+                </button>
+                <button onClick={scrollToComment}>
+                  <CommentOutlined className="icon-standart" style={{ marginLeft: "1rem" }} key="comment" /> {post.comments.length}
+                </button>
               </div>
-              <TagOutlined className="icon-standart" key="share" />
+              <button onClick={saveInReadingList}>
+                <BookOutlined className="icon-standart" key="share" />
+              </button>
             </div>
           </div>
         )

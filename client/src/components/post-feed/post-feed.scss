@@ -45,12 +45,6 @@
     font-size: 1.1rem;
   }
 
-  &-tag-grid {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   &-icons{
     display: flex;
     align-items: center;
@@ -67,6 +61,12 @@
 
 .icon-standart {
   font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button:hover,
+button:active{
+  
 }
 
 

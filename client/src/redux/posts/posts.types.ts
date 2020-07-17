@@ -1,8 +1,12 @@
 export const PostsActionTypes = {
   SET_ALL_POSTS: 'SET_ALL_POSTS',
+
   GET_ALL_POSTS_START: 'GET_ALL_POSTS_START',
   GET_ALL_POSTS_SUCCSESS: 'GET_ALL_POSTS_SUCCSESS',
   GET_ALL_POSTS_FAILURE: 'GET_ALL_POSTS_FAILURE',
+
+  ADD_POST_LIKE_START: 'ADD_POST_LIKE_START',
+  ADD_POST_LIKE_SUCCESS: 'ADD_POST_LIKE_SUCCESS'
 };
 
 export interface IPostedBy {
@@ -26,14 +30,14 @@ export interface ISinglePost {
   postBody: string,
   tags: string[],
   postedBy: IPostedBy,
-  likes: number | null,
+  likes: number,
   comments: IComment[],
   _id: string,
   createdAt: string
 }
 
 export interface IPosts {
-  posts?: ISinglePost[] | null
+  posts?: ISinglePost[] | null | undefined
 }
 
 export interface setAllPosts {
@@ -41,4 +45,10 @@ export interface setAllPosts {
   payload: IPosts
 }
 
-export type PostActionsInterface = setAllPosts;
+export interface addPostLikeSuccess {
+  type: typeof PostsActionTypes.ADD_POST_LIKE_SUCCESS,
+  payload: { postId: string }
+}
+
+
+export type PostActionsInterface = setAllPosts | addPostLikeSuccess;
