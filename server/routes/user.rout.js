@@ -1,6 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/user.controler');
-const multer = require('../middleware/multerCloudinary'); 
+const isAuth = require('../middleware/is-auth'); 
 
 // const { body } = require('express-validator/check');
 
@@ -9,8 +9,8 @@ const multer = require('../middleware/multerCloudinary');
 const router = express.Router();
 
 // GET /feed/posts
-router.post('/avatar', userController.postAvatar);
-router.post('/profile-info', userController.updateUserInfo);
+router.post('/avatar', isAuth, userController.postAvatar);
+router.post('/profile-info', isAuth, userController.updateUserInfo);
 
 
 module.exports = router;

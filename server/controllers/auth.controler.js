@@ -8,7 +8,8 @@ exports.signup = (req, res, next) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
 		console.log(errors);
-	}
+  }
+  console.log(req.body);
 	const email = req.body.email;
 	const name = req.body.name;
 	const password = req.body.password;
@@ -102,7 +103,7 @@ exports.loginAuto = async (req, res, next) => {
   const userId = req.body.userId;
   try {
     const user = await User.findById(userId);
-    console.log(user);
+    // console.log(user);
     res.status(200).json({
       user: {
         id: user._id.toString(),

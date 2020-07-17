@@ -1,13 +1,20 @@
 const jwt = require('jsonwebtoken');
+const redis = require("redis");
+// const client = redis.createClient(process.env.REDIS_URI);
+ 
+// client.on("error", function(error) {
+//   console.error(error);
+// });
 
 module.exports = (req, res, next) => {
-  const authHeader = req.body.token;
+  const authHeader = req.get('Authorization');
+  // console.log(authHeader);
   if (!authHeader) {
     const error = new Error('Not authenticated.');
     error.statusCode = 401;
     throw error;
   }
-  const token = authHeader;
+  const token = authHeader.split(' ')[1];
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, 'somesupersecretsecret');
