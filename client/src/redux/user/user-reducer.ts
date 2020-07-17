@@ -1,4 +1,4 @@
-import { UserActionTypes, ICurrentUser, UserActionsInterface } from './user.types';
+import { UserActionTypes, ICurrentUser } from './user.types';
 
 const INITIAL_STATE: ICurrentUser = {
   currentUser: null,

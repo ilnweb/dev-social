@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { autoSignInStart, signOutUser } from './redux/user/user-actions';
 import { setAllPosts } from './redux/posts/posts-actions';
@@ -22,7 +22,7 @@ const App: React.FC = () => {
   const currentUser = useSelector(selectCurrentUser);
   const userError = useSelector(selectUserError);
 
-  const [state, setState] = useState({ isAuth: false });
+  // const [state, setState] = useState({ isAuth: false });
   // let history = useHistory();
   const location = useLocation();
 

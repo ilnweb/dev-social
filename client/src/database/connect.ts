@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// const token = localStorage.getItem("token");
+const token = localStorage.getItem("token");
 
 
 export const createNewPost = async (post: any, userId: any , text:string) => {
@@ -11,8 +11,15 @@ export const createNewPost = async (post: any, userId: any , text:string) => {
       tags: post.postTags,
       postBody: text,
       postTitle: post.postText,
-      postImg: post.photoURL
-    })
+      postImg: post.photoURL,
+      likes: 0
+    },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        }
+      }
+    )
   } catch (error) {
     console.log('error creating new post ' + error.message);
   }

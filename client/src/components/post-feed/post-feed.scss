@@ -3,103 +3,74 @@
 .post-feed{
   min-height: 100vh;
 }
-.ant-card-body {
-  padding: 13px;
-}
 
-.ant-card-meta {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.ant-card-meta-detail {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-}
-
-.ant-card-meta-avatar {
-  /* float: left; */
-  padding-right: 16px;
-  padding-top: 7px;
-}
-
-.ant-card-meta-title{
-  h2{
-    margin-bottom: 0;
-  }
-}
-
-.ant-card {
-  background: $primary_black;
-  overflow: hidden;
-}
-
-
-.postImg {
-  width: 100%;
-  height: 300px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-}
-
-
-.post_card {
-  width: 100%;
+.post{
+  background-color: $primary_black;
   margin-bottom: 1rem;
-}
-
-.ant-card-actions {
-  background: $primary_black;
-  border-top: 1px solid $primary_white;
+  border-radius: 3px;
+  &-img {
+    width: 100%;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   
-  li span span svg{
-    color:$primary_white;
+  }
+
+  &-user-detail{
+    padding: 1.5rem 1rem 0;
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+
+    h4{
+      margin: 0;
+    }
+  }
+
+  &-username-date{
+    text-align: left;
+    margin-left: 1rem;
+  }
+
+  &-title{
+    padding-left: 5rem;
+  }
+
+  &-body{
+    line-height: 26px;
+    white-space: pre-wrap;
+    margin: 0 30px 30px 0;
+    text-align: left;
+    font-size: 1.1rem;
+  }
+
+  &-tag-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &-icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    padding-left: 5rem;
+
+    div{
+      font-size:1.3rem ;
+    }
   }
 }
 
-.ant-card-actions > li:not(:last-child) {
-  border-right: 1px solid$primary_white;
-}
-
-.post-body{
-  line-height: 26px;
-  white-space: pre-wrap;
-  margin: 0 30px 30px 0;
-  text-align: left;
-  font-size: 1.1rem;
-}
-
-.ant-card-actions > li > span > .icon-standart {
-  font-size: 1.5rem;
-}
-
-.ant-card-actions li span span svg:hover {
-  transition: color .3s;
- color:$primary_green_dark;
-}
-
-a > .icon-standart {
-  font-size: 1.5rem;
-}
 
 .icon-standart {
-  font-size: 1.5rem;
-}
-
-.ant-card-meta-detail > div:not(:last-child) {
-  margin-bottom: 8px;
-  width: 100%;
+  font-size: 1.2rem;
 }
 
 
-.tag-grid {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
+
+
+
+
