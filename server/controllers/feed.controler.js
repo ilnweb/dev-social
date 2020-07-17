@@ -81,3 +81,13 @@ exports.getSinglePost = async (req, res, next) => {
     post: post
   });
 }
+
+exports.addPostLike = async (req, res, next) => {
+  postId = req.body.postId;
+  const post = await Post.findById(postId);
+  post.likes += 1;
+  await post.save();
+  res.status(200).json({
+    message: 'post like added'
+  });
+}
