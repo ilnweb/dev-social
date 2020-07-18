@@ -7,14 +7,17 @@ import './single-post.scss';
 import { Row, Col, Tag } from 'antd';
 import { NumberOutlined } from '@ant-design/icons';
 import UserAvatar from '../../components/avatar/avatar.cmp'
-// import Button from 'antd/es/button';
+import Comments from '../../components/comments/comments.cmp';
+import { Typography } from 'antd';
+import NewComment from '../../components/new-comment/new-comment.cmp';
 import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
 import { getPostFromDB } from '../../database/connect';
 import Moment from 'react-moment';
 
-
-
+interface SyntheticEvent<T> {
+  currentTarget: EventTarget & T;
+}
 hljs.configure({
   languages: ["javascript", "ruby", "python", 'html']
 });
@@ -25,12 +28,11 @@ const modules = {
   }
 }
 
-
-
 const SinglePost: React.FC = () => {
+
   const [post, setPost] = useState<any>();
   let { postId } = useParams();
-
+  console.log('rerender');
   useEffect(() => {
     (async function posts() {
       if (postId) {
@@ -42,13 +44,12 @@ const SinglePost: React.FC = () => {
         }
       }
     })();
-
-  }, [post,postId]);
+  }, [post, postId]);
 
   return (
     <Row className="single_post">
-      <Col span={6} sm={0}  lg={3}  xl={4}></Col>
-      <Col span={24} sm={24}  lg={18} xl={16}>
+      <Col span={6} sm={0} lg={3} xl={4}></Col>
+      <Col span={24} sm={24} lg={18} xl={16}>
         {post ?
           <div>
             <div className="single_post-image" style={{ backgroundImage: `url(${post?.postImg})` }} />
@@ -64,9 +65,16 @@ const SinglePost: React.FC = () => {
               </div>
             </div>
             <ReactQuill readOnly={true} className="single_post-quill" theme="snow" value={post?.postBody} modules={modules} style={{ width: '100%', marginBottom: '2rem' }} />
-          </div> : ''}
+            <Typography.Title level={2}>
+              Comments
+            </Typography.Title>
+            <NewComment postId={post?._id} />
+            <Comments comments={post?.comments}/>
+          </div>
+          : ''}
+
       </Col>
-      <Col span={6} sm={0} lg={3}  xl={4}></Col>
+      <Col span={6} sm={0} lg={3} xl={4}></Col>
     </Row>
   )
 }

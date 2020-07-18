@@ -1,0 +1,19 @@
+.ant-comment-content-author > a, .ant-comment-content-author > span {
+  padding-right: 8px;
+  font-size: 12px;
+  line-height: 32px;
+}
+
+.ant-comment-inner {
+  padding: 0;
+}
+
+.ant-comment-actions > li {
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.45);
+  width: 100%;
+  div{
+    padding: .3rem;
+    padding-left: 0;
+  }
+}

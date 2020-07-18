@@ -15,19 +15,13 @@ const userReducer = (state = INITIAL_STATE, action: any): IPosts => {
     case PostsActionTypes.ADD_POST_LIKE_SUCCESS:
       return {
         ...state,
-        posts: addLike(state.posts, action.payload)
+        posts: addLike(state.posts, action.payload.postId, action.payload.userId)
       };
       case PostsActionTypes.REMOVE_POST_LIKE_SUCCESS:
         return {
           ...state,
-          posts: removeLike(state.posts, action.payload)
+          posts: removeLike(state.posts, action.payload.postId, action.payload.userId)
         };
-    // case UserActionTypes.SIGN_OUT_USER:
-    // 	return {
-    // 		...state,
-    // 		currentUser: action.payload
-    // 	};
-
     default:
       return state;
   }

@@ -9,7 +9,10 @@ export const PostsActionTypes = {
   ADD_POST_LIKE_SUCCESS: 'ADD_POST_LIKE_SUCCESS',
 
   REMOVE_POST_LIKE_START: 'REMOVE_POST_LIKE_START',
-  REMOVE_POST_LIKE_SUCCESS: 'REMOVE_POST_LIKE_SUCCESS'
+  REMOVE_POST_LIKE_SUCCESS: 'REMOVE_POST_LIKE_SUCCESS',
+
+  ADD_POST_COMMENT_START: 'ADD_POST_COMMENT_START',
+  ADD_POST_COMMENT_SUCCESS: 'ADD_POST_COMMENT_SUCCESS'
 };
 
 export interface IPostedBy {
@@ -34,10 +37,11 @@ export interface ISinglePost {
   tags: string[],
   postedBy: IPostedBy,
   likes: string[],
-  likesCount:number
+  likesCount: number
   comments: IComment[],
   _id: string,
   createdAt: string
+
 }
 
 export interface IPosts {
@@ -62,6 +66,15 @@ export interface removePostLikeSuccess {
   payload: {
     postId: string
     userId: string
+  }
+}
+
+export interface addPostCommentSuccess {
+  type: typeof PostsActionTypes.REMOVE_POST_LIKE_SUCCESS,
+  payload: {
+    postId: string
+    userId: string
+    comment: string
   }
 }
 

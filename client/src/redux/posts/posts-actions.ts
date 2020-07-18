@@ -10,23 +10,34 @@ export const setAllPosts = (posts: IPosts): PostActionsInterface => ({
 //   payload: null
 // });
 /////add post like
-export const addPostLikeStart = (postId: string , userId:string) => ({
+export const addPostLikeStart = (postId: string, userId: string) => ({
   type: PostsActionTypes.ADD_POST_LIKE_START,
   payload: { postId, userId }
 });
 
-export const addPostLikeSuccess = (postId: string, userId:string): PostActionsInterface => ({
+export const addPostLikeSuccess = (postId: string, userId: string): PostActionsInterface => ({
   type: PostsActionTypes.ADD_POST_LIKE_SUCCESS,
   payload: { postId, userId }
 });
 
 /////remove post like
-export const removePostLikeStart = (postId: string , userId:string) => ({
+export const removePostLikeStart = (postId: string, userId: string) => ({
   type: PostsActionTypes.REMOVE_POST_LIKE_START,
   payload: { postId, userId }
 });
 
-export const removePostLikeSuccess = (postId: string, userId:string): PostActionsInterface => ({
+export const removePostLikeSuccess = (postId: string, userId: string): PostActionsInterface => ({
   type: PostsActionTypes.REMOVE_POST_LIKE_SUCCESS,
+  payload: { postId, userId }
+});
+
+/////remove post like
+export const addPostCommentStart = (postId: string, userId: string, comment: string) => ({
+  type: PostsActionTypes.ADD_POST_COMMENT_START,
+  payload: { postId, userId, comment }
+});
+
+export const addPostCommentSuccess = (postId: string, userId: string): PostActionsInterface => ({
+  type: PostsActionTypes.ADD_POST_COMMENT_SUCCESS,
   payload: { postId, userId }
 });

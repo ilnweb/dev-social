@@ -3,7 +3,7 @@ import { PostsActionTypes } from "./posts.types";
 import { addPostLikeSuccess,removePostLikeSuccess } from "./posts-actions";
 import axios from "axios";
 
-
+///////add like
 export function* addLike({ payload: { postId, userId } }) {
   const token = localStorage.getItem("token");
   if (!token) {
@@ -31,7 +31,7 @@ export function* addLike({ payload: { postId, userId } }) {
 export function* onLike() {
   yield takeLatest(PostsActionTypes.ADD_POST_LIKE_START, addLike);
 }
-/////////////////////////
+///////////remove like
 
 export function* removeLike({ payload: { postId, userId } }) {
   const token = localStorage.getItem("token");
@@ -60,9 +60,40 @@ export function* onUnlike() {
   yield takeLatest(PostsActionTypes.REMOVE_POST_LIKE_START, removeLike);
 }
 
+///////////add comment
+
+export function* addComment({ payload: { postId, userId, comment } }) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return;
+  }
+  // yield put(addPostCommentSuccess(postId, userId))
+  try {
+     yield axios.post(
+      `http://localhost:5000/feed/comment`,
+      {
+        postId,
+        comment
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        }
+      }
+    );  
+  } catch (error) {
+    console.log("error getting all posts " + error.message);
+  }
+}
+
+export function* onAddComment() {
+  yield takeLatest(PostsActionTypes.ADD_POST_COMMENT_START, addComment);
+}
+
 export function* postSagas() {
   yield all([
     call(onLike),
-    call(onUnlike)
+    call(onUnlike),
+    call(onAddComment)
   ]);
 }
