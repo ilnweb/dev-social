@@ -1,4 +1,5 @@
 import { PostsActionTypes, IPosts, ISinglePost } from './posts.types';
+import { addLike,removeLike } from './post-utils';
 
 const INITIAL_STATE: IPosts = {
   posts: null
@@ -14,8 +15,13 @@ const userReducer = (state = INITIAL_STATE, action: any): IPosts => {
     case PostsActionTypes.ADD_POST_LIKE_SUCCESS:
       return {
         ...state,
-        posts: state?.posts?.map((post: ISinglePost) => post._id === action.payload.postId ? { ...post, likesCount: post.likesCount + 1 } : post)
+        posts: addLike(state.posts, action.payload)
       };
+      case PostsActionTypes.REMOVE_POST_LIKE_SUCCESS:
+        return {
+          ...state,
+          posts: removeLike(state.posts, action.payload)
+        };
     // case UserActionTypes.SIGN_OUT_USER:
     // 	return {
     // 		...state,

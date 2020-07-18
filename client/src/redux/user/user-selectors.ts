@@ -12,3 +12,8 @@ export const selectUserError = createSelector(
   [selectUser],
   (user)=>user.error
 );
+
+export const selectUserId = createSelector(
+  [selectUser],
+  (user)=>user.currentUser?.id
+);

@@ -60,14 +60,16 @@
 
 
 .icon-standart {
+  margin-right: .5rem;
   font-size: 1.2rem;
   cursor: pointer;
 }
 
-button:hover,
-button:active{
-  
+.icon-liked{
+ color:$primary_green_dark;
 }
+
+
 
 
 

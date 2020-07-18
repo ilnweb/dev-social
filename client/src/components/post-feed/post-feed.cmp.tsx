@@ -1,19 +1,32 @@
 import React from 'react';
 import './post-feed.scss';
 import { Avatar, Typography, Tag } from 'antd';
-import { useDispatch } from 'react-redux';
-import { addPostLikeStart } from '../../redux/posts/posts-actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPostLikeStart, removePostLikeStart } from '../../redux/posts/posts-actions';
+import { selectUserId } from '../../redux/user/user-selectors';
 import { Link } from 'react-router-dom';
 import { CommentOutlined, HeartOutlined, BookOutlined, NumberOutlined } from '@ant-design/icons';
+import { FaRegHeart, FaHeartbeat, FaRegComment } from 'react-icons/fa';
 import Moment from 'react-moment';
 import { IPosts } from '../../redux/posts/posts.types';
 
 
 const PostFeed: React.FC<IPosts> = ({ posts }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const userId = useSelector(selectUserId)
+
   const addLike = (id: string) => {
     console.log(id);
-    dispatch(addPostLikeStart(id))
+    if (userId) {
+      dispatch(addPostLikeStart(id, userId))
+    }
+  }
+
+  const removeLike = (id: string) => {
+    console.log(id);
+    if (userId) {
+      dispatch(removePostLikeStart(id, userId))
+    }
   }
 
   const scrollToComment = () => {
@@ -22,6 +35,10 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
 
   const saveInReadingList = () => {
 
+  }
+
+  const checkLike = (post: any, userId: any) => {
+    return post?.likes?.includes(userId)
   }
 
   return (
@@ -60,12 +77,16 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
               </div>
             </div>
             <div className="post-icons">
-              <div>
-                <button onClick={()=>addLike(post._id)}>
-                  <HeartOutlined className="icon-standart" key="like" /> {post.likesCount}
-                </button>
-                <button onClick={scrollToComment}>
-                  <CommentOutlined className="icon-standart" style={{ marginLeft: "1rem" }} key="comment" /> {post.comments.length}
+              <div className="d-flex">
+                {
+                  userId && checkLike(post, userId) ?
+                    <button className="d-flex icon-liked"><FaHeartbeat onClick={() => removeLike(post._id)} className="icon-standart" key="like" /> {post.likesCount}</button> :
+                    <button className="d-flex" onClick={() => addLike(post._id)}>
+                      <FaRegHeart className="icon-standart" key="like" /> {post.likesCount}
+                    </button>
+                }
+                <button className="d-flex" onClick={scrollToComment}>
+                  <FaRegComment className="icon-standart" style={{ marginLeft: "1rem" }} key="comment" /> {post.comments.length}
                 </button>
               </div>
               <button onClick={saveInReadingList}>

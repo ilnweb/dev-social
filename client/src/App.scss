@@ -69,6 +69,12 @@ button:hover {
   color: $primary_green_dark;
 }
 
+.d-flex{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
 .ant-input:focus,
 .ant-input-focused {
   border-color: $primary_green;
