@@ -14,6 +14,7 @@ router.post('/post', isAuth, feedController.createPost);
 
 router.post('/like', isAuth, feedController.addPostLike);
 router.post('/unlike', isAuth, feedController.removePostLike);
+router.post('/comment', isAuth, feedController.addPostComment);
 
 router.post('/single-post', feedController.getSinglePost);
 
