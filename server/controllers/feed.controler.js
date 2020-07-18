@@ -93,3 +93,16 @@ exports.addPostLike = async (req, res, next) => {
     message: 'post like added'
   });
 }
+
+exports.removePostLike = async (req, res, next) => {
+  const postId = req.body.postId;
+  const userId = req.body.userId;
+  const post = await Post.findById(postId);
+  post.likesCount -= 1;
+  post.likes.pull(userId);
+  await post.save();
+  res.status(200).json({
+    message: 'post like removed'
+  });
+}
+
