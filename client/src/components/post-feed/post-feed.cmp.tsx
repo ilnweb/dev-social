@@ -62,7 +62,7 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
             <div className="post-icons">
               <div>
                 <button onClick={()=>addLike(post._id)}>
-                  <HeartOutlined className="icon-standart" key="like" /> {post.likes}
+                  <HeartOutlined className="icon-standart" key="like" /> {post.likesCount}
                 </button>
                 <button onClick={scrollToComment}>
                   <CommentOutlined className="icon-standart" style={{ marginLeft: "1rem" }} key="comment" /> {post.comments.length}

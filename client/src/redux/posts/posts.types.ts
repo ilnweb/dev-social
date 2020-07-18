@@ -30,7 +30,8 @@ export interface ISinglePost {
   postBody: string,
   tags: string[],
   postedBy: IPostedBy,
-  likes: number,
+  likes: string[],
+  likesCount:number
   comments: IComment[],
   _id: string,
   createdAt: string

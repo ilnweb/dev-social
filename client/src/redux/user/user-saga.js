@@ -10,7 +10,6 @@ import {
 } from "./user-actions";
 import axios from "axios";
 
-const token = localStorage.getItem("token");
 
 export function* signIn({ payload: { email, password, history } }) {
   let result;
@@ -40,6 +39,8 @@ export function* onSignIn() {
 //////////////////////////////////////
 
 export function* autoSignIn() {
+  const token = localStorage.getItem("token");
+
   if (!token) {
     yield put(signInFalure("no-user"));
     return;
@@ -97,6 +98,7 @@ export function* onCreateUserProfile() {
 //////////////////////////////////////
 
 export function* updateUserInfo({ payload: { info } }) {
+  const token = localStorage.getItem("token");
   if (!token) {
     return;
   }
@@ -130,6 +132,7 @@ export function* onUpdateUserInfo() {
 /////////////////////////////////
 
 export function* updateUserAvatar({ payload: { image } }) {
+  const token = localStorage.getItem("token");
   if (!token) {
     return;
   }
