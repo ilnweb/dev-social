@@ -82,7 +82,6 @@ export function* addComment({ payload: { postId, userId, comment } }) {
       }
     );
     if (result.status === 200) {
-      console.log(result.data.comments)
       yield put(addPostReplySuccess(postId, result.data.comments))
     }
      
@@ -102,7 +101,6 @@ export function* addCommentReply({ payload: { postId, userId, commentId, comment
   if (!token) {
     return;
   }
-  console.log(postId, userId, commentId, comment);
   let result;
   try {
     result = yield axios.post(
@@ -119,7 +117,6 @@ export function* addCommentReply({ payload: { postId, userId, commentId, comment
       }
     );
     if (result.status === 200) {
-      console.log(result.data.comments)
       yield put(addPostReplySuccess(postId, result.data.comments))
     }
   } catch (error) {

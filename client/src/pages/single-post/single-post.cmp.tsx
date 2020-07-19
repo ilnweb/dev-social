@@ -34,14 +34,12 @@ const SinglePost: React.FC = () => {
   const [post, setPost] = useState<any>();
   let { postId } = useParams();
   const post1 = useSelector(selectSinglePost(postId))
-  console.log(post1)
   useEffect(() => {
     (async function posts() {
-      if (postId) { 
-    
+      if (postId) {
         if (post1) {
           setPost(post1[0])
-        }else {
+        } else {
           console.log('post from db')
           let post = await getPostFromDB(postId);
           setPost(post)

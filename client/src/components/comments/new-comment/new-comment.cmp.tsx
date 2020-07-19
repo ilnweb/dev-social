@@ -25,6 +25,7 @@ const NewComment: React.FC<Props> = ({ postId }) => {
   const submitComment = () => {
     if (user && comment.commentText) {
       dispatch(addPostCommentStart(postId, user.id, comment.commentText));
+      setComment({ commentText: '' })
     }
   }
 
