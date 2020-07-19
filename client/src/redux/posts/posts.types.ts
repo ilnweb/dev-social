@@ -41,7 +41,7 @@ export interface ISinglePost {
   comments: IComment[],
   _id: string,
   createdAt: string
-
+  commentsCount:number
 }
 
 export interface IPosts {

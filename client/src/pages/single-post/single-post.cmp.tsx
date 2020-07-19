@@ -4,12 +4,11 @@ import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.core.css';
 import 'highlight.js/styles/monokai.css';
 import './single-post.scss';
-import { Row, Col, Tag } from 'antd';
+import { Row, Col, Tag, Typography } from 'antd';
 import { NumberOutlined } from '@ant-design/icons';
 import UserAvatar from '../../components/avatar/avatar.cmp'
-import Comments from '../../components/comments/comments.cmp';
-import { Typography } from 'antd';
-import NewComment from '../../components/new-comment/new-comment.cmp';
+import Comments from '../../components/comments/comments-container/comments.cmp';
+import NewComment from '../../components/comments/new-comment/new-comment.cmp';
 import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
 import { getPostFromDB } from '../../database/connect';
@@ -18,6 +17,7 @@ import Moment from 'react-moment';
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
 }
+
 hljs.configure({
   languages: ["javascript", "ruby", "python", 'html']
 });
@@ -33,6 +33,7 @@ const SinglePost: React.FC = () => {
   const [post, setPost] = useState<any>();
   let { postId } = useParams();
   console.log('rerender');
+
   useEffect(() => {
     (async function posts() {
       if (postId) {
@@ -69,14 +70,13 @@ const SinglePost: React.FC = () => {
               Comments
             </Typography.Title>
             <NewComment postId={post?._id} />
-            <Comments comments={post?.comments}/>
+            <Comments comments={post?.comments} postId={post?._id}/>
           </div>
           : ''}
-
       </Col>
       <Col span={6} sm={0} lg={3} xl={4}></Col>
     </Row>
   )
 }
 
-export default SinglePost;
+export default React.memo(SinglePost);

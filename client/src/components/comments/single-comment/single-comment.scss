@@ -1,0 +1,32 @@
+.single-comment {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #00db5fe8;
+  box-sizing:border-box!important;
+
+  .ant-comment-content-author>a,
+  .ant-comment-content-author>span {
+    padding-right: 8px;
+    font-size: 12px;
+    line-height: 32px;
+  }
+
+  .ant-comment-content-author {
+    justify-content: space-between;
+}
+
+  .ant-comment-inner {
+    padding: 0;
+  }
+
+  .ant-comment-actions>li {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.45);
+    width: 100%;
+
+    div {
+      padding: .3rem;
+      padding-left: 0;
+    }
+  }
+}

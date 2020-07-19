@@ -7,6 +7,7 @@ import { selectUserId } from '../../redux/user/user-selectors';
 import { Link } from 'react-router-dom';
 import { CommentOutlined, HeartOutlined, BookOutlined, NumberOutlined } from '@ant-design/icons';
 import { FaRegHeart, FaHeartbeat, FaRegComment } from 'react-icons/fa';
+import { GiCrownedHeart } from "react-icons/gi";
 import Moment from 'react-moment';
 import { IPosts } from '../../redux/posts/posts.types';
 
@@ -80,13 +81,13 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
               <div className="d-flex">
                 {
                   userId && checkLike(post, userId) ?
-                    <button className="d-flex icon-liked"><FaHeartbeat onClick={() => removeLike(post._id)} className="icon-standart" key="like" /> {post.likesCount}</button> :
+                    <button className="d-flex icon-liked"><GiCrownedHeart onClick={() => removeLike(post._id)} className="icon-standart" key="like" /> {post.likesCount}</button> :
                     <button className="d-flex" onClick={() => addLike(post._id)}>
                       <FaRegHeart className="icon-standart" key="like" /> {post.likesCount}
                     </button>
                 }
                 <button className="d-flex" onClick={scrollToComment}>
-                  <FaRegComment className="icon-standart" style={{ marginLeft: "1rem" }} key="comment" /> {post.comments.length}
+                  <FaRegComment className="icon-standart" style={{ marginLeft: "1rem" }} key="comment" /> {post.commentsCount}
                 </button>
               </div>
               <button onClick={saveInReadingList}>
