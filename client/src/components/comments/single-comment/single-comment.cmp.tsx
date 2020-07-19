@@ -35,7 +35,7 @@ const SingleComment = ({ comment, commentUserName, submitComment, commentId }: a
   if (open) {
     actions = [<div style={{ textAlign: 'right' }}>
       <TextArea rows={4} name="commentText" onChange={addCommentText} value={commentText.commentText} style={{ fontSize: '1.2rem' }} />
-      <Button onClick={()=>submitComment(commentText, parentCommentID)} style={{ marginTop: '.5rem' }} className="button button-dev block" size="middle">
+      <Button onClick={() => { submitComment(commentText, parentCommentID); setOpen(false);}} style={{ marginTop: '.5rem' }} className="button button-dev block" size="middle">
         Add Comment
     </Button>
     </div>];

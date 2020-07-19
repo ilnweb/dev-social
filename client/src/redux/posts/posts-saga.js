@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import { PostsActionTypes } from "./posts.types";
-import { addPostLikeSuccess,removePostLikeSuccess } from "./posts-actions";
+import { addPostLikeSuccess, removePostLikeSuccess, addPostReplySuccess } from "./posts-actions";
 import axios from "axios";
 
 ///////add like
@@ -9,10 +9,10 @@ export function* addLike({ payload: { postId, userId } }) {
   if (!token) {
     return;
   }
-    console.log(userId);
-  yield put(addPostLikeSuccess(postId, userId))
+  console.log(userId);
+  yield put(addPostLikeSuccess(postId, userId));
   try {
-     yield axios.post(
+    yield axios.post(
       `http://localhost:5000/feed/like`,
       {
         postId,
@@ -20,9 +20,9 @@ export function* addLike({ payload: { postId, userId } }) {
       {
         headers: {
           Authorization: "Bearer " + token,
-        }
+        },
       }
-    );  
+    );
   } catch (error) {
     console.log("error getting all posts " + error.message);
   }
@@ -38,9 +38,9 @@ export function* removeLike({ payload: { postId, userId } }) {
   if (!token) {
     return;
   }
-  yield put(removePostLikeSuccess(postId, userId))
+  yield put(removePostLikeSuccess(postId, userId));
   try {
-     yield axios.post(
+    yield axios.post(
       `http://localhost:5000/feed/unlike`,
       {
         postId,
@@ -48,9 +48,9 @@ export function* removeLike({ payload: { postId, userId } }) {
       {
         headers: {
           Authorization: "Bearer " + token,
-        }
+        },
       }
-    );  
+    );
   } catch (error) {
     console.log("error getting all posts " + error.message);
   }
@@ -67,20 +67,25 @@ export function* addComment({ payload: { postId, userId, comment } }) {
   if (!token) {
     return;
   }
-  // yield put(addPostCommentSuccess(postId, userId))
+  let result;
   try {
-     yield axios.post(
+    result = yield axios.post(
       `http://localhost:5000/feed/comment`,
       {
         postId,
-        comment
+        comment,
       },
       {
         headers: {
           Authorization: "Bearer " + token,
-        }
+        },
       }
-    );  
+    );
+    if (result.status === 200) {
+      console.log(result.data.comments)
+      yield put(addPostReplySuccess(postId, result.data.comments))
+    }
+     
   } catch (error) {
     console.log("error getting all posts " + error.message);
   }
@@ -90,10 +95,47 @@ export function* onAddComment() {
   yield takeLatest(PostsActionTypes.ADD_POST_COMMENT_START, addComment);
 }
 
+///////////add comment reply
+
+export function* addCommentReply({ payload: { postId, userId, commentId, comment }}) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return;
+  }
+  console.log(postId, userId, commentId, comment);
+  let result;
+  try {
+    result = yield axios.post(
+      `http://localhost:5000/feed/comment-reply`,
+      {
+        postId,
+        commentId,
+        comment,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    if (result.status === 200) {
+      console.log(result.data.comments)
+      yield put(addPostReplySuccess(postId, result.data.comments))
+    }
+  } catch (error) {
+    console.log("error getting all posts " + error.message);
+  }
+}
+
+export function* onAddCommentReply() {
+  yield takeLatest(PostsActionTypes.ADD_POST_REPLY_START, addCommentReply);
+}
+
 export function* postSagas() {
   yield all([
     call(onLike),
     call(onUnlike),
-    call(onAddComment)
+    call(onAddComment),
+    call(onAddCommentReply),
   ]);
 }

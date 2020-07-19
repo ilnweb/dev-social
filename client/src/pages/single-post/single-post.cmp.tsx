@@ -6,6 +6,8 @@ import 'highlight.js/styles/monokai.css';
 import './single-post.scss';
 import { Row, Col, Tag, Typography } from 'antd';
 import { NumberOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSinglePost } from '../../redux/posts/post-selectors'
 import UserAvatar from '../../components/avatar/avatar.cmp'
 import Comments from '../../components/comments/comments-container/comments.cmp';
 import NewComment from '../../components/comments/new-comment/new-comment.cmp';
@@ -29,23 +31,24 @@ const modules = {
 }
 
 const SinglePost: React.FC = () => {
-
   const [post, setPost] = useState<any>();
   let { postId } = useParams();
-  console.log('rerender');
-
+  const post1 = useSelector(selectSinglePost(postId))
+  console.log(post1)
   useEffect(() => {
     (async function posts() {
-      if (postId) {
-        // let post = await getSinglePost(postId);
-        setPost(post)
-        if (!post) {
+      if (postId) { 
+    
+        if (post1) {
+          setPost(post1[0])
+        }else {
+          console.log('post from db')
           let post = await getPostFromDB(postId);
           setPost(post)
         }
       }
     })();
-  }, [post, postId]);
+  }, [post, postId, post1]);
 
   return (
     <Row className="single_post">
@@ -70,7 +73,7 @@ const SinglePost: React.FC = () => {
               Comments
             </Typography.Title>
             <NewComment postId={post?._id} />
-            <Comments comments={post?.comments} postId={post?._id}/>
+            <Comments comments={post?.comments} postId={post?._id} />
           </div>
           : ''}
       </Col>
@@ -79,4 +82,4 @@ const SinglePost: React.FC = () => {
   )
 }
 
-export default React.memo(SinglePost);
+export default SinglePost;

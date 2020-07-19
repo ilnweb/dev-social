@@ -12,7 +12,10 @@ export const PostsActionTypes = {
   REMOVE_POST_LIKE_SUCCESS: 'REMOVE_POST_LIKE_SUCCESS',
 
   ADD_POST_COMMENT_START: 'ADD_POST_COMMENT_START',
-  ADD_POST_COMMENT_SUCCESS: 'ADD_POST_COMMENT_SUCCESS'
+  ADD_POST_COMMENT_SUCCESS: 'ADD_POST_COMMENT_SUCCESS',
+
+  ADD_POST_REPLY_START: 'ADD_POST_REPLY_START',
+  ADD_POST_REPLY_SUCCESS: 'ADD_POST_REPLY_SUCCESS'
 };
 
 export interface IPostedBy {
@@ -70,7 +73,16 @@ export interface removePostLikeSuccess {
 }
 
 export interface addPostCommentSuccess {
-  type: typeof PostsActionTypes.REMOVE_POST_LIKE_SUCCESS,
+  type: typeof PostsActionTypes.ADD_POST_COMMENT_SUCCESS,
+  payload: {
+    postId: string
+    userId: string
+    comment: string
+  }
+}
+
+export interface addPostReplySuccess {
+  type: typeof PostsActionTypes.ADD_POST_REPLY_SUCCESS,
   payload: {
     postId: string
     userId: string

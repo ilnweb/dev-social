@@ -31,7 +31,7 @@ export const removePostLikeSuccess = (postId: string, userId: string): PostActio
   payload: { postId, userId }
 });
 
-/////remove post like
+/////add Post Comment
 export const addPostCommentStart = (postId: string, userId: string, comment: string) => ({
   type: PostsActionTypes.ADD_POST_COMMENT_START,
   payload: { postId, userId, comment }
@@ -40,4 +40,16 @@ export const addPostCommentStart = (postId: string, userId: string, comment: str
 export const addPostCommentSuccess = (postId: string, userId: string): PostActionsInterface => ({
   type: PostsActionTypes.ADD_POST_COMMENT_SUCCESS,
   payload: { postId, userId }
+});
+
+
+/////add Post Reply
+export const addPostReplyStart = (postId: string, userId: string, commentId: string, comment: string) => ({
+  type: PostsActionTypes.ADD_POST_REPLY_START,
+  payload: { postId, userId, commentId, comment }
+});
+
+export const addPostReplySuccess = (postId: string, comments: any) => ({
+  type: PostsActionTypes.ADD_POST_REPLY_SUCCESS,
+  payload: { postId, comments }
 });
