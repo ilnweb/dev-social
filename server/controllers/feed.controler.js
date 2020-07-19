@@ -136,8 +136,25 @@ exports.addPostComment = async (req, res, next) => {
   });
   post.commentsCount += 1;
   await post.save();
+  const post1 = await Post.findById(postId)
+    .populate({
+      path: "postedBy",
+      select: "displayName photoURL",
+    })
+    .populate({
+      path: "comments.postedBy",
+      select: "displayName photoURL",
+    })
+    .populate({
+      path: "comments.replys",
+      populate: {
+        path: "postedBy",
+        select: "displayName photoURL",
+      },
+    })
+    .exec();
   res.status(200).json({
-    comments: post.comments,
+    comments: post1.comments,
   });
 };
 
