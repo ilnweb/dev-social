@@ -19,6 +19,12 @@ exports.getPosts = (req, res, next) => {
     .populate({
       path: "comments.postedBy",
       select: "displayName photoURL",
+    }).populate({
+      path: "comments.replys",
+      populate: {
+        path:"postedBy",
+        select: "displayName photoURL"
+      }
     })
     .exec()
     .then((posts) => {
@@ -76,9 +82,16 @@ exports.getSinglePost = async (req, res, next) => {
     .populate({
       path: "postedBy",
       select: "displayName photoURL",
-    }).populate({
+    })
+    .populate({
       path: "comments.postedBy",
       select: "displayName photoURL",
+    }).populate({
+      path: "comments.replys",
+      populate: {
+        path:"postedBy",
+        select: "displayName photoURL"
+      }
     })
     .exec();
   res.status(200).json({
@@ -119,9 +132,31 @@ exports.addPostComment = async (req, res, next) => {
     text: comment,
     postedBy: userId,
   });
-  // post.commentsCount += 1;
+  post.commentsCount += 1;
   await post.save();
   res.status(200).json({
-    message: "post like removed",
+    message: "post comment added",
+  });
+};
+
+exports.addPostCommentReply = async (req, res, next) => {
+  const postId = req.body.postId;
+  const userId = req.body.userId;
+  const commentId = req.body.userId;
+  const reply = req.body.reply;
+  const post = await Post.findById(postId);
+  const commentToAddReply = post.comments.find(
+    (comment) => comment._id === commentId
+  );
+  const index = post.comments.indexOf(commentId);
+  commentToAddReply.replys.push({
+    text: reply,
+    postedBy: userId,
+  });
+  post.comments[index] = commentToAddReply;
+  post.commentsCount += 1;
+  await post.save();
+  res.status(200).json({
+    message: "post comment added",
   });
 };
