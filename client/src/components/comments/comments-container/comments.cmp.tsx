@@ -44,7 +44,7 @@ const Comments = ({ comments, postId }: any) => {
                     <SingleComment
                       key={reply._id}
                       comment={reply}
-                      commentUserName={reply.postedBy.displayName}
+                      userId={user?.id}
                       submitComment={submitComment}
                       commentId={comment._id}
                     />

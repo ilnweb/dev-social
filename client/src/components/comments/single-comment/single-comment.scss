@@ -2,7 +2,7 @@
   padding: 1rem;
   margin-bottom: 1rem;
   border: 1px solid #00db5fe8;
-  box-sizing:border-box!important;
+  box-sizing: border-box !important;
 
   .ant-comment-content-author>a,
   .ant-comment-content-author>span {
@@ -13,7 +13,7 @@
 
   .ant-comment-content-author {
     justify-content: space-between;
-}
+  }
 
   .ant-comment-inner {
     padding: 0;
@@ -29,4 +29,9 @@
       padding-left: 0;
     }
   }
+
+  .ant-comment-content-author-name h4{
+    color: rgb(173, 173, 173)!important;
+  }
+
 }
