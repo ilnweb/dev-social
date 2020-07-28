@@ -36,7 +36,7 @@ const Comments = ({ comments, postId }: any) => {
               submitComment={submitComment}
               commentId={comment._id}
             />
-            {comment.replys.length !== 0 &&
+            {comment.replys.length > 0 &&
               <div className="d-flex reply-container">
                 <FiCornerDownRight className="icon-standart" />
                 <div style={{ width: '100%' }}>

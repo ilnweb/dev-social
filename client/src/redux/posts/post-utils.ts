@@ -18,8 +18,8 @@ export const removeLike = (posts: any, postId: string, userId: string) => {
 }
 
 
-export const changeComments = (posts: any, postId: string, comments: string) => {
+export const changeComments = (posts: any, postId: string, comments: any) => {
   console.log('in util')
-  return posts?.map((post: any) => post._id === postId ? { ...post, comments:comments } : post)
+  return posts?.map((post: any) => post._id === postId ? { ...post, comments:[...comments] } : post)
 }
 // state?.posts?.map((post: any) => post._id === action.payload.postId ? console.log(action.payload) : post)
