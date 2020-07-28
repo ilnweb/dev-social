@@ -8,7 +8,7 @@ export const selectAllPosts = createSelector(
   (allPosts) => allPosts.posts
 );
 
-export const selectSinglePost = (id: string) => createSelector(
-  [selectPosts],
-  (allPosts: any) => allPosts?.posts?.filter((post: any) => post._id === id)
+export const getCommets = (id: string) => createSelector(
+  [selectAllPosts],
+  (posts: any) => posts?.find((post: any) => post._id === id).comments
 );

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPostCommentStart } from '../../../redux/posts/posts-actions';
 import { selectCurrentUser } from '../../../redux/user/user-selectors';
-import { Comment, Avatar, Form, Button, List, Input, Typography } from 'antd';
+import { Comment, Avatar, Form, Button,  Input } from 'antd';
 
 const { TextArea } = Input;
 

@@ -3,12 +3,17 @@ import './comments.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPostReplyStart } from '../../../redux/posts/posts-actions';
 import { selectCurrentUser } from '../../../redux/user/user-selectors';
+import { getCommets } from '../../../redux/posts/post-selectors';
 import SingleComment from '../single-comment/single-comment.cmp';
 import { FiCornerDownRight } from 'react-icons/fi';
 
 const Comments = ({ comments, postId }: any) => {
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
+  const getAllCommets = useSelector(getCommets(postId));
+  console.log(getAllCommets)
+
+  comments = getAllCommets;
 
   const submitComment = (commentText: string, commentId: string) => {
     if (!commentText) {

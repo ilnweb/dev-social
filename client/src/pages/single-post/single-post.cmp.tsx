@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import hljs from "highlight.js";
-import 'react-quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.core.css';
-import 'highlight.js/styles/monokai.css';
 import './single-post.scss';
 import { Row, Col, Tag, Typography } from 'antd';
 import { NumberOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSinglePost } from '../../redux/posts/post-selectors'
+import QuillComponent from '../../components/quill-component/quill.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp'
 import Comments from '../../components/comments/comments-container/comments.cmp';
 import NewComment from '../../components/comments/new-comment/new-comment.cmp';
-import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
 import { getPostFromDB } from '../../database/connect';
 import Moment from 'react-moment';
@@ -20,33 +15,22 @@ interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
 }
 
-hljs.configure({
-  languages: ["javascript", "ruby", "python", 'html']
-});
-
-const modules = {
-  syntax: {
-    highlight: (text: any) => hljs.highlightAuto(text).value,
-  }
-}
-
 const SinglePost: React.FC = () => {
   const [post, setPost] = useState<any>();
   let { postId } = useParams();
-  const post1 = useSelector(selectSinglePost(postId))
+
   useEffect(() => {
     (async function posts() {
       if (postId) {
-        if (post1) {
-          setPost(post1[0])
-        } else {
-          console.log('post from db')
+        // let post = await getSinglePost(postId);
+        setPost(post)
+        if (!post) {
           let post = await getPostFromDB(postId);
           setPost(post)
         }
       }
     })();
-  }, [post, postId, post1]);
+  }, [post, postId]);
 
   return (
     <Row className="single_post">
@@ -66,7 +50,7 @@ const SinglePost: React.FC = () => {
                 <div className="single_post-date">posted: &nbsp; <Moment style={{ lineHeight: 1 }} format="DD MMMM YYYY" withTitle>{post.createdAt}</Moment></div>
               </div>
             </div>
-            <ReactQuill readOnly={true} className="single_post-quill" theme="snow" value={post?.postBody} modules={modules} style={{ width: '100%', marginBottom: '2rem' }} />
+            <QuillComponent postBody={post?.postBody} />
             <Typography.Title level={2}>
               Comments
             </Typography.Title>
@@ -80,4 +64,4 @@ const SinglePost: React.FC = () => {
   )
 }
 
-export default SinglePost;
+export default React.memo(SinglePost);
