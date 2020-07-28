@@ -136,7 +136,7 @@ exports.addPostComment = async (req, res, next) => {
   });
   post.commentsCount += 1;
   await post.save();
-  const post1 = await Post.findById(postId)
+  const updatedPost = await Post.findById(postId)
     .populate({
       path: "postedBy",
       select: "displayName photoURL",
@@ -154,7 +154,7 @@ exports.addPostComment = async (req, res, next) => {
     })
     .exec();
   res.status(200).json({
-    comments: post1.comments,
+    comments: updatedPost.comments,
   });
 };
 
@@ -164,21 +164,21 @@ exports.addPostCommentReply = async (req, res, next) => {
   const commentId = req.body.commentId;
   const reply = req.body.comment.commentText;
 
-  const post = await Post.findById(postId);
-
-  post.comments.map((comment) => {
-    if (comment._id.toString() === commentId) {
-      console.log("in if");
-      comment.replys.push({
-        text: reply,
-        postedBy: userId,
-      });
-      // return post.save();
-    }
-  });
-  post.commentsCount += 1;
+  // const post = await Post.findById(postId);
+  const post = await Post.findOne({ _id: postId }, (err, post) => {
+    post.comments.map(async(comment) => {
+      if (comment._id.toString() === commentId) {
+        console.log(reply);
+        comment.replys.push({
+          text: reply,
+          postedBy: userId,
+        });
+        return await post.save();
+      }
+    });
+  })
   await post.save();
-  const post1 = await Post.findById(postId)
+  const updatedPost = await Post.findById(postId)
     .populate({
       path: "postedBy",
       select: "displayName photoURL",
@@ -195,20 +195,39 @@ exports.addPostCommentReply = async (req, res, next) => {
       },
     })
     .exec();
+  console.log(post.comments);
   res.status(200).json({
-    comments: post1.comments,
+    comments: updatedPost.comments,
   });
 };
 
-// const post = await Post.findOne({ _id: postId }, (err, post) => {
-//   post.comments.map((comment) => {
-//     if (comment._id.toString() === commentId) {
-//       console.log('in if');
-//       comment.replys.push({
-//         text: reply,
-//         postedBy: userId,
-//       });
-//       return post.save();
-//     }
-//   });
-// });
+
+// post.comments.map((comment) => {
+  //   if (comment._id.toString() === commentId) {
+  //     console.log("in if");
+  //     comment.replys.push({
+  //       text: reply,
+  //       postedBy: userId,
+  //     });
+  //     // return post.save();
+  //   }
+  // });
+  // post.commentsCount += 1;
+  // await post.save();
+  // const post1 = await Post.findById(postId)
+  //   .populate({
+  //     path: "postedBy",
+  //     select: "displayName photoURL",
+  //   })
+  //   .populate({
+  //     path: "comments.postedBy",
+  //     select: "displayName photoURL",
+  //   })
+  //   .populate({
+  //     path: "comments.replys",
+  //     populate: {
+  //       path: "postedBy",
+  //       select: "displayName photoURL",
+  //     },
+  //   })
+  //   .exec();
