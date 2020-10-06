@@ -86,9 +86,16 @@ const PostFeed: React.FC<IPosts> = ({ posts }) => {
                       <FaRegHeart className="icon-standart" key="like" /> {post.likesCount}
                     </button>
                 }
-                <button className="d-flex" onClick={scrollToComment}>
-                  <FaRegComment className="icon-standart" style={{ marginLeft: "1rem" }} key="comment" /> {post.commentsCount}
-                </button>
+                <Link to={{
+                  pathname: `/post/${post._id}`,
+                  state: {
+                    scrollToComment:true
+                  }
+                }}>
+                  <button className="d-flex" onClick={scrollToComment}>
+                    <FaRegComment className="icon-standart" style={{ marginLeft: "1rem" }} key="comment" /> {post.commentsCount}
+                  </button>
+                </Link>
               </div>
               <button onClick={saveInReadingList}>
                 <BookOutlined className="icon-standart" key="share" />

@@ -22,7 +22,7 @@ const CommentTextArea = ({ comments }: any) => {
 
   return (
     <div>
-      <TextArea rows={4} name="commentText" onChange={addCommentText} value={comment.commentText} />
+      <TextArea id="comment-area" rows={4} name="commentText" onChange={addCommentText} value={comment.commentText} />
       <Button onClick={submitComment} className="button button-dev block" size="middle">
         Add Comment
       </Button>

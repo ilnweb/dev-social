@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef  } from 'react';
 import './single-post.scss';
 import { Row, Col, Tag, Typography } from 'antd';
 import { NumberOutlined } from '@ant-design/icons';
@@ -7,7 +7,7 @@ import QuillComponent from '../../components/quill-component/quill.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp'
 import Comments from '../../components/comments/comments-container/comments.cmp';
 import NewComment from '../../components/comments/new-comment/new-comment.cmp';
-import { useParams } from 'react-router-dom';
+import { useParams,useLocation } from 'react-router-dom';
 import { getPostFromDB } from '../../database/connect';
 import Moment from 'react-moment';
 
@@ -15,9 +15,16 @@ interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
 }
 
+const scrollToRef = (ref: any) => {
+  console.log(ref.current.offsetTop)
+  window.scrollTo(0, ref.current.offsetTop)
+  }
+
 const SinglePost: React.FC = () => {
   const [post, setPost] = useState<any>();
   let { postId } = useParams<any>();
+  let location = useLocation<any>();
+  const scroll = useRef<any>(null);
 
   useEffect(() => {
     (async function posts() {
@@ -29,8 +36,13 @@ const SinglePost: React.FC = () => {
           setPost(post)
         }
       }
+
+      if (location?.state?.scrollToComment) {
+        scrollToRef(scroll)
+      }
+      
     })();
-  }, [post, postId]);
+  }, [post, postId,scroll]);
 
   return (
     <Row className="single_post">
@@ -55,7 +67,8 @@ const SinglePost: React.FC = () => {
               Comments
             </Typography.Title>
             <NewComment postId={post?._id} />
-            <Comments comments={post?.comments} postId={post?._id} />
+            <div ref={scroll}></div>
+            <Comments comments={post?.comments} postId={post?._id}/>
           </div>
           : ''}
       </Col>
