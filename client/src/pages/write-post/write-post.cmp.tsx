@@ -1,4 +1,4 @@
-import React, { useState,createRef,useEffect,useRef } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import hljs from "highlight.js";
@@ -85,7 +85,6 @@ const WritePost: React.FC = () => {
   const [post, setPost] = useState<Post>({ postText: '', postTags: [], photoURL: '' });
   const [tag, setTag] = useState('');
   const [text, setText] = useState({ text: '' });
-  const [fixTop, setFixTop] = useState(false);
   const [isSticky, setSticky] = useState(false);
   const ref = useRef<any>();
   const handleScroll = () => {
@@ -151,9 +150,6 @@ const WritePost: React.FC = () => {
     setPost({ ...post, postText: value });
   };
 
-  const quillScroll = () => {
-  }
-
   const handleChangeTag = (e: React.FormEvent<HTMLInputElement>): void => {
     const { value } = e.currentTarget;
     console.log(value);
@@ -161,7 +157,6 @@ const WritePost: React.FC = () => {
     return;
   };
  
-
   return (
     <div className='user-profile'>
       <Typography.Title level={2}>Write Post</Typography.Title>
@@ -196,7 +191,7 @@ const WritePost: React.FC = () => {
             </Space>
           </Form>
           <Space direction="vertical" size="middle" style={{ width: '100%', marginBottom: '2rem' }}>
-            <div onScroll={quillScroll} ref={ref}>
+            <div ref={ref}>
             <ReactQuill theme="snow" scrollingContainer='body' value={text.text} onChange={handleQuill} modules={modules} className={`quill-write-post ${isSticky&&"fixed"}`}
                 formats={formats} />
             </div>
