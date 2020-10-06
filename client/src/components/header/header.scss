@@ -1,7 +1,7 @@
 @import "src/styles/variables.scss";
 
 .header-main{
-  padding: .7rem;
+  padding: .7rem 1rem;
   background-color:$primary_black;
   h3{
     color:$primary_white;
@@ -14,7 +14,7 @@
   }
 
   &-menu{
-    background-color:$primary_violet;
+    background-color:$primary_blue;
     padding: 1rem .5rem;
     
     li a{

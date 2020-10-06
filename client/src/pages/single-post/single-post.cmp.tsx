@@ -17,7 +17,7 @@ interface SyntheticEvent<T> {
 
 const SinglePost: React.FC = () => {
   const [post, setPost] = useState<any>();
-  let { postId } = useParams();
+  let { postId } = useParams<any>();
 
   useEffect(() => {
     (async function posts() {
