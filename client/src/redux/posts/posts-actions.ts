@@ -37,9 +37,9 @@ export const addPostCommentStart = (postId: string, userId: string, comment: str
   payload: { postId, userId, comment }
 });
 
-export const addPostCommentSuccess = (postId: string, userId: string): PostActionsInterface => ({
+export const addPostCommentSuccess = (postId: string, comments:any) => ({
   type: PostsActionTypes.ADD_POST_COMMENT_SUCCESS,
-  payload: { postId, userId }
+  payload: { postId, comments }
 });
 
 
@@ -49,7 +49,13 @@ export const addPostReplyStart = (postId: string, userId: string, commentId: str
   payload: { postId, userId, commentId, comment }
 });
 
-export const addPostReplySuccess = (postId: string, comments: any) => ({
-  type: PostsActionTypes.ADD_POST_REPLY_SUCCESS,
-  payload: { postId, comments }
+/////add Comment like
+export const addCommentLikeStart = (postId: string, userId: string) => ({
+  type: PostsActionTypes.ADD_COMMENT_LIKE_START,
+  payload: { postId, userId }
 });
+
+// export const addPostReplySuccess = (postId: string, comments: any) => ({
+//   type: PostsActionTypes.ADD_POST_REPLY_SUCCESS,
+//   payload: { postId, comments }
+// });

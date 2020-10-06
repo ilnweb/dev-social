@@ -22,7 +22,7 @@ const userReducer = (state = INITIAL_STATE, action: any): IPosts => {
         ...state,
         posts: removeLike(state.posts, action.payload.postId, action.payload.userId)
       };
-    case PostsActionTypes.ADD_POST_REPLY_SUCCESS:
+    case PostsActionTypes.ADD_POST_COMMENT_SUCCESS:
       return {
         ...state,
         posts: changeComments(state.posts, action.payload.postId, action.payload.comments)

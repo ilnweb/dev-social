@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import { PostsActionTypes } from "./posts.types";
-import { addPostLikeSuccess, removePostLikeSuccess, addPostReplySuccess } from "./posts-actions";
+import { addPostLikeSuccess, removePostLikeSuccess, addPostCommentSuccess } from "./posts-actions";
 import axios from "axios";
 
 ///////add like
@@ -82,7 +82,7 @@ export function* addComment({ payload: { postId, userId, comment } }) {
       }
     );
     if (result.status === 200) {
-      yield put(addPostReplySuccess(postId, result.data.comments))
+      yield put(addPostCommentSuccess(postId, result.data.comments))
     }
      
   } catch (error) {
@@ -117,7 +117,7 @@ export function* addCommentReply({ payload: { postId, userId, commentId, comment
       }
     );
     if (result.status === 200) {
-      yield put(addPostReplySuccess(postId, result.data.comments))
+      yield put(addPostCommentSuccess(postId, result.data.comments))
     }
   } catch (error) {
     console.log("error getting all posts " + error.message);

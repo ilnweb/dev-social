@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,createRef,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import hljs from "highlight.js";
@@ -85,6 +85,22 @@ const WritePost: React.FC = () => {
   const [post, setPost] = useState<Post>({ postText: '', postTags: [], photoURL: '' });
   const [tag, setTag] = useState('');
   const [text, setText] = useState({ text: '' });
+  const [fixTop, setFixTop] = useState(false);
+  const [bodyOffset, setBodyOffset] = useState(
+    document.body.getBoundingClientRect()
+  );
+  const [scrollY, setScrollY] = useState(bodyOffset.top);
+
+  const listener = (e:any) => {
+    const top = setScrollY(-bodyOffset.top);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", listener);
+    return () => {
+      window.removeEventListener("scroll", listener);
+    };
+  });
 
   // handlers
   const handleSubmit = async () => {
@@ -130,6 +146,12 @@ const WritePost: React.FC = () => {
     setPost({ ...post, postText: value });
   };
 
+  const quillScroll = () => {
+
+
+    console.log(scrollY);
+  }
+
   const handleChangeTag = (e: React.FormEvent<HTMLInputElement>): void => {
     const { value } = e.currentTarget;
     console.log(value);
@@ -140,7 +162,7 @@ const WritePost: React.FC = () => {
   };
 
  
-
+ console.log(scrollY);
   return (
     <div className='user-profile'>
       <Typography.Title level={2}>Write Post</Typography.Title>
@@ -175,9 +197,11 @@ const WritePost: React.FC = () => {
             </Space>
           </Form>
           <Space direction="vertical" size="middle" style={{ width: '100%', marginBottom: '2rem' }}>
-            <ReactQuill theme="snow" value={text.text} onChange={handleQuill} modules={modules}
-              formats={formats} />
-            <Button className="button button-dev block" size="large" type="primary" onClick={handleSubmit}>
+            <div onScroll={quillScroll}>
+            <ReactQuill theme="snow" value={text.text} onChange={handleQuill} modules={modules} className="quill-write-post"
+                formats={formats} />
+            </div>
+            <Button className="button button-dev block" size="large" type="primary" onClick={handleSubmit} >
               Submit Post
 					</Button>
           </Space>
