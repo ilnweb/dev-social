@@ -16,7 +16,6 @@ interface SyntheticEvent<T> {
 }
 
 const scrollToRef = (ref: any) => {
-  console.log(ref.current.offsetTop)
   window.scrollTo(0, ref.current.offsetTop)
   }
 
@@ -34,13 +33,12 @@ const SinglePost: React.FC = () => {
         if (!post) {
           let post = await getPostFromDB(postId);
           setPost(post)
+         
+        }
+        if (location?.state?.scrollToComment) {
+          scrollToRef(scroll)
         }
       }
-
-      if (location?.state?.scrollToComment) {
-        scrollToRef(scroll)
-      }
-      
     })();
   }, [post, postId,scroll]);
 
@@ -66,8 +64,8 @@ const SinglePost: React.FC = () => {
             <Typography.Title level={2}>
               Comments
             </Typography.Title>
-            <NewComment postId={post?._id} />
             <div ref={scroll}></div>
+            <NewComment postId={post?._id} />
             <Comments comments={post?.comments} postId={post?._id}/>
           </div>
           : ''}

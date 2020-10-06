@@ -11,7 +11,6 @@ const Comments = ({ comments, postId }: any) => {
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
   const getAllCommets = useSelector(getCommets(postId));
-  console.log(getAllCommets)
 
   comments = getAllCommets;
 
