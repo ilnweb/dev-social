@@ -1,4 +1,4 @@
-import { PostsActionTypes, IPosts, ISinglePost } from './posts.types';
+import { PostsActionTypes, IPosts } from './posts.types';
 import { addLike, removeLike, changeComments } from './post-utils';
 
 const INITIAL_STATE: IPosts = {

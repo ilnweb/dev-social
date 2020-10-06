@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './single-comment.scss';
 import { Comment, Avatar, Typography, Input, Button } from 'antd';
 import Moment from 'react-moment';

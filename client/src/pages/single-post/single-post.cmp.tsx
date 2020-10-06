@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './single-post.scss';
 import { Row, Col, Tag, Typography } from 'antd';
 import { NumberOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import QuillComponent from '../../components/quill-component/quill.cmp';
 import UserAvatar from '../../components/avatar/avatar.cmp'
 import Comments from '../../components/comments/comments-container/comments.cmp';
