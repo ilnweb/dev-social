@@ -151,9 +151,7 @@ const WritePost: React.FC = () => {
   const handleChangeTag = (e: React.FormEvent<HTMLInputElement>): void => {
     const { value } = e.currentTarget;
     console.log(value);
-    if (value.length > 0) {
       setTag(value)
-    }
     return;
   };
  
