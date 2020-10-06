@@ -1,4 +1,4 @@
-import React, { useState,createRef,useEffect } from 'react';
+import React, { useState,createRef,useEffect,useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import hljs from "highlight.js";
@@ -86,21 +86,20 @@ const WritePost: React.FC = () => {
   const [tag, setTag] = useState('');
   const [text, setText] = useState({ text: '' });
   const [fixTop, setFixTop] = useState(false);
-  const [bodyOffset, setBodyOffset] = useState(
-    document.body.getBoundingClientRect()
-  );
-  const [scrollY, setScrollY] = useState(bodyOffset.top);
-
-  const listener = (e:any) => {
-    const top = setScrollY(-bodyOffset.top);
-  }
-
+  const [isSticky, setSticky] = useState(false);
+  const ref = useRef<any>();
+  const handleScroll = () => {
+    if (ref.current) {
+      setSticky(ref?.current?.getBoundingClientRect().top < 250);
+    }
+  };
   useEffect(() => {
-    window.addEventListener("scroll", listener);
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
-      window.removeEventListener("scroll", listener);
+      window.removeEventListener('scroll', () => handleScroll);
     };
-  });
+  }, []);
 
   // handlers
   const handleSubmit = async () => {
@@ -147,9 +146,6 @@ const WritePost: React.FC = () => {
   };
 
   const quillScroll = () => {
-
-
-    console.log(scrollY);
   }
 
   const handleChangeTag = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -160,9 +156,8 @@ const WritePost: React.FC = () => {
     }
     return;
   };
-
  
- console.log(scrollY);
+
   return (
     <div className='user-profile'>
       <Typography.Title level={2}>Write Post</Typography.Title>
@@ -197,8 +192,8 @@ const WritePost: React.FC = () => {
             </Space>
           </Form>
           <Space direction="vertical" size="middle" style={{ width: '100%', marginBottom: '2rem' }}>
-            <div onScroll={quillScroll}>
-            <ReactQuill theme="snow" value={text.text} onChange={handleQuill} modules={modules} className="quill-write-post"
+            <div onScroll={quillScroll} ref={ref}>
+            <ReactQuill theme="snow" value={text.text} onChange={handleQuill} modules={modules} className={`quill-write-post ${isSticky&&"fixed"}`}
                 formats={formats} />
             </div>
             <Button className="button button-dev block" size="large" type="primary" onClick={handleSubmit} >
