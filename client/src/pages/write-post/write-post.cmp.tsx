@@ -95,7 +95,13 @@ const WritePost: React.FC = () => {
   };
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-
+    const quill = document.querySelector('.ql-toolbar');
+    if (quill) {
+      quill.addEventListener("mousedown", function(event){
+        event.preventDefault();
+        event.stopPropagation();
+    });
+    }
     return () => {
       window.removeEventListener('scroll', () => handleScroll);
     };
@@ -191,7 +197,7 @@ const WritePost: React.FC = () => {
           </Form>
           <Space direction="vertical" size="middle" style={{ width: '100%', marginBottom: '2rem' }}>
             <div onScroll={quillScroll} ref={ref}>
-            <ReactQuill theme="snow" value={text.text} onChange={handleQuill} modules={modules} className={`quill-write-post ${isSticky&&"fixed"}`}
+            <ReactQuill theme="snow" scrollingContainer='body' value={text.text} onChange={handleQuill} modules={modules} className={`quill-write-post ${isSticky&&"fixed"}`}
                 formats={formats} />
             </div>
             <Button className="button button-dev block" size="large" type="primary" onClick={handleSubmit} >
