@@ -25,12 +25,12 @@ const Header: React.FC<Props> = ({ user, signOutHandler }) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link to='/user-profile'>
+        <Link to='/my-posts'>
           My Posts
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link to='/user-profile'>
+        <Link to='/reading-list'>
           Reading List
         </Link>
       </Menu.Item>

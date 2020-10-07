@@ -10,6 +10,8 @@ import './App.scss';
 import Header from './components/header/header.cmp';
 import Footer from './components/footer/footer.cmp';
 import HomePage from './pages/home-page/home-page.cmp';
+import ReadingList from './pages/reading-list/reading-list.cmp';
+import UserPosts from './pages/user-posts/user-posts.cmp';
 import { Route, Switch,Redirect } from 'react-router-dom';
 import SignIn from './pages/sign-in/sign-in.cmp';
 import SignUp from './pages/sign-up/sign-up.cmp';
@@ -61,6 +63,8 @@ const App: React.FC = () => {
       <Header signOutHandler={signOutHandler} user={currentUser} />
       <Switch>
         <Route strict exact path="/" component={HomePage} />
+        <Route path="/my-posts" component={UserPosts} />
+        <Route path="/reading-list" component={ReadingList} />
         <Route path="/post/:postId" component={SinglePost} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
