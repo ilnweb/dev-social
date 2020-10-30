@@ -9,10 +9,7 @@ exports.signup = (req, res, next) => {
 	if (!errors.isEmpty()) {
 		console.log(errors);
   }
-  console.log(req.body);
-	const email = req.body.email;
-	const name = req.body.name;
-	const password = req.body.password;
+  const { email, name, password } = req.body;
 	bcrypt
 		.hash(password, 12)
 		.then((hashedPw) => {
