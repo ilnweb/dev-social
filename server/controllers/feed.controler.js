@@ -159,9 +159,7 @@ exports.addPostComment = async (req, res, next) => {
 };
 
 exports.addPostCommentReply = async (req, res, next) => {
-  const postId = req.body.postId;
-  const userId = req.body.userId;
-  const commentId = req.body.commentId;
+  const { postId, userId, commentId } = req.body;
   const reply = req.body.comment.commentText;
 
   // const post = await Post.findById(postId);
